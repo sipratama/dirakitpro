@@ -3,10 +3,17 @@
 ## 1. Design Status
 
 ```text
-DRAFT — VISUAL DIRECTION NOT YET LOCKED
+VISUAL DIRECTION — LOCKED
+
+DirakitPro MVP Visual Direction V1
+Hybrid Digital Workshop
+
+Locked: 21 August 2026
 ```
 
-This document defines the shared design foundation (color, type, layout, spacing, components, tone) that all three candidate visual directions build on top of. Direction selection happens in Design Session 2. Nothing in this document commits to a final homepage, dashboard, or workspace layout — it commits to the *system* those layouts will be built from, regardless of which direction wins.
+Full lock rationale, composition, and surface allocation are in [§25](#25-visual-direction-lock--hybrid-digital-workshop-v1). In summary: the three candidate directions explored in [`visual-directions/`](visual-directions/) were not chosen exclusively — DirakitPro's locked direction is a controlled hybrid with **Digital Workshop** as the structural foundation, **Modern Maker** for approachability, and **Editorial Builder** for showcase/output moments. This document (color, type, layout, spacing, components, tone) remains the shared system all three influences draw from; §25 governs how much of each influence applies per surface.
+
+This document still commits to the *system*, not a final pixel-locked homepage/dashboard/workspace layout — screen-level composition is specified per-screen (see [`screens/`](screens/), starting with the Homepage spec) and rendered in Google Stitch / Claude Design from there.
 
 Source of truth for product scope: [`DirakitPro_MVP_PRD_V1.0.md`](../../DirakitPro_MVP_PRD_V1.0.md) (LOCKED). This design system does not alter P0 product scope.
 
@@ -45,6 +52,8 @@ Professional quality is not instant — it is assembled progressively, piece by 
 
 **Grow with the user** — the same design language must still feel appropriate when DirakitPro introduces Understand → Engineer → Production → Scale tiers. Avoid a visual style so beginner-coded that it would embarrass a returning learner two tiers later.
 
+**System leads while learning, work leads once it's done** — *"Saat belajar, sistem DirakitPro terlihat. Saat karya selesai, karya learner yang terlihat."* While a learner is mid-build, the product's own structure (navigation, Build Progress, task framing) is allowed to be visually present and directive. Once a project reaches completion/showcase, the interface recedes and the learner's actual output becomes the dominant visual — this is the operating principle behind the Digital-Workshop-for-learning / Editorial-Builder-for-showcase hybrid locked in [§25](#25-visual-direction-lock--hybrid-digital-workshop-v1).
+
 ## 5. Audience
 
 Primary MVP audience: ages ~18–30, Indonesia, beginner or early-stage learner — university students, fresh graduates, career switchers, non-technical people exploring digital products, early junior developers, AI-assisted beginner builders.
@@ -59,7 +68,7 @@ Explicitly not:
 
 ## 6. Visual Personality
 
-Modern Maker + Digital Workshop + Editorial Product Design, evaluated as three distinct directions in [`visual-directions/`](visual-directions/) before any single direction is locked. All three share this system's color, type, spacing, and component rules — they differ in layout density, illustration use, and emotional register.
+**Locked:** Modern Maker + Digital Workshop + Editorial Product Design, combined as a controlled hybrid rather than a single winner-take-all choice — see [§25](#25-visual-direction-lock--hybrid-digital-workshop-v1) for the composition, per-surface allocation, and rationale. The three directions were evaluated independently in [`visual-directions/`](visual-directions/) (preserved as decision evidence); all three already shared this system's color, type, spacing, and component rules, which is what makes blending them mechanically straightforward rather than three incompatible visual languages.
 
 ## 7. Color System
 
@@ -256,17 +265,17 @@ Avoid: bouncing, spinning loaders beyond a simple minimal spinner, excessive par
 
 ## 18. Signature Components
 
-### 18.1 Build Progress
+### 18.1 Connected Build Progress — LOCKED signature component
 
-The product's signature motif. Must visually distinguish four states — **Completed**, **Current**, **Upcoming**, **Optional** — through shape/icon, not color alone (color-blind and low-vision safe).
+**Connected Build Progress** is DirakitPro's official signature component, locked as part of the [§25](#25-visual-direction-lock--hybrid-digital-workshop-v1) direction. It must always visually distinguish four states — **Completed**, **Current**, **Upcoming**, **Optional** — through shape/icon, not color alone (color-blind and low-vision safe), and it must always read as *a product being progressively assembled*, never as a generic checklist. The exact layout may vary by surface (vertical, horizontal, or a compact grid) as long as the connected relationship between steps and the four states are preserved.
 
-Two candidate representations to prototype in Stitch (Session 2 decides between them, or a hybrid):
+Two locked layout variants, applied by surface rather than left as an open choice:
 
-**Candidate 1 — Vertical Assembly Timeline.** A vertical connected-line list, each build step as a "block" node on the line: filled brand-500 circle + checkmark for Completed, brand-500 ring (unfilled) with a pulsing dot for Current, neutral-300 outline circle for Upcoming, a dashed neutral-300 circle for Optional. Connector line between nodes fills solid brand-500 up to the current step, and stays neutral-200 ahead of it — reading as a cable/circuit being completed rather than a checklist. A percentage + fraction label ("68% • 4 dari 6 tahap") sits at the top, and a compact horizontal bar mirrors the same fill for quick scanning.
+**Workspace variant — Vertical Assembly Timeline** (primary, in-course use). A vertical connected-line list, each build step as a "block" node on the line: filled brand-500 circle + checkmark for Completed, brand-500 ring (unfilled) with a pulsing dot for Current, neutral-300 outline circle for Upcoming, a dashed neutral-300 circle for Optional. Connector line between nodes fills solid brand-500 up to the current step, and stays neutral-200 ahead of it — reading as a cable/circuit being completed rather than a checklist. A percentage + fraction label ("68% • 4 dari 6 tahap") sits at the top, and a compact horizontal bar mirrors the same fill for quick scanning. This is the Digital-Workshop-weighted variant and the primary home of that direction's influence per §25.
 
-**Candidate 2 — Modular Completion Grid.** Each build step is a small rectangular "block" tile (matching the card radius-sm language) arranged in a horizontal or wrapped grid, sized roughly proportional to relative effort. Completed tiles are solid brand-500/brand-700 with a checkmark, Current tile has a brand-200 fill with an animated subtle border pulse, Upcoming tiles are outlined neutral-300, Optional tiles have a dashed border and a small "opsional" tag. This reads more literally as "pieces of the build," and scales well to a dashboard summary card (many courses at once) since it compresses to a small multi-tile strip.
+**Dashboard variant — Modular Completion Grid** (compact, multi-course use). Each build step is a small rectangular "block" tile (matching the card radius-sm language) arranged in a horizontal or wrapped grid, sized roughly proportional to relative effort. Completed tiles are solid brand-500/brand-700 with a checkmark, Current tile has a brand-200 fill with an animated subtle border pulse, Upcoming tiles are outlined neutral-300, Optional tiles have a dashed border and a small "opsional" tag. This reads more literally as "pieces of the build," and compresses well to a dashboard summary card showing several courses at once — its lighter, tile-based read carries more of Modern Maker's influence.
 
-Recommendation to prototype first: **Candidate 1** for the in-course workspace (it reads as a journey, which matches the linear stage/lesson structure), and a compressed version of **Candidate 2** for the dashboard's multi-course overview (it reads well at small size). Final choice deferred to Session 2 visual testing.
+Use the Vertical Assembly Timeline for `/learn/[courseSlug]` and `/learn/[courseSlug]/[lessonSlug]`; use the Modular Completion Grid (compressed) for `/dashboard`. Both variants are locked, not competing candidates awaiting a decision — the choice between them is by surface, not by preference.
 
 ### 18.2 Project Result
 
@@ -324,3 +333,82 @@ Visual exploration may use Google Stitch, Claude Design, or another design tool,
 ## 24. Implementation Notes
 
 This document, the three visual direction documents, the screen inventory, and the Stitch master prompt are **specification artifacts**. They intentionally define tokens (color hex values, spacing scale, radius scale, type scale) in a framework-neutral way so that, when implementation begins, they translate directly into a Tailwind theme/config and shadcn/ui component tokens without redesign — but that translation is out of scope for this session. No `tailwind.config`, CSS, or component code is produced here.
+
+## 25. Visual Direction Lock — Hybrid Digital Workshop V1
+
+```text
+DirakitPro MVP Visual Direction V1
+Hybrid Digital Workshop
+
+Locked: 21 August 2026
+```
+
+Design Session 2B's exploration of the three candidate directions ([`visual-directions/DIRECTION_A_MODERN_MAKER.md`](visual-directions/DIRECTION_A_MODERN_MAKER.md), [`DIRECTION_B_DIGITAL_WORKSHOP.md`](visual-directions/DIRECTION_B_DIGITAL_WORKSHOP.md), [`DIRECTION_C_EDITORIAL_BUILDER.md`](visual-directions/DIRECTION_C_EDITORIAL_BUILDER.md)) concluded — consistent with those documents' own close-scored evaluation matrix (61/65/63 of 90) and non-binding recommendation — that no single direction should win exclusively. The locked direction is a controlled hybrid:
+
+```text
+60% Digital Workshop   — structural foundation
+25% Modern Maker       — approachability
+15% Editorial Builder  — output / showcase
+```
+
+These percentages communicate relative visual influence and priority, not a literal per-pixel styling formula. The objective is one coherent design language, not three languages stitched together — which is workable specifically because all three directions already share this document's color, type, spacing, and component tokens (§7–§13).
+
+### 25.1 Foundation — Digital Workshop
+
+Digital Workshop is the **structural backbone** of DirakitPro. It governs: layout discipline, modular structure, subtle grid systems, connection between learning stages, build-process visualization, the Connected Build Progress signature component (§18.1), the learning workspace, the learner dashboard's structural chrome, progressive skill-building framing, and the long-term visual runway toward professional-level courses.
+
+Core feeling: *"Saya sedang membangun sesuatu dengan serius."*
+
+### 25.2 Supporting influence — Modern Maker
+
+Modern Maker supplies **approachability**. It governs: beginner onboarding, marketing CTAs, course discovery, friendly whitespace, softer surfaces, lightweight highlighted areas, approachable cards, entry-level communication, empty states, and getting-started experiences.
+
+Core feeling: *"Saya bisa mulai dari sini."*
+
+Modern Maker's influence must never make DirakitPro look childish — the guardrails already documented in its direction file (§"Risks" in `DIRECTION_A_MODERN_MAKER.md`: capped radius, no mascots, confident heading color, real screenshots over illustration) remain in force wherever this influence is applied.
+
+### 25.3 Supporting influence — Editorial Builder
+
+Editorial Builder is used primarily where **learner output becomes the hero**: project showcase, completed project views, public project pages, course final-result previews, homepage outcome proof, learner portfolio output, large project screenshots, restrained visual chrome, strong typography, and generous whitespace.
+
+Core feeling: *"Hasil yang saya buat layak ditunjukkan."*
+
+### 25.4 Surface Allocation
+
+| Surface | Digital Workshop | Modern Maker | Editorial Builder | Intent |
+|---|---|---|---|---|
+| Marketing Homepage | Medium | Strong | Medium | Approachable entry + distinctive build metaphor + visible project outcome |
+| Course Catalog | Medium | Strong | Light | Discovery should feel inviting first |
+| Course Detail | Medium | Medium | Strong | Outcome preview must be visually important |
+| Learner Dashboard | Strong | Medium | Light | Structural, build-oriented home base |
+| Learning Workspace | Very Strong | Light | Minimal | Primary home of the Digital Workshop identity |
+| Project Showcase | Light | Minimal | Very Strong | Interface recedes, learner's work leads |
+| Admin | Digital Workshop structure + neutral utilitarian UI | — | — | No marketing expression forced into admin surfaces |
+
+### 25.5 Signature Visual — Connected Build Progress
+
+Promoted to an official signature DirakitPro component; full specification lives in §18.1. It must always preserve the **Completed / Current / Upcoming / Optional** states and always communicate *a product progressively being assembled* — never a generic checklist. Layout varies by surface (vertical timeline in the workspace, modular grid on the dashboard) but the connected, assembling reading is non-negotiable in both.
+
+### 25.6 Blueprint/Grid Texture Rule
+
+Digital Workshop's blueprint-style grid texture is locked as **brand texture, not page wallpaper**. Permitted primarily in: hero visual regions, Connected Build Progress, the learning workspace header/context area, builder empty states, selected technical illustrations, and occasional branded dividers/section breaks. It must not appear as a persistent graph-paper background across every page. Keep opacity low and supportive — it should read as a texture the brand occasionally uses, not a surface the product is built on.
+
+### 25.7 Technical Annotation Rule
+
+Exploration-stage labels such as `FRAG.01`, `SYS.EXPLORATION`, `BUILD.SYS.INIT` were useful devices during visual exploration but must **not become dominant production vocabulary**. They are permitted only as subtle decorative microcopy, illustration annotations, or optional blueprint visual accents (consistent with JetBrains Mono's role in §8 and Digital Workshop's mono step-numbering in its direction file). Core learner-facing UX must continue using clear Bahasa Indonesia product language — prefer `Progress Rakitan`, `Sedang Kamu Rakit`, `Langkah Berikutnya` over invented system terminology, per §21.
+
+### 25.8 Color Balance Target
+
+Directional guidance for overall page composition, not a strict CSS calculation:
+
+```text
+70-80%  neutral / white       — dominant surface color, per §7.2's explicit rule
+10-20%  light blue supporting  — brand-50/100/200 zones, per §7.4
+5-10%   stronger brand blue    — brand-500/700/900 moments, per §7.4
+```
+
+Blue remains the brand accent; neutrals remain dominant; brand-900 creates strong moments rather than dominating every page. The mandatory anchors (`#E3F2FD`, `#90CAF9`, `#2196F3`, `#0D47A1`) and the accessible-contrast substitution (`#1976D2` for normal-size white-on-blue text, §7.1/§20) are unchanged by this lock — this section governs composition balance, not the palette itself.
+
+### 25.9 Historical Exploration
+
+`DIRECTION_A_MODERN_MAKER.md`, `DIRECTION_B_DIGITAL_WORKSHOP.md`, and `DIRECTION_C_EDITORIAL_BUILDER.md` are preserved as design-decision evidence and are not superseded documents — the hybrid locked here is derived from, not a replacement for, the reasoning recorded in each. No `docs/design/exploration/` directory exists in this repository at the time of this lock; if visual-exploration screenshots/notes are added there later, this section is the reference point for reconciling them against the locked direction.
