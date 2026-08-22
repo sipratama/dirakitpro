@@ -25,3 +25,7 @@ pnpm-debug.log*
 
 # Turborepo
 .turbo/
+
+# Local AI design workbenches
+/claude_DirakitPro_visual/
+/stitch_DirakitPro_visual/

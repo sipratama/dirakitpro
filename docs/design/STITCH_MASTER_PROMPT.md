@@ -207,3 +207,5 @@ Generate → Screenshot → Review → Remediation Prompt → Regenerate → Loc
 ## Usage Note
 
 This file supports Design Session 2 (Visual Direction Selection & Core Screen Exploration). The four Wave 1 signature screens — Homepage, Course Detail, Learner Dashboard, Learning Workspace — are the recommended starting point, generated once per candidate direction (A/B/C) using the mini-concept prompts already included at the bottom of each `visual-directions/DIRECTION_*.md` file, before moving on to full per-screen prompts using the template in Part B.
+
+For complex screens, Stitch may be used per section or per reusable visual asset rather than generating the complete screen composition in one pass — this is the current working mode for the Homepage specifically (see `screens/HOMEPAGE.md`'s Visual Asset Requirements and Design Tool Roles sections, where Stitch produces focused reusable assets rather than owning the full-page layout). Final screen composition remains governed by that screen's specification document and `DESIGN.md`, not by whichever tool happens to assemble it.
