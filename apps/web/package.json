@@ -13,8 +13,10 @@
   "dependencies": {
     "@base-ui/react": "^1.7.0",
     "@clerk/nextjs": "^7.8.0",
+    "@dirakitpro/database": "workspace:*",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
+    "drizzle-orm": "^0.45.2",
     "lucide-react": "^1.33.0",
     "next": "16.3.2",
     "react": "19.2.8",
@@ -29,6 +31,7 @@
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^9",
+    "dotenv": "^17.4.2",
     "eslint-config-next": "16.3.2",
     "tailwindcss": "^4",
     "typescript": "^5",
