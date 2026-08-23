@@ -13,16 +13,14 @@ MVP Product Design (Design Session 1 — Visual Foundation & Design System)
 ## Documentation Map
 
 ```text
-DirakitPro_MVP_PRD_V1.0.md              Product PRD (source of truth, LOCKED)
+DirakitPro_MVP_PRD_V1.0.md              Product PRD (source of truth, LOCKED, internally V1.1)
+README.md                               This file
+CLAUDE.md                               Engineering/agent working instructions
+DESIGN.md                               Design tokens (colors, spacing, radius, type)
 
 docs/
-├── product/archive/                    Historical PRD snapshots (V0.3, Product Lock Candidate)
-├── audits/                             PRD implementation readiness audit
-└── design/
-    ├── DESIGN.md                       Design system (status: draft)
-    ├── SCREEN_INVENTORY.md             Full screen/route inventory by wave
-    ├── STITCH_MASTER_PROMPT.md         Reusable Google Stitch prompt context
-    └── visual-directions/              Three candidate visual directions (A/B/C)
+├── product/archive/                    Historical, non-active — V0.3 Product Lock Candidate snapshot
+└── audits/                             Historical, non-active — PRD V1.0 implementation readiness audit trail
 ```
 
 ## Status
