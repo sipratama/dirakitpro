@@ -115,6 +115,9 @@ export const users = pgTable("users", {
   updatedAt: timestamp("updated_at", { withTimezone: true }).defaultNow().notNull(),
 });
 
+export type User = typeof users.$inferSelect;
+export type NewUser = typeof users.$inferInsert;
+
 // Normalized provider + provider_user_id -> User mapping (IAM-001, IAM-004, IAM-005, 11.1/11.2).
 export const authIdentities = pgTable(
   "auth_identities",
