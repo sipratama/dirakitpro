@@ -159,6 +159,9 @@ export const courses = pgTable("courses", {
   updatedAt: timestamp("updated_at", { withTimezone: true }).defaultNow().notNull(),
 });
 
+export type Course = typeof courses.$inferSelect;
+export type NewCourse = typeof courses.$inferInsert;
+
 export const courseStages = pgTable(
   "course_stages",
   {
@@ -307,6 +310,9 @@ export const bundles = pgTable("bundles", {
   createdAt: timestamp("created_at", { withTimezone: true }).defaultNow().notNull(),
   updatedAt: timestamp("updated_at", { withTimezone: true }).defaultNow().notNull(),
 });
+
+export type Bundle = typeof bundles.$inferSelect;
+export type NewBundle = typeof bundles.$inferInsert;
 
 // Eligible (CHOOSE_N) or included (FIXED) courses for a bundle (COM-004/COM-005/COM-007).
 export const bundleCourses = pgTable(
