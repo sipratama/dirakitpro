@@ -14,10 +14,10 @@ Website pembelajaran untuk pemula di Indonesia yang berorientasi pada hasil nyat
 |---|---|
 | Document | Product Requirements Document |
 | Product | **DirakitPro** |
-| Version | **V1.1** |
+| Version | **V1.2** |
 | Status | **LOCKED** (amended) |
 | Lock date | 21 August 2026 |
-| Last scope amendment | 23 August 2026 — added lightweight Mentoring CTA; see [Appendix E](#appendix-e--v10--v11-product-scope-change-log) |
+| Last scope amendment | 24 August 2026 — video hosting changed to YouTube for MVP; see [Appendix F](#appendix-f--v11--v12-product-scope-change-log) (previous: [Appendix E](#appendix-e--v10--v11-product-scope-change-log)) |
 | Market | Indonesia |
 | Primary segment | Beginner digital builders, terutama usia 18–27 tahun |
 | Brand philosophy | **Profesional itu dirakit.** |
@@ -57,6 +57,7 @@ Website pembelajaran untuk pemula di Indonesia yang berorientasi pada hasil nyat
 23. [Appendix C — V0.2 → V0.3 Decision Log](#appendix-c--v02--v03-decision-log)
 24. [Appendix D — V0.3 → V1.0 Implementation Readiness Remediation Log](#appendix-d--v03--v10-implementation-readiness-remediation-log)
 25. [Appendix E — V1.0 → V1.1 Product Scope Change Log](#appendix-e--v10--v11-product-scope-change-log)
+26. [Appendix F — V1.1 → V1.2 Product Scope Change Log](#appendix-f--v11--v12-product-scope-change-log)
 
 ## 1. Executive Summary
 
@@ -993,7 +994,7 @@ Primary learning funnel: Course viewed → Checkout started → Payment complete
 | ORM                  | Drizzle ORM                                                          |
 | Payment              | Midtrans Snap + webhook                                              |
 | File storage         | Cloudflare R2                                                        |
-| Video                | Cloudflare Stream                                                    |
+| Video                | YouTube (unlisted) for MVP; Cloudflare Stream deferred — see Appendix F |
 | Email                | Resend + React Email                                                 |
 | Analytics            | PostHog                                                              |
 | Monitoring           | Sentry                                                               |
@@ -1004,7 +1005,7 @@ Primary learning funnel: Course viewed → Checkout started → Payment complete
 
 ### 14.3 Deployment context
 
-Browser → Vercel/Next.js → PostgreSQL. Next.js juga berintegrasi dengan Clerk, Midtrans, Resend, PostHog, Sentry, Cloudflare R2, dan Cloudflare Stream. Secrets dan privileged API keys hanya tersedia server-side.
+Browser → Vercel/Next.js → PostgreSQL. Next.js juga berintegrasi dengan Clerk, Midtrans, Resend, PostHog, Sentry, Cloudflare R2, dan (untuk MVP) YouTube sebagai video host. Secrets dan privileged API keys hanya tersedia server-side.
 
 ### 14.4 Repository structure
 
@@ -1094,7 +1095,7 @@ Public pages, checkout, learner dashboard, dan course workspace wajib usable pad
 
 - File upload: enforce MIME/type, size, ownership, and safe object keys.
 
-- Video berbayar menggunakan protected/signed playback mechanism bila dibutuhkan oleh provider configuration.
+- Video berbayar menggunakan protected/signed playback mechanism bila dibutuhkan oleh provider configuration. **Untuk MVP (Appendix F): tidak terpenuhi oleh YouTube unlisted** — video dapat diputar oleh siapa pun yang punya link, terlepas dari status enrollment. Diterima sebagai trade-off sadar demi budget, bukan diabaikan diam-diam.
 
 - Secrets tidak pernah dikirim ke browser atau committed ke repository.
 
@@ -1344,3 +1345,21 @@ This is the first change made under the Product Scope Change policy stated at th
 | Analytics | No CTA-level signal for mentoring demand. | Added `mentoring_cta_clicked` event (13.1) and Mentoring Interest Rate dashboard metric (13.4) so the P1 upgrade decision is evidence-based. |
 
 **Scope discipline check:** no Order/Payment/Enrollment domain entity changed. No new P0 route touches commerce state. MTR-001 is additive and isolated — it does not require re-opening any of the 58 locked P0 requirement IDs from V1.0.
+
+## Appendix F — V1.1 → V1.2 Product Scope Change Log
+
+**Date:** 24 August 2026. **Trigger:** budget constraint raised ahead of Wave 5 (Learning) — founder is self-funding pre-revenue and cannot commit to Cloudflare Stream's per-minute storage/delivery cost before validating demand for the course lineup itself.
+
+| Decision | V1.1 (original) | V1.2 (amended) |
+|---|---|---|
+| Video hosting | Cloudflare Stream (14.2, 11.3) — signed/protected playback, video access tied to enrollment. | **YouTube (unlisted) for MVP.** `videoProviderId` stores a YouTube video ID instead of a Cloudflare Stream ID — the field was already provider-neutral (11.3), so this is a value-level change, not a schema change. |
+| Security baseline (§16, signed playback) | Required "bila dibutuhkan oleh provider configuration." | **Explicitly not met for MVP.** An unlisted YouTube link is playable by anyone who has it, independent of enrollment status. Accepted trade-off, not an oversight — see rationale below. |
+
+**Why this is an acceptable trade-off for MVP, not just a cost shortcut:**
+- Course prices are modest (Rp149.000–199.000) and the content is instructional (build-along tutorials), not premium entertainment — the piracy incentive is low relative to, say, a film or exclusive live event.
+- "Unlisted" still removes the content from YouTube search/recommendations — the realistic leak vector is a link shared peer-to-peer, not organic discovery of the video by non-payers.
+- The greater near-term risk this MVP is testing is **demand**, not **piracy** — spending on Cloudflare Stream before knowing anyone will pay for the course lineup at all is the kind of premature investment the PRD's own MVP-simplicity principle (4.6) already warns against.
+
+**Reversibility:** cheap to migrate later. `videoProviderId` is a plain string column with no foreign key or format constraint tied to a specific provider — moving to Cloudflare Stream once revenue justifies it means re-uploading video and swapping the stored ID and the embed component, not a schema migration or a rewrite of any Commerce/Enrollment logic. This decision should be revisited once there's evidence of real payment volume, not on a fixed timeline.
+
+**Scope discipline check:** no schema/migration change. No P0 requirement ID added or removed. Affects only the video-hosting implementation detail behind LRN-004 and the §16 security-baseline line noted above.
