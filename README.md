@@ -4,7 +4,7 @@ Profesional itu dirakit.
 
 ## Current Phase
 
-MVP Product Design (Design Session 1 — Visual Foundation & Design System)
+MVP Implementation — Identity & Auth
 
 ## Product Source of Truth
 
@@ -27,8 +27,20 @@ docs/
 
 ```text
 Product Requirements: LOCKED
-MVP Design:            IN PROGRESS — visual direction not yet locked
-Implementation:        NOT STARTED
+MVP Design:            Visual direction LOCKED — brand palette, typography, and
+                        spacing/radius tokens finalized (DESIGN.md 2-4). Screen-level
+                        layout (HOMEPAGE.md, SCREEN_INVENTORY.md) not yet written.
+Implementation:        IN PROGRESS
 ```
 
-No application code, dependencies, or infrastructure exist in this repository yet. This repository currently contains product and design specification documents only.
+What exists so far:
+
+- **Done** — pnpm/Turborepo monorepo scaffold; Next.js 16 skeleton in `apps/web` with
+  Tailwind + shadcn/ui wired to the DESIGN.md tokens; full Drizzle schema for the PRD 11
+  data model, with the first migration generated and applied to a local dev database.
+- **In progress** — Identity & Auth (Clerk wiring, internal `User` table, route
+  protection).
+- **Not started** — Catalog, Commerce/Payment, Learning/Build, Project/Showcase, Admin,
+  Email, Analytics.
+
+No feature beyond Identity & Auth has working application code yet.
