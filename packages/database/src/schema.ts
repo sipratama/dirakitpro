@@ -257,6 +257,9 @@ export const enrollments = pgTable(
   ],
 );
 
+export type Enrollment = typeof enrollments.$inferSelect;
+export type NewEnrollment = typeof enrollments.$inferInsert;
+
 export const lessonProgress = pgTable(
   "lesson_progress",
   {
@@ -371,6 +374,9 @@ export const orders = pgTable(
   ],
 );
 
+export type Order = typeof orders.$inferSelect;
+export type NewOrder = typeof orders.$inferInsert;
+
 // Priced snapshot line for the order (COM-002/COM-008) — course or bundle, never both.
 export const orderItems = pgTable("order_items", {
   id: uuid("id").defaultRandom().primaryKey(),
@@ -385,6 +391,9 @@ export const orderItems = pgTable("order_items", {
   currency: varchar("currency", { length: 3 }).notNull().default("IDR"),
   createdAt: timestamp("created_at", { withTimezone: true }).defaultNow().notNull(),
 });
+
+export type OrderItem = typeof orderItems.$inferSelect;
+export type NewOrderItem = typeof orderItems.$inferInsert;
 
 // Immutable list of exact course(s) to enroll once the order is paid (COM-008/COM-011).
 // One row for a direct-course order, one row per granted course for a bundle order.
@@ -406,6 +415,9 @@ export const orderCourseGrants = pgTable(
   ],
 );
 
+export type OrderCourseGrant = typeof orderCourseGrants.$inferSelect;
+export type NewOrderCourseGrant = typeof orderCourseGrants.$inferInsert;
+
 export const payments = pgTable("payments", {
   id: uuid("id").defaultRandom().primaryKey(),
   orderId: uuid("order_id")
@@ -422,6 +434,9 @@ export const payments = pgTable("payments", {
   createdAt: timestamp("created_at", { withTimezone: true }).defaultNow().notNull(),
   updatedAt: timestamp("updated_at", { withTimezone: true }).defaultNow().notNull(),
 });
+
+export type Payment = typeof payments.$inferSelect;
+export type NewPayment = typeof payments.$inferInsert;
 
 // ---------------------------------------------------------------------------
 // Project & showcase (10.6, 8.6, 11.1)
