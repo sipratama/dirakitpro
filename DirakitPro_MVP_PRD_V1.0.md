@@ -14,9 +14,10 @@ Website pembelajaran untuk pemula di Indonesia yang berorientasi pada hasil nyat
 |---|---|
 | Document | Product Requirements Document |
 | Product | **DirakitPro** |
-| Version | **V1.0** |
-| Status | **LOCKED** |
+| Version | **V1.1** |
+| Status | **LOCKED** (amended) |
 | Lock date | 21 August 2026 |
+| Last scope amendment | 23 August 2026 — added lightweight Mentoring CTA; see [Appendix E](#appendix-e--v10--v11-product-scope-change-log) |
 | Market | Indonesia |
 | Primary segment | Beginner digital builders, terutama usia 18–27 tahun |
 | Brand philosophy | **Profesional itu dirakit.** |
@@ -27,7 +28,7 @@ Website pembelajaran untuk pemula di Indonesia yang berorientasi pada hasil nyat
 
 > **Product Scope Change policy**
 >
-> After this V1.0 lock, any change to P0 scope requires an explicit Product Scope Change decision. This document is the implementation baseline for engineering.
+> After the V1.0 lock, any change to P0 scope requires an explicit Product Scope Change decision, logged as a new appendix entry rather than a silent edit. V1.1 applies this policy for the first time — see Appendix E. This document remains the implementation baseline for engineering.
 
 ## Daftar Isi
 
@@ -55,6 +56,7 @@ Website pembelajaran untuk pemula di Indonesia yang berorientasi pada hasil nyat
 22. [Appendix B — V0.1 → V0.2 Decision Log](#appendix-b--v01--v02-decision-log)
 23. [Appendix C — V0.2 → V0.3 Decision Log](#appendix-c--v02--v03-decision-log)
 24. [Appendix D — V0.3 → V1.0 Implementation Readiness Remediation Log](#appendix-d--v03--v10-implementation-readiness-remediation-log)
+25. [Appendix E — V1.0 → V1.1 Product Scope Change Log](#appendix-e--v10--v11-product-scope-change-log)
 
 ## 1. Executive Summary
 
@@ -254,7 +256,9 @@ Dengan demikian, beginner dan advanced learning bukan dua produk yang bertentang
 
 - Menjadi corporate LMS.
 
-- Menjadi platform bootcamp live atau mentor marketplace.
+- Menjadi platform bootcamp live atau mentor marketplace (multi-mentor, discovery/booking engine pihak ketiga). *Ini berbeda dari MTR-001 (8.9) — CTA mentoring privat founder-led yang statis dan tidak melibatkan booking engine atau multiple mentor.*
+
+- Membangun in-app booking/scheduling engine atau payment flow untuk mentoring pada MVP. Scheduling dan pembayaran mentoring privat ditangani manual di luar sistem sampai ada evidence demand yang jelas (lihat Mentoring Interest Rate, 5.3).
 
 - Melakukan automated code review atau production-readiness assessment pada MVP.
 
@@ -272,6 +276,7 @@ Dengan demikian, beginner dan advanced learning bukan dua produk yang bertentang
 | 50% Build Reach        | % learner yang mencapai minimal 50% build milestones.   | Measure engagement             |
 | Course Completion Rate | % enrollment yang menyelesaikan course.                 | Measure learning completion    |
 | Share Rate             | % published project yang memicu share action.           | Measure organic loop potential |
+| Mentoring Interest Rate | % unique visitor yang klik mentoring CTA (MTR-001).    | Evidence gate untuk keputusan membangun in-app booking/payment mentoring di P1 — lihat 5.2 dan Appendix E. |
 
 ## 6. MVP Scope & Priorities
 
@@ -280,6 +285,7 @@ Dengan demikian, beginner dan advanced learning bukan dua produk yang bertentang
 | **Domain** | **P0 capabilities**                                                   |
 |------------|-----------------------------------------------------------------------|
 | Marketing  | Homepage, value proposition, featured courses, student projects, CTA. |
+| Mentoring  | Static mentoring privat section (MTR-001): description, indicative pricing, CTA ke external scheduling link. Tidak ada booking engine atau payment domain internal. |
 | Catalog    | Course catalog/detail, outcome preview, pricing, active bundle campaign catalog. |
 | Identity   | Register, login, logout, Google login, email verification/reset, protected routes. |
 | Commerce   | Direct course purchase, fixed/choose-N bundles, checkout, order/payment, enrollment activation, duplicate-order and already-owned-course prevention. |
@@ -299,7 +305,9 @@ Dengan demikian, beginner dan advanced learning bukan dua produk yang bertentang
 
 - Certificate generation.
 
-- Human project review / mentor feedback.
+- Human project review / mentor feedback (async, in-course — distinct from MTR-001's external mentoring CTA).
+
+- In-app booking/scheduling + payment engine for mentoring privat, upgrading MTR-001 from external CTA to a built-in flow. **Gated on evidence**: only scoped in once Mentoring Interest Rate (5.3) shows sustained demand, not built speculatively.
 
 - Referral program.
 
@@ -683,6 +691,16 @@ Dengan demikian, beginner dan advanced learning bukan dua produk yang bertentang
 >
 > **Acceptance:** Bundle purchase dengan N course granted menghasilkan tepat satu email transaksional yang mencantumkan seluruh N course tersebut.
 
+### 8.9 Mentoring (Lightweight)
+
+**MTR-001 Mentoring privat CTA \[P0\]**
+
+> Marketing site menampilkan section statis yang mendeskripsikan layanan mentoring privat founder-led: deskripsi singkat, indicative pricing (boleh berupa rentang, tidak wajib presisi seperti course pricing), dan satu CTA button yang membuka external scheduling link (mis. Cal.com) dan/atau kontak WhatsApp di tab/window baru.
+>
+> Section ini secara sengaja **tidak** memiliki: booking calendar in-app, availability management, in-app payment, atau Order/Payment/Enrollment record apa pun — scheduling dan pembayaran terjadi sepenuhnya di luar sistem DirakitPro untuk MVP.
+>
+> **Acceptance:** Guest dapat melihat section mentoring privat di homepage/route terkait tanpa login, klik CTA membuka external link di tab baru, dan klik tersebut terekam sebagai event analytics (`mentoring_cta_clicked`, 13.1) tanpa membuat record apa pun di domain Commerce.
+
 ## 9. Learning & Content Model
 
 ### 9.1 Hierarchy
@@ -924,6 +942,8 @@ Application business data lives in PostgreSQL. Binary/media assets live outside 
 
 - project_shared
 
+- mentoring_cta_clicked — fired when a visitor clicks the MTR-001 mentoring CTA; carries no Order/Payment/Enrollment linkage since scheduling happens externally.
+
 ### 13.2 Required properties
 
 Event properties minimum harus memungkinkan funnel per course dan purchase type (`DIRECT_COURSE`/`BUNDLE`), bundle/campaign identifier bila relevan, **bundle type (`FIXED`/`CHOOSE_N`) bila relevan**, selected/granted course IDs, source/campaign attribution, user/enrollment identifier yang aman, lesson/stage/milestone identifier, price/order identifier, dan timestamp.
@@ -947,6 +967,8 @@ Primary learning funnel: Course viewed → Checkout started → Payment complete
 - Drop-off stage/lesson untuk course optimization.
 
 - Moderation throughput (`project_approved`, `project_featured` volume/latency).
+
+- Mentoring Interest Rate — unique `mentoring_cta_clicked` visitors ÷ unique site visitors; tracked explicitly to evidence-gate the P1 built-in booking/payment decision (6.2, 5.3) rather than building it speculatively.
 
 ## 14. Technical Architecture & Stack
 
@@ -991,6 +1013,18 @@ Monorepo baseline: apps/web sebagai deployable application; packages/database, a
 ### 14.5 Why Clerk over Supabase Auth for MVP
 
 Clerk dipilih karena mengurangi effort pada authentication UX/session management sehingga engineering dapat fokus pada learning/build experience. Namun vendor lock-in dikurangi dengan internal User table dan provider mapping. Supabase Auth tetap viable jika strategi masa depan berubah ke ekosistem Supabase/RLS-centric, tetapi bukan baseline MVP.
+
+### 14.6 Why Next.js over a split backend/frontend stack
+
+> **Context:** builder utama produk ini punya pengalaman utama di Java/Spring Boot (hexagonal architecture) + React terpisah — pola yang dipakai di proyek lain di luar DirakitPro. Next.js dipilih secara sadar untuk DirakitPro, bukan default, dengan alasan berikut:
+
+- **Organic discovery adalah bagian dari product thesis, bukan tambahan.** Opportunity (2.3) dan North-star metrics (5.3) bergantung pada public course page dan showcase gallery sebagai acquisition loop. Ini butuh server-rendered/SEO-friendly page dengan Core Web Vitals yang baik — kekuatan utama Next.js App Router, yang sulit dicapai setara oleh client-rendered React SPA tanpa menambah SSR layer terpisah.
+
+- **Koherensi dengan keputusan single-deployable (14.1).** Split backend (Spring Boot) + frontend (React SPA) yang butuh SEO tetap memerlukan semacam SSR layer di depan (Next.js/Astro/dst), yang berarti dua stack berjalan sekaligus — bertentangan dengan keputusan "satu deployable, tanpa microservices" yang sudah dikunci di 14.1.
+
+- **Solo-builder velocity.** Satu framework, satu type-safe boundary (TypeScript end-to-end dengan Zod), tanpa maintenance dua API contract terpisah (REST/OpenAPI di Spring Boot + client di React) untuk MVP yang sudah punya 58 requirement ID P0.
+
+- **Trade-off yang diterima secara sadar:** learning curve pada Next.js server actions, Drizzle ORM, dan App Router — bukan zona nyaman teknis builder. Trade-off ini diterima karena dampaknya ke kecepatan solo-development dinilai lebih kecil daripada dampak SEO/discovery yang hilang bila memakai stack terpisah.
 
 ## 15. Non-Functional Requirements
 
@@ -1124,7 +1158,7 @@ Install → lint → typecheck → unit/integration tests → build → critical
 - Project showcase cukup bernilai bagi learner untuk meningkatkan completion/share behavior.
 - 3 course awal cukup untuk menguji positioning dan funnel sebelum memperluas katalog.
 - Direct course purchase + campaign bundle lebih mudah dipahami target MVP dibanding library-wide subscription.
-- Next.js modular monolith cukup untuk scale MVP dan early commercial traction.
+- Next.js modular monolith cukup untuk scale MVP dan early commercial traction; rationale lengkap didokumentasikan di 14.6 (bukan sekadar asumsi tak beralasan).
 
 ### 18.2 Key risks
 
@@ -1294,3 +1328,19 @@ Full findings and severity classification are in `docs/audits/PRD_V1_IMPLEMENTAT
 | 17 | No explicit server-side ownership check requirement for editing/submitting a learner's own project. | MINOR | Added to PRJ-003 and Security Baseline (16). |
 | 18 | PRJ-002 did not require live URL format validation. | MINOR | Added well-formed `http(s)` URL validation requirement. |
 | 19 | Enrollment `REVOKED` trigger was unspecified. | MINOR | Clarified as admin-only manual action for MVP (10.4, COM-013). |
+
+## Appendix E — V1.0 → V1.1 Product Scope Change Log
+
+**Date:** 23 August 2026. **Trigger:** post-lock product review — founder confirmed private mentoring remains a real revenue goal for DirakitPro, but no scope for it existed in V1.0 beyond a deferred, non-actionable P1 bullet ("human review/mentor feedback"), and the Next.js architecture decision (14.1) had no documented rationale, only a bare assumption (18.1).
+
+This is the first change made under the Product Scope Change policy stated at the top of this document. Unlike Appendix B–D, which record pre-lock drafting history, this entry records a **post-lock** decision and is why the document version moved to V1.1 instead of being edited silently under V1.0.
+
+| Decision | V1.0 | V1.1 |
+|---|---|---|
+| Mentoring privat | Not specified as a product surface; only "human project review / mentor feedback" existed as a vague P1 bullet with no route, no CTA, no requirement ID. | **New P0**: MTR-001 — static marketing section + external scheduling CTA (Cal.com/WhatsApp), no in-app booking or payment. Explicitly kept outside the Order/Payment/Enrollment domain to avoid re-opening locked commerce scope. |
+| In-app mentoring booking/payment engine | Not addressed. | **Explicitly P1, evidence-gated** — scoped in only once Mentoring Interest Rate (5.3) shows sustained CTA click demand, not built speculatively. |
+| Mentor marketplace (multi-mentor, third-party) | Non-goal (5.2), anti-persona (3.4). | **Unchanged.** Clarified in 5.2 that this non-goal is distinct from founder-led MTR-001. |
+| Next.js vs. Spring Boot + React | Assumption stated (18.1) with no rationale; builder's primary expertise is Spring Boot, creating latent risk the choice was inherited rather than deliberate. | **Confirmed deliberate**, with documented rationale added at 14.6: SEO/organic-discovery dependency of the product thesis, coherence with the single-deployable decision (14.1), and solo-builder velocity — trade-off against builder's Spring Boot comfort zone accepted explicitly rather than left implicit. |
+| Analytics | No CTA-level signal for mentoring demand. | Added `mentoring_cta_clicked` event (13.1) and Mentoring Interest Rate dashboard metric (13.4) so the P1 upgrade decision is evidence-based. |
+
+**Scope discipline check:** no Order/Payment/Enrollment domain entity changed. No new P0 route touches commerce state. MTR-001 is additive and isolated — it does not require re-opening any of the 58 locked P0 requirement IDs from V1.0.

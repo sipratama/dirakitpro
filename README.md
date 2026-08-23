@@ -8,7 +8,7 @@ MVP Product Design (Design Session 1 — Visual Foundation & Design System)
 
 ## Product Source of Truth
 
-[`DirakitPro_MVP_PRD_V1.0.md`](DirakitPro_MVP_PRD_V1.0.md) — LOCKED. All product scope decisions trace back to this document.
+[`DirakitPro_MVP_PRD_V1.0.md`](DirakitPro_MVP_PRD_V1.0.md) — now at **V1.1** internally (file name unchanged; see the document's own version field and Appendix E for the amendment log). LOCKED. All product scope decisions trace back to this document.
 
 ## Documentation Map
 
