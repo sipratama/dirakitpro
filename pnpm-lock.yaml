@@ -26,6 +26,9 @@ importers:
       '@dirakitpro/database':
         specifier: workspace:*
         version: link:../../packages/database
+      '@dirakitpro/email':
+        specifier: workspace:*
+        version: link:../../packages/email
       class-variance-authority:
         specifier: ^0.7.1
         version: 0.7.1
