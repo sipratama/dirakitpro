@@ -14,7 +14,7 @@
 ## Architecture
 
 - Next.js modular monolith. One deployable app, one PostgreSQL database. No microservices (14.1).
-- Stack: TypeScript, Next.js 16, Tailwind + shadcn/ui, Clerk auth + internal `User` table (domain code always references the internal user ID, never the Clerk ID directly), Drizzle ORM, Midtrans Snap, Cloudflare R2/Stream, Resend, PostHog, Sentry (14.2).
+- Stack: TypeScript, Next.js 16, Tailwind + shadcn/ui, Clerk auth + internal `User` table (domain code always references the internal user ID, never the Clerk ID directly), Drizzle ORM, Midtrans Snap, Cloudflare R2 (file storage), YouTube unlisted (video hosting for MVP — see PRD Appendix F; `videoProviderId` is provider-neutral, don't assume Cloudflare Stream), Resend, PostHog, Sentry (14.2).
 - Monorepo: `apps/web` is the deployable app. `packages/{database,auth,ui,email,validation,config}` are shared. Domain modules live at `apps/web/features/{identity,catalog,learning,enrollment,progress,project,commerce,bundle,payment,media,administration}` — treat each as a bounded context. Reach modules through their exported interface, not their internals (14.4).
 
 ## Build order
