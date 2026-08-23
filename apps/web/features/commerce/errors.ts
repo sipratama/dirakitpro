@@ -44,3 +44,11 @@ export class OrderOwnershipError extends Error {
     this.name = "OrderOwnershipError";
   }
 }
+
+// Nonexistent order, not PENDING, or its own expiresAt has already passed.
+export class OrderNotPayableError extends Error {
+  constructor(message = "This order can no longer be paid.") {
+    super(message);
+    this.name = "OrderNotPayableError";
+  }
+}
