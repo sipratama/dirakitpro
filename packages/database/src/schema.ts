@@ -159,6 +159,9 @@ export const courses = pgTable("courses", {
   updatedAt: timestamp("updated_at", { withTimezone: true }).defaultNow().notNull(),
 });
 
+export type Course = typeof courses.$inferSelect;
+export type NewCourse = typeof courses.$inferInsert;
+
 export const courseStages = pgTable(
   "course_stages",
   {
@@ -173,6 +176,9 @@ export const courseStages = pgTable(
   },
   (table) => [uniqueIndex("course_stages_course_id_position_idx").on(table.courseId, table.position)],
 );
+
+export type CourseStage = typeof courseStages.$inferSelect;
+export type NewCourseStage = typeof courseStages.$inferInsert;
 
 // Product-oriented milestone attached to a course, optionally scoped to one stage (9.1, 11.1).
 export const buildMilestones = pgTable("build_milestones", {
@@ -216,6 +222,9 @@ export const lessons = pgTable(
   },
   (table) => [uniqueIndex("lessons_course_id_slug_idx").on(table.courseId, table.slug)],
 );
+
+export type Lesson = typeof lessons.$inferSelect;
+export type NewLesson = typeof lessons.$inferInsert;
 
 // ---------------------------------------------------------------------------
 // Enrollment & progress (10.4, 10.5, 11.1)
@@ -307,6 +316,9 @@ export const bundles = pgTable("bundles", {
   createdAt: timestamp("created_at", { withTimezone: true }).defaultNow().notNull(),
   updatedAt: timestamp("updated_at", { withTimezone: true }).defaultNow().notNull(),
 });
+
+export type Bundle = typeof bundles.$inferSelect;
+export type NewBundle = typeof bundles.$inferInsert;
 
 // Eligible (CHOOSE_N) or included (FIXED) courses for a bundle (COM-004/COM-005/COM-007).
 export const bundleCourses = pgTable(
