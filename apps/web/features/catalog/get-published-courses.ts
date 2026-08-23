@@ -1,6 +1,7 @@
 import "server-only";
 import { type Course, courses, db, enrollments } from "@dirakitpro/database";
-import { and, eq, inArray, sql } from "drizzle-orm";
+import { eq } from "drizzle-orm";
+import { courseOwnershipJoinCondition } from "./course-ownership-condition";
 
 export type CourseWithOwnership = Course & { isOwned: boolean };
 
@@ -15,18 +16,10 @@ export type CourseWithOwnership = Course & { isOwned: boolean };
  * It's a UX aid only; purchase-time enforcement is COM-016, not this flag.
  */
 export async function getPublishedCourses(userId?: string): Promise<CourseWithOwnership[]> {
-  const ownershipJoinCondition = userId
-    ? and(
-        eq(enrollments.courseId, courses.id),
-        eq(enrollments.userId, userId),
-        inArray(enrollments.status, ["ACTIVE", "COMPLETED"]),
-      )
-    : sql`false`;
-
   const rows = await db
     .select({ course: courses, enrollmentId: enrollments.id })
     .from(courses)
-    .leftJoin(enrollments, ownershipJoinCondition)
+    .leftJoin(enrollments, courseOwnershipJoinCondition(userId))
     .where(eq(courses.status, "PUBLISHED"));
 
   return rows.map(({ course, enrollmentId }) => ({

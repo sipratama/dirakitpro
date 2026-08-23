@@ -177,6 +177,9 @@ export const courseStages = pgTable(
   (table) => [uniqueIndex("course_stages_course_id_position_idx").on(table.courseId, table.position)],
 );
 
+export type CourseStage = typeof courseStages.$inferSelect;
+export type NewCourseStage = typeof courseStages.$inferInsert;
+
 // Product-oriented milestone attached to a course, optionally scoped to one stage (9.1, 11.1).
 export const buildMilestones = pgTable("build_milestones", {
   id: uuid("id").defaultRandom().primaryKey(),
@@ -219,6 +222,9 @@ export const lessons = pgTable(
   },
   (table) => [uniqueIndex("lessons_course_id_slug_idx").on(table.courseId, table.slug)],
 );
+
+export type Lesson = typeof lessons.$inferSelect;
+export type NewLesson = typeof lessons.$inferInsert;
 
 // ---------------------------------------------------------------------------
 // Enrollment & progress (10.4, 10.5, 11.1)
