@@ -198,6 +198,9 @@ export const buildMilestones = pgTable("build_milestones", {
   updatedAt: timestamp("updated_at", { withTimezone: true }).defaultNow().notNull(),
 });
 
+export type BuildMilestone = typeof buildMilestones.$inferSelect;
+export type NewBuildMilestone = typeof buildMilestones.$inferInsert;
+
 export const lessons = pgTable(
   "lessons",
   {
@@ -279,6 +282,9 @@ export const lessonProgress = pgTable(
   (table) => [uniqueIndex("lesson_progress_user_id_lesson_id_idx").on(table.userId, table.lessonId)],
 );
 
+export type LessonProgress = typeof lessonProgress.$inferSelect;
+export type NewLessonProgress = typeof lessonProgress.$inferInsert;
+
 export const buildProgress = pgTable(
   "build_progress",
   {
@@ -299,6 +305,9 @@ export const buildProgress = pgTable(
     uniqueIndex("build_progress_user_id_milestone_id_idx").on(table.userId, table.buildMilestoneId),
   ],
 );
+
+export type BuildProgress = typeof buildProgress.$inferSelect;
+export type NewBuildProgress = typeof buildProgress.$inferInsert;
 
 // ---------------------------------------------------------------------------
 // Commerce: bundles (10.3, 8.3, 11.1)
