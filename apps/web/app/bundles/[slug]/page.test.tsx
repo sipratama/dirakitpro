@@ -49,6 +49,7 @@ function buildCourse(overrides: Partial<BundleDetail["courses"][number]> = {}) {
     status: "PUBLISHED" as const,
     price: "149000",
     currency: "IDR",
+    resources: [],
     publishedAt: new Date(),
     createdAt: new Date(),
     updatedAt: new Date(),

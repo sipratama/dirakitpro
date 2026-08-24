@@ -21,14 +21,17 @@
 
 Don't build the whole MVP in one session. Work in dependency order, one module at a time, each ending in passing tests before moving to the next:
 
-1. Database schema (PRD 11) + migrations — everything else depends on this.
-2. Identity (Clerk wiring + internal `User` table + provider mapping).
-3. Catalog (course/bundle read paths — no commerce yet).
-4. Commerce + Payment (Order/Payment/Bundle state machines, PRD 10 — highest-risk domain; follow the transition tables exactly, don't improvise a state).
-5. Learning + Build (workspace, progress, milestones).
+1. Database schema (PRD 11) + migrations — everything else depends on this. **Done.**
+2. Identity (Clerk wiring + internal `User` table + provider mapping). **Done.**
+3. Catalog (course/bundle read paths — no commerce yet). **Done.**
+4. Commerce + Payment (Order/Payment/Bundle state machines, PRD 10 — highest-risk domain; follow the transition tables exactly, don't improvise a state). **Done.**
+5. Learning + Build (workspace, progress, milestones). **Done.**
 6. Project + Showcase.
 7. Admin.
 8. Email + Analytics — wire in alongside each domain above, not as a final pass.
+9. Mentoring CTA (MTR-001) — static section + external scheduling link. No dependency on any other domain; can be picked up any time it's convenient, not necessarily in sequence.
+10. Homepage (`/`) — currently the unmodified `create-next-app` scaffold, not yet touched. Deliberately sequenced after Project (6) and Admin (7): it features courses, bundles, and showcase projects, and the showcase content in particular doesn't really exist until Admin can `APPROVE`/`FEATURE` a project (PRJ-005/006). Building it earlier means building against placeholder data that gets thrown away.
+11. Deployment to production — Vercel, production Midtrans/Clerk instances, real domain, production environment variables. Last step, after everything above is built and verified against local dev. Not yet discussed or planned as of this entry.
 
 ## Quality gates
 
