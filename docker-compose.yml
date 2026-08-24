@@ -1,0 +1,20 @@
+services:
+  db:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: ***REMOVED***
+      POSTGRES_DB: dirakitpro_dev
+    ports:
+      - "5433:5432"
+    volumes:
+      - dirakitpro_db_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d dirakitpro_dev"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+volumes:
+  dirakitpro_db_data:

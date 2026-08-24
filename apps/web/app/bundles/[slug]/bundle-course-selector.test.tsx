@@ -17,6 +17,7 @@ function buildCourse(overrides: Partial<BundleCourseWithOwnership> = {}): Bundle
     status: "PUBLISHED",
     price: "149000",
     currency: "IDR",
+    resources: [],
     publishedAt: new Date(),
     createdAt: new Date(),
     updatedAt: new Date(),
