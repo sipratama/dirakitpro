@@ -14,10 +14,10 @@ Website pembelajaran untuk pemula di Indonesia yang berorientasi pada hasil nyat
 |---|---|
 | Document | Product Requirements Document |
 | Product | **DirakitPro** |
-| Version | **V1.1** |
+| Version | **V1.3** |
 | Status | **LOCKED** (amended) |
 | Lock date | 21 August 2026 |
-| Last scope amendment | 23 August 2026 — added lightweight Mentoring CTA; see [Appendix E](#appendix-e--v10--v11-product-scope-change-log) |
+| Last scope amendment | 24 August 2026 — formalized lesson content-block types, removed `videoProviderId`, added course-level resources; see [Appendix G](#appendix-g--v12--v13-product-scope-change-log) (previous: [Appendix F](#appendix-f--v11--v12-product-scope-change-log)) |
 | Market | Indonesia |
 | Primary segment | Beginner digital builders, terutama usia 18–27 tahun |
 | Brand philosophy | **Profesional itu dirakit.** |
@@ -57,6 +57,8 @@ Website pembelajaran untuk pemula di Indonesia yang berorientasi pada hasil nyat
 23. [Appendix C — V0.2 → V0.3 Decision Log](#appendix-c--v02--v03-decision-log)
 24. [Appendix D — V0.3 → V1.0 Implementation Readiness Remediation Log](#appendix-d--v03--v10-implementation-readiness-remediation-log)
 25. [Appendix E — V1.0 → V1.1 Product Scope Change Log](#appendix-e--v10--v11-product-scope-change-log)
+26. [Appendix F — V1.1 → V1.2 Product Scope Change Log](#appendix-f--v11--v12-product-scope-change-log)
+27. [Appendix G — V1.2 → V1.3 Product Scope Change Log](#appendix-g--v12--v13-product-scope-change-log)
 
 ## 1. Executive Summary
 
@@ -570,6 +572,8 @@ Dengan demikian, beginner dan advanced learning bukan dua produk yang bertentang
 **LRN-004 Lesson content \[P0\]**
 
 > Lesson dapat memuat rich text/Markdown, code block, image, video reference, resource link, task/checkpoint metadata.
+>
+> **Acceptance (formalized, Appendix G):** `content` disimpan sebagai array blok bertipe eksplisit — `markdown`, `code`, `image`, `video`, `resource_link`, `task` — urutan array menentukan urutan render di content pane. Blok `video` membawa `provider`-nya sendiri (mis. `youtube`, kelak `cloudflare_stream` — lihat Appendix F), bukan field terpisah di level Lesson. Konsekuensinya: satu lesson boleh punya nol, satu, atau beberapa video, dan course yang seluruhnya video, seluruhnya teks/gambar, atau campuran, semuanya valid tanpa penyesuaian skema.
 
 **LRN-005 Lesson progress \[P0\]**
 
@@ -578,6 +582,12 @@ Dengan demikian, beginner dan advanced learning bukan dua produk yang bertentang
 **LRN-006 Course access \[P0\]**
 
 > Hanya learner dengan valid enrollment dapat membuka paid course content. Enrollment terhadap satu course memberikan akses ke seluruh content course tersebut; tidak ada paywall per module/video pada MVP. Course access tidak berubah karena course kemudian di-UNPUBLISHED (lihat CAT-003).
+
+**LRN-007 Course-level resources \[P0, Appendix G\]**
+
+> Selain blok `resource_link` per-lesson (LRN-004), Course dapat memiliki daftar resource yang berlaku untuk keseluruhan course — minimal repository link, starter/asset files, dan link pendukung lain (bukan terikat ke satu lesson tertentu).
+>
+> **Acceptance:** Learner dapat mengakses daftar resource course-level dari mana pun di dalam learning workspace course tersebut, konsisten di semua lesson, bukan cuma muncul di satu lesson spesifik.
 
 ### 8.5 Build Progress
 
@@ -588,10 +598,14 @@ Dengan demikian, beginner dan advanced learning bukan dua produk yang bertentang
 **BLD-002 Milestone completion \[P0\]**
 
 > Learner dapat menyelesaikan checkpoint sesuai rule lesson; sistem merekam Build Progress.
+>
+> **Acceptance:** BuildMilestone tidak pernah ditandai selesai secara manual oleh learner. Sebuah `BuildMilestone` otomatis menjadi complete ketika seluruh CHECKPOINT lesson `REQUIRED` yang terasosiasi ke milestone tsb (via `lessons.buildMilestoneId`) sudah berstatus `COMPLETED` (LessonProgress). CHECKPOINT lesson yang `OPTIONAL` tidak menghalangi completion milestone.
 
 **BLD-003 Progress calculation \[P0\]**
 
 > Build Progress dihitung dari milestone course dan ditampilkan lebih dominan daripada content-consumption progress.
+>
+> **Acceptance:** Build Progress = proporsi `BuildMilestone` yang complete (BLD-002) terhadap total `BuildMilestone` `REQUIRED` di course tsb — dihitung dari milestone, bukan langsung dari lesson/video completion.
 
 **BLD-004 Stage progression \[P0\]**
 
@@ -826,9 +840,9 @@ Optional lesson tidak menghalangi completion. Project **tidak harus PUBLIC** unt
 |---|---|
 | User | Internal application identity; maps to external auth provider identity. |
 | AuthIdentity | Normalized mapping provider + provider_user_id → User. |
-| Course | Primary sellable learning unit; metadata, price, status, slug. |
+| Course | Primary sellable learning unit; metadata, price, status, slug, course-level resource list (LRN-007). |
 | CourseStage | Ordered stage inside course. |
-| Lesson | Ordered lesson, type, required/optional flag, content/media/task/checkpoint metadata. |
+| Lesson | Ordered lesson, type, required/optional flag, `content` block array (markdown/code/image/video/resource_link/task — LRN-004), no dedicated video field. |
 | BuildMilestone | Product-oriented milestone attached to course/stage. |
 | Enrollment | User access relationship to one course, independent of purchase source. |
 | LessonProgress | Per-user/per-lesson state and timestamps. |
@@ -993,7 +1007,7 @@ Primary learning funnel: Course viewed → Checkout started → Payment complete
 | ORM                  | Drizzle ORM                                                          |
 | Payment              | Midtrans Snap + webhook                                              |
 | File storage         | Cloudflare R2                                                        |
-| Video                | Cloudflare Stream                                                    |
+| Video                | YouTube (unlisted) for MVP; Cloudflare Stream deferred — see Appendix F |
 | Email                | Resend + React Email                                                 |
 | Analytics            | PostHog                                                              |
 | Monitoring           | Sentry                                                               |
@@ -1004,7 +1018,7 @@ Primary learning funnel: Course viewed → Checkout started → Payment complete
 
 ### 14.3 Deployment context
 
-Browser → Vercel/Next.js → PostgreSQL. Next.js juga berintegrasi dengan Clerk, Midtrans, Resend, PostHog, Sentry, Cloudflare R2, dan Cloudflare Stream. Secrets dan privileged API keys hanya tersedia server-side.
+Browser → Vercel/Next.js → PostgreSQL. Next.js juga berintegrasi dengan Clerk, Midtrans, Resend, PostHog, Sentry, Cloudflare R2, dan (untuk MVP) YouTube sebagai video host. Secrets dan privileged API keys hanya tersedia server-side.
 
 ### 14.4 Repository structure
 
@@ -1094,7 +1108,7 @@ Public pages, checkout, learner dashboard, dan course workspace wajib usable pad
 
 - File upload: enforce MIME/type, size, ownership, and safe object keys.
 
-- Video berbayar menggunakan protected/signed playback mechanism bila dibutuhkan oleh provider configuration.
+- Video berbayar menggunakan protected/signed playback mechanism bila dibutuhkan oleh provider configuration. **Untuk MVP (Appendix F): tidak terpenuhi oleh YouTube unlisted** — video dapat diputar oleh siapa pun yang punya link, terlepas dari status enrollment. Diterima sebagai trade-off sadar demi budget, bukan diabaikan diam-diam.
 
 - Secrets tidak pernah dikirim ke browser atau committed ke repository.
 
@@ -1344,3 +1358,35 @@ This is the first change made under the Product Scope Change policy stated at th
 | Analytics | No CTA-level signal for mentoring demand. | Added `mentoring_cta_clicked` event (13.1) and Mentoring Interest Rate dashboard metric (13.4) so the P1 upgrade decision is evidence-based. |
 
 **Scope discipline check:** no Order/Payment/Enrollment domain entity changed. No new P0 route touches commerce state. MTR-001 is additive and isolated — it does not require re-opening any of the 58 locked P0 requirement IDs from V1.0.
+
+## Appendix F — V1.1 → V1.2 Product Scope Change Log
+
+**Date:** 24 August 2026. **Trigger:** budget constraint raised ahead of Wave 5 (Learning) — founder is self-funding pre-revenue and cannot commit to Cloudflare Stream's per-minute storage/delivery cost before validating demand for the course lineup itself.
+
+| Decision | V1.1 (original) | V1.2 (amended) |
+|---|---|---|
+| Video hosting | Cloudflare Stream (14.2, 11.3) — signed/protected playback, video access tied to enrollment. | **YouTube (unlisted) for MVP.** `videoProviderId` stores a YouTube video ID instead of a Cloudflare Stream ID — the field was already provider-neutral (11.3), so this is a value-level change, not a schema change. |
+| Security baseline (§16, signed playback) | Required "bila dibutuhkan oleh provider configuration." | **Explicitly not met for MVP.** An unlisted YouTube link is playable by anyone who has it, independent of enrollment status. Accepted trade-off, not an oversight — see rationale below. |
+
+**Why this is an acceptable trade-off for MVP, not just a cost shortcut:**
+- Course prices are modest (Rp149.000–199.000) and the content is instructional (build-along tutorials), not premium entertainment — the piracy incentive is low relative to, say, a film or exclusive live event.
+- "Unlisted" still removes the content from YouTube search/recommendations — the realistic leak vector is a link shared peer-to-peer, not organic discovery of the video by non-payers.
+- The greater near-term risk this MVP is testing is **demand**, not **piracy** — spending on Cloudflare Stream before knowing anyone will pay for the course lineup at all is the kind of premature investment the PRD's own MVP-simplicity principle (4.6) already warns against.
+
+**Reversibility:** cheap to migrate later. `videoProviderId` is a plain string column with no foreign key or format constraint tied to a specific provider — moving to Cloudflare Stream once revenue justifies it means re-uploading video and swapping the stored ID and the embed component, not a schema migration or a rewrite of any Commerce/Enrollment logic. This decision should be revisited once there's evidence of real payment volume, not on a fixed timeline.
+
+**Scope discipline check:** no schema/migration change. No P0 requirement ID added or removed. Affects only the video-hosting implementation detail behind LRN-004 and the §16 security-baseline line noted above.
+
+## Appendix G — V1.2 → V1.3 Product Scope Change Log
+
+**Date:** 24 August 2026. **Trigger:** resolving the content-block open question flagged since the Wave 3 `SCREEN_INVENTORY.md` discussion, prompted by the founder's requirement that some courses may be video-only, some text/image-only, and every course needs a persistent resource hub (repo, assets, supporting links) independent of any single lesson.
+
+| Decision | Before | After |
+|---|---|---|
+| Video representation | Ambiguous — a separate `lessons.videoProviderId` column existed alongside `content` JSONB with no stated rule for which was authoritative (flagged, not resolved, in `SCREEN_INVENTORY.md`). | **Resolved: video is purely a `content` block type** (`{ type: "video", provider, videoId }`). `lessons.videoProviderId` column removed — one source of truth. A lesson may contain zero, one, or several video blocks; a course that's entirely video, entirely text/image, or mixed are all valid with zero schema difference between them. |
+| Content block types | Listed only in LRN-004 prose, never formally enumerated. | **Formalized** (LRN-004 acceptance): `markdown`, `code`, `image`, `video`, `resource_link`, `task`. Array order = render order. |
+| Course-level resources | Not specified — LRN-004's `resource_link` block only existed at lesson granularity. | **New LRN-007**: `courses` gains a `resources` field (same block-array pattern as lesson `content`) for course-wide repo/asset/link items, visible throughout the workspace regardless of which lesson the learner is currently on. |
+
+**Migration note — unlike Appendix E/F, this one touches schema, not just documentation:** requires `ALTER TABLE lessons DROP COLUMN video_provider_id` and `ALTER TABLE courses ADD COLUMN resources jsonb NOT NULL DEFAULT '[]'`. Safe to run directly with no data-migration step — no lesson content exists yet since Wave 5 hasn't started, so this is a pure schema change with nothing to backfill.
+
+**Scope discipline check:** both changes are additive/clarifying within the Learning domain (LRN-*) only. No Order/Payment/Enrollment/Commerce table touched.

@@ -51,7 +51,7 @@ describe("BundleCourseSelector", () => {
     expect(screen.getByText("2/2 dipilih")).toBeInTheDocument();
     expect(screen.getByRole("link", { name: "Beli bundle ini" })).toHaveAttribute(
       "href",
-      "/checkout/bundle/paket-merdeka",
+      "/checkout/bundle/paket-merdeka?courses=a,b",
     );
   });
 
