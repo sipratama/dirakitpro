@@ -97,8 +97,6 @@ export const projectSubmissionState = pgEnum("project_submission_state", [
   "SUBMITTED",
 ]); // 10.6
 
-export const projectAssetKind = pgEnum("project_asset_kind", ["SCREENSHOT"]); // PRJ-002/PRJ-008 only specify screenshot for P0
-
 // ---------------------------------------------------------------------------
 // Identity (11.1, 11.2, 14.2) — every other domain table references users.id,
 // never a Clerk ID directly (IAM-004, 11.2).
@@ -465,8 +463,16 @@ export const projects = pgTable(
       .notNull()
       .references(() => enrollments.id), // PRJ-001: exactly one Project per Enrollment
     slug: varchar("slug", { length: 160 }).notNull(), // route: /projects/[username]/[slug] (12.1)
-    title: varchar("title", { length: 200 }),
+    title: varchar("title", { length: 200 }), // nullable: defaults to course title at read time, learner may override (PROJECT_SHOWCASE.md §2.1)
     description: text("description"),
+    features: jsonb("features").notNull().default([]), // string[], learner-authored (PRJ-008)
+    technologies: jsonb("technologies").notNull().default([]), // string[], learner-authored (PRJ-008)
+    status: projectSubmissionState("status").notNull().default("DRAFT"), // 10.6: DRAFT -> SUBMITTED
+    liveUrl: text("live_url"), // PRJ-002: validated well-formed http(s), required to reach SUBMITTED
+    screenshotUrl: text("screenshot_url"), // PRJ-002 acceptance: pasted URL, not file upload
+    repositoryUrl: text("repository_url"), // optional even at SUBMITTED (10.6)
+    notes: text("notes"),
+    submittedAt: timestamp("submitted_at", { withTimezone: true }),
     visibility: projectVisibility("visibility").notNull().default("PRIVATE"), // PRJ-003
     moderationStatus: projectModerationStatus("moderation_status").notNull().default("UNREVIEWED"), // PRJ-005
     moderationReason: text("moderation_reason"),
@@ -486,31 +492,8 @@ export const projects = pgTable(
   ],
 );
 
-export const projectSubmissions = pgTable("project_submissions", {
-  id: uuid("id").defaultRandom().primaryKey(),
-  projectId: uuid("project_id")
-    .notNull()
-    .references(() => projects.id, { onDelete: "cascade" })
-    .unique(), // 1:1 with Project
-  state: projectSubmissionState("state").notNull().default("DRAFT"), // 10.6
-  liveUrl: text("live_url"), // PRJ-002: validated well-formed http(s) before SUBMITTED
-  repositoryUrl: text("repository_url"),
-  notes: text("notes"),
-  submittedAt: timestamp("submitted_at", { withTimezone: true }),
-  createdAt: timestamp("created_at", { withTimezone: true }).defaultNow().notNull(),
-  updatedAt: timestamp("updated_at", { withTimezone: true }).defaultNow().notNull(),
-});
-
-export const projectAssets = pgTable("project_assets", {
-  id: uuid("id").defaultRandom().primaryKey(),
-  projectId: uuid("project_id")
-    .notNull()
-    .references(() => projects.id, { onDelete: "cascade" }),
-  kind: projectAssetKind("kind").notNull().default("SCREENSHOT"),
-  storageKey: text("storage_key").notNull(), // Cloudflare R2 object key (11.3)
-  url: text("url").notNull(),
-  createdAt: timestamp("created_at", { withTimezone: true }).defaultNow().notNull(),
-});
+export type Project = typeof projects.$inferSelect;
+export type NewProject = typeof projects.$inferInsert;
 
 // ---------------------------------------------------------------------------
 // Admin (8.7, 11.1)

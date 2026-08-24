@@ -32,6 +32,7 @@ Don't build the whole MVP in one session. Work in dependency order, one module a
 9. Mentoring CTA (MTR-001) — static section + external scheduling link. No dependency on any other domain; can be picked up any time it's convenient, not necessarily in sequence.
 10. Homepage (`/`) — currently the unmodified `create-next-app` scaffold, not yet touched. Deliberately sequenced after Project (6) and Admin (7): it features courses, bundles, and showcase projects, and the showcase content in particular doesn't really exist until Admin can `APPROVE`/`FEATURE` a project (PRJ-005/006). Building it earlier means building against placeholder data that gets thrown away.
 11. Deployment to production — Vercel, production Midtrans/Clerk instances, real domain, production environment variables. Last step, after everything above is built and verified against local dev. Not yet discussed or planned as of this entry.
+12. Visual polish pass — every wave so far built to `SCREEN_INVENTORY.md`/`LEARNING_WORKSPACE.md`'s layout-region level ("blocks, not pixels") deliberately, prioritizing correctness over aesthetics. Founder flagged (24 Aug 2026, after Wave 5 manual testing) that the actual rendered pages aren't polished yet. Not a bug — DESIGN.md tokens ARE wired correctly (verified across Catalog/Commerce/Learning, zero hardcoded colors found) — this is a genuinely separate, not-yet-scheduled pass, not something to silently defer forever.
 
 ## Quality gates
 
