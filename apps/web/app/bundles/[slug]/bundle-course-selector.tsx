@@ -73,7 +73,9 @@ export function BundleCourseSelector({
           {selected.size}/{selectionCount} dipilih
         </span>
         {canCheckout ? (
-          <Button render={<Link href={checkoutHref} />}>Beli bundle ini</Button>
+          <Button render={<Link href={`${checkoutHref}?courses=${[...selected].join(",")}`} />}>
+            Beli bundle ini
+          </Button>
         ) : (
           <Button disabled>Beli bundle ini</Button>
         )}
