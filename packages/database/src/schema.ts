@@ -154,6 +154,7 @@ export const courses = pgTable("courses", {
   status: courseStatus("status").notNull().default("DRAFT"), // CAT-003
   price: numeric("price", { precision: 12, scale: 2 }).notNull().default("0"), // CAT-004 free course support; COM-001 paid publish requires > 0
   currency: varchar("currency", { length: 3 }).notNull().default("IDR"),
+  resources: jsonb("resources").notNull().default([]), // LRN-007: course-wide resource block array (Appendix G), same pattern as lessons.content
   publishedAt: timestamp("published_at", { withTimezone: true }),
   createdAt: timestamp("created_at", { withTimezone: true }).defaultNow().notNull(),
   updatedAt: timestamp("updated_at", { withTimezone: true }).defaultNow().notNull(),
@@ -213,8 +214,7 @@ export const lessons = pgTable(
     slug: varchar("slug", { length: 160 }).notNull(), // route: /learn/[courseSlug]/[lessonSlug] (12.2)
     title: varchar("title", { length: 200 }).notNull(),
     type: lessonType("type").notNull(), // 9.2
-    content: jsonb("content").notNull().default({}), // LRN-004: rich text/markdown, code block, image, video ref, resource link, task/checkpoint metadata
-    videoProviderId: varchar("video_provider_id", { length: 255 }), // Cloudflare Stream reference (11.3)
+    content: jsonb("content").notNull().default([]), // LRN-004 (Appendix G): block array — markdown/code/image/video/resource_link/task, array order = render order
     isRequired: boolean("is_required").notNull().default(true), // LRN-003/10.7 REQUIRED/OPTIONAL flag
     position: integer("position").notNull(),
     createdAt: timestamp("created_at", { withTimezone: true }).defaultNow().notNull(),

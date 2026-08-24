@@ -29,6 +29,7 @@ function buildCourse(overrides: Partial<CourseWithOwnership> = {}): CourseWithOw
     status: "PUBLISHED",
     price: "0",
     currency: "IDR",
+    resources: [],
     publishedAt: new Date(),
     createdAt: new Date(),
     updatedAt: new Date(),
