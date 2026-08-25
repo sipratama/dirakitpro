@@ -1,4 +1,5 @@
 import type { CourseWithOwnership } from "@/features/catalog/get-published-courses";
+import { CssReveal } from "@/components/home/css-reveal";
 import { DiscoveryCourseCard } from "@/components/home/discovery-course-card";
 
 const MAX_HOMEPAGE_COURSES = 3;
@@ -23,8 +24,10 @@ export function BuildDiscoverySection({ courses }: { courses: CourseWithOwnershi
       </p>
 
       <div className="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        {featured.map((course) => (
-          <DiscoveryCourseCard key={course.id} course={course} />
+        {featured.map((course, index) => (
+          <CssReveal key={course.id} delayMs={index * 80} className="h-full">
+            <DiscoveryCourseCard course={course} />
+          </CssReveal>
         ))}
       </div>
     </section>

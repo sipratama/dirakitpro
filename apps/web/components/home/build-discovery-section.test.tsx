@@ -32,8 +32,8 @@ describe("BuildDiscoverySection", () => {
     expect(container).toBeEmptyDOMElement();
   });
 
-  it("renders exactly the real courses given when fewer than 3 exist", () => {
-    render(
+  it("renders exactly the real courses in the DOM with an 80ms stagger", () => {
+    const { container } = render(
       <BuildDiscoverySection
         courses={[makeCourse({ id: "1", slug: "a", title: "Course A" }), makeCourse({ id: "2", slug: "b", title: "Course B" })]}
       />,
@@ -42,6 +42,9 @@ describe("BuildDiscoverySection", () => {
     expect(screen.getByText("Course A")).toBeInTheDocument();
     expect(screen.getByText("Course B")).toBeInTheDocument();
     expect(screen.getAllByRole("link")).toHaveLength(2);
+
+    const reveals = container.querySelectorAll<HTMLElement>(".dp-css-reveal");
+    expect([...reveals].map((reveal) => reveal.style.animationDelay)).toEqual(["0ms", "80ms"]);
   });
 
   it("caps the grid at 3 courses even when more are published", () => {

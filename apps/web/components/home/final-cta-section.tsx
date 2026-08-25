@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import { CssReveal } from "@/components/home/css-reveal";
 
 // The Homepage's second high-contrast brand moment (VISUAL_POLISH V2.1
 // Phase 12) — reuses the Hero's near-black + tactile hard-shadow language
@@ -9,7 +10,7 @@ import { Button } from "@/components/ui/button";
 export function FinalCtaSection() {
   return (
     <section className="bg-brand-ink py-16">
-      <div className="mx-auto flex w-full max-w-3xl flex-col items-center gap-6 px-4 text-center">
+      <CssReveal className="mx-auto flex w-full max-w-3xl flex-col items-center gap-6 px-4 text-center">
         <svg aria-hidden="true" width="28" height="28" viewBox="0 0 28 28" fill="none" className="mb-1">
           <rect x="2" y="14" width="11" height="11" rx="2" strokeWidth="2" className="fill-brand-teal stroke-brand-cream" />
           <rect
@@ -35,7 +36,7 @@ export function FinalCtaSection() {
         >
           Mulai Merakit
         </Button>
-      </div>
+      </CssReveal>
     </section>
   );
 }

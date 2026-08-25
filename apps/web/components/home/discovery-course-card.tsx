@@ -13,7 +13,7 @@ export function DiscoveryCourseCard({ course }: { course: CourseWithOwnership })
   return (
     <Link
       href={`/courses/${course.slug}`}
-      className="group flex flex-col overflow-hidden rounded-card border border-neutral-100 bg-surface transition-[transform,box-shadow,border-color] duration-150 ease-out hover:-translate-y-1 hover:border-brand-ink hover:shadow-hard-sm focus-visible:-translate-y-1 focus-visible:border-brand-ink focus-visible:shadow-hard-sm focus-visible:outline-none"
+      className="group flex h-full flex-col overflow-hidden rounded-card border border-neutral-100 bg-surface transition-[transform,box-shadow,border-color] duration-150 ease-out hover:-translate-y-1 hover:border-brand-ink hover:shadow-hard-sm focus-visible:-translate-y-1 focus-visible:border-brand-ink focus-visible:shadow-hard-sm focus-visible:outline-none"
     >
       {course.thumbnailUrl ? (
         // eslint-disable-next-line @next/next/no-img-element -- course thumbnails are user/admin-uploaded R2 URLs, not static app assets
