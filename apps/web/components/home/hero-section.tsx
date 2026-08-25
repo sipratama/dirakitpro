@@ -7,7 +7,7 @@ import { MemphisShapes } from "@/components/home/memphis-shapes";
 // Homepage hero only, not the shared brand-* palette used everywhere else.
 export function HeroSection() {
   return (
-    <section className="relative overflow-hidden bg-brand-cream font-body-memphis">
+    <section className="relative overflow-hidden bg-brand-cream font-sans">
       <MemphisShapes />
 
       <div className="relative z-10 mx-auto grid w-full max-w-6xl gap-12 px-4 py-20 md:grid-cols-[55%_45%] md:items-center md:px-6 md:py-28">
@@ -16,7 +16,7 @@ export function HeroSection() {
             Mulai dari rakitan pertama
           </span>
 
-          <h1 className="font-display-memphis text-[52px] leading-[1.05] font-extrabold text-brand-ink md:text-[68px] lg:text-[76px]">
+          <h1 className="font-sans text-[52px] leading-[1.05] font-extrabold text-brand-ink md:text-[68px] lg:text-[76px]">
             Profesional itu{" "}
             <span className="relative inline-block">
               <span

@@ -1,4 +1,4 @@
-import { Bricolage_Grotesque, DM_Sans, IBM_Plex_Mono } from "next/font/google";
+import { IBM_Plex_Mono } from "next/font/google";
 import { getCurrentUser } from "@dirakitpro/auth";
 import { getPublishedCourses } from "@/features/catalog/get-published-courses";
 import { PublicHeader } from "@/components/home/public-header";
@@ -20,21 +20,6 @@ const ibmPlexMono = IBM_Plex_Mono({
   subsets: ["latin"],
 });
 
-// The header + hero's "Memphis Digital Workshop" faces (DESIGN.md 8.2) —
-// layered on top of the site-wide Plus Jakarta Sans from the root layout,
-// not replacing it. Loaded here (not in app/layout.tsx) and exposed only as
-// CSS variables on this page's own wrapper, so no other route is affected.
-const bricolageGrotesque = Bricolage_Grotesque({
-  variable: "--font-bricolage",
-  weight: ["700", "800"],
-  subsets: ["latin"],
-});
-const dmSans = DM_Sans({
-  variable: "--font-dm-sans",
-  weight: ["400", "500", "700"],
-  subsets: ["latin"],
-});
-
 // Homepage (/) — the only place data is fetched; every section component is
 // a plain, synchronous, presentational piece (matching the convention in
 // app/dashboard/page.tsx) so each can be unit-tested without an RSC runtime.
@@ -46,9 +31,9 @@ export default async function Home() {
 
   return (
     // `contents` keeps this div out of the box tree (body's flex layout
-    // still sees header/main/footer as direct children) while still scoping
-    // these font variables to the Homepage via normal CSS variable inheritance.
-    <div className={`${ibmPlexMono.variable} ${bricolageGrotesque.variable} ${dmSans.variable} contents`}>
+    // still sees header/main/footer as direct children) while scoping the
+    // Homepage-only mono utility face via normal CSS variable inheritance.
+    <div className={`${ibmPlexMono.variable} contents`}>
       <PublicHeader user={user} />
       <main className="flex flex-1 flex-col">
         <HeroSection />

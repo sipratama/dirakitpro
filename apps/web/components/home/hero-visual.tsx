@@ -71,8 +71,8 @@ export function HeroVisual() {
 
         <div className="flex flex-col gap-5 p-6">
           <div>
-            <p className="font-display-memphis text-xl font-extrabold text-brand-ink">{LEARNER_NAME}</p>
-            <p className="text-sm font-semibold text-brand-amber">{LEARNER_ROLE}</p>
+            <p className="font-sans text-xl font-extrabold text-brand-ink">{LEARNER_NAME}</p>
+            <p className="text-sm font-semibold text-brand-amber-text">{LEARNER_ROLE}</p>
           </div>
 
           <p className="text-sm text-brand-ink/70">
