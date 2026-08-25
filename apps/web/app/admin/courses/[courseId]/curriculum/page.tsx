@@ -4,12 +4,16 @@ import { Button } from "@/components/ui/button";
 import { getCourseForAdmin } from "@/features/admin/get-course-for-admin";
 import { getCurriculumForAdmin, type AdminLesson, type AdminMilestone, type AdminStage } from "@/features/admin/get-curriculum-for-admin";
 import {
+  addBuildMilestoneAction,
   addCourseStageAction,
   addLessonAction,
+  deleteBuildMilestoneAction,
   deleteCourseStageAction,
   deleteLessonAction,
+  moveBuildMilestoneAction,
   moveCourseStageAction,
   moveLessonAction,
+  updateBuildMilestoneAction,
   updateCourseStageAction,
   updateLessonMetadataAction,
 } from "./actions";
@@ -172,6 +176,77 @@ function StageSection({
   );
 }
 
+function MilestoneRow({ courseId, milestone }: { courseId: string; milestone: AdminMilestone }) {
+  const saveAction = updateBuildMilestoneAction.bind(null, courseId, milestone.id);
+  const deleteAction = deleteBuildMilestoneAction.bind(null, courseId, milestone.id);
+  const moveUpAction = moveBuildMilestoneAction.bind(null, courseId, milestone.id, "up");
+  const moveDownAction = moveBuildMilestoneAction.bind(null, courseId, milestone.id, "down");
+
+  return (
+    <li className="flex flex-wrap items-end gap-2 rounded-control border border-neutral-100 p-3">
+      <form action={saveAction} className="flex items-end gap-2">
+        <input name="title" defaultValue={milestone.title} required className={`${inputClass} w-56`} />
+        <label className="flex items-center gap-1 text-small text-brand-ink">
+          <input type="checkbox" name="isRequired" defaultChecked={milestone.isRequired} />
+          Required
+        </label>
+        <Button type="submit" size="sm">
+          Simpan
+        </Button>
+      </form>
+      <form action={moveUpAction}>
+        <Button type="submit" variant="outline" size="sm">
+          ↑
+        </Button>
+      </form>
+      <form action={moveDownAction}>
+        <Button type="submit" variant="outline" size="sm">
+          ↓
+        </Button>
+      </form>
+      <form action={deleteAction}>
+        <Button type="submit" variant="destructive" size="sm">
+          Hapus
+        </Button>
+      </form>
+    </li>
+  );
+}
+
+// ADM-003/CURRICULUM_MANAGEMENT.md §4 — milestone existence/metadata only,
+// never a "mark complete" action (BLD-002's derivation from CHECKPOINT
+// lesson completion is unchanged by this wave).
+function MilestoneSection({ courseId, milestones }: { courseId: string; milestones: AdminMilestone[] }) {
+  const addAction = addBuildMilestoneAction.bind(null, courseId);
+
+  return (
+    <div className="rounded-card border border-neutral-100 p-5">
+      <h2 className="text-h3 text-brand-ink">Milestones</h2>
+
+      {milestones.length === 0 ? (
+        <p className="mt-4 text-small text-neutral-600">Belum ada milestone.</p>
+      ) : (
+        <ul className="mt-4 flex flex-col gap-3">
+          {milestones.map((milestone) => (
+            <MilestoneRow key={milestone.id} courseId={courseId} milestone={milestone} />
+          ))}
+        </ul>
+      )}
+
+      <form action={addAction} className="mt-4 flex flex-wrap items-end gap-2 border-t border-neutral-100 pt-4">
+        <input name="title" placeholder="Judul milestone baru" required className={`${inputClass} w-56`} />
+        <label className="flex items-center gap-1 text-small text-brand-ink">
+          <input type="checkbox" name="isRequired" defaultChecked />
+          Required
+        </label>
+        <Button type="submit" variant="outline" size="sm">
+          + Tambah milestone
+        </Button>
+      </form>
+    </div>
+  );
+}
+
 export default async function AdminCurriculumPage({ params }: PageProps<"/admin/courses/[courseId]/curriculum">) {
   const { courseId } = await params;
   const course = await getCourseForAdmin(courseId);
@@ -203,6 +278,10 @@ export default async function AdminCurriculumPage({ params }: PageProps<"/admin/
         <input name="title" placeholder="Judul stage baru" required className={`${inputClass} w-56`} />
         <Button type="submit">+ Tambah stage</Button>
       </form>
+
+      <div className="mt-10">
+        <MilestoneSection courseId={courseId} milestones={milestones} />
+      </div>
     </div>
   );
 }

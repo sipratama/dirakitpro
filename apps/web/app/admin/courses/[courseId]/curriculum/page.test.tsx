@@ -22,6 +22,10 @@ vi.mock("./actions", () => ({
   updateLessonMetadataAction: vi.fn(),
   deleteLessonAction: vi.fn(),
   moveLessonAction: vi.fn(),
+  addBuildMilestoneAction: vi.fn(),
+  updateBuildMilestoneAction: vi.fn(),
+  deleteBuildMilestoneAction: vi.fn(),
+  moveBuildMilestoneAction: vi.fn(),
 }));
 
 const { default: AdminCurriculumPage } = await import("./page");
@@ -92,5 +96,27 @@ describe("AdminCurriculumPage", () => {
     render(await callPage("c1"));
 
     expect(screen.getByText("Belum ada lesson di stage ini.")).toBeInTheDocument();
+  });
+
+  it("shows a calm empty state and the add-milestone form when there are no milestones", async () => {
+    mockGetCourseForAdmin.mockResolvedValue({ id: "c1", title: "Rakitan Pertama" });
+    mockGetCurriculumForAdmin.mockResolvedValue({ stages: [], milestones: [] });
+
+    render(await callPage("c1"));
+
+    expect(screen.getByText("Belum ada milestone.")).toBeInTheDocument();
+    expect(screen.getByPlaceholderText("Judul milestone baru")).toBeInTheDocument();
+  });
+
+  it("renders a row per milestone with title and required checkbox", async () => {
+    mockGetCourseForAdmin.mockResolvedValue({ id: "c1", title: "Rakitan Pertama" });
+    mockGetCurriculumForAdmin.mockResolvedValue({
+      stages: [],
+      milestones: [{ id: "milestone-1", title: "Live di internet", position: 1, isRequired: true }],
+    });
+
+    render(await callPage("c1"));
+
+    expect(screen.getByDisplayValue("Live di internet")).toBeInTheDocument();
   });
 });
