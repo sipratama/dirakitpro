@@ -5,6 +5,7 @@ import {
   orderCourseGrants,
   orderItems,
   orders,
+  projects,
   type NewCourse,
   users,
 } from "@dirakitpro/database";
@@ -59,6 +60,7 @@ describe("createCourseOrder", () => {
         await db.delete(orderItems).where(inArray(orderItems.orderId, orderIds));
       }
       await db.delete(orders).where(inArray(orders.userId, userIds));
+      await db.delete(projects).where(inArray(projects.userId, userIds));
       await db.delete(enrollments).where(inArray(enrollments.userId, userIds));
     }
     if (courseIds.length) await db.delete(courses).where(inArray(courses.id, courseIds));
