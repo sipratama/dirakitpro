@@ -51,27 +51,30 @@ describe("Home", () => {
 
     // "Mulai Merakit" appears twice by design: the hero's primary CTA and the
     // final CTA section deliberately mirror each other (see final-cta-section.tsx)
-    // — both must point at the real /register route.
-    const startBuildingLinks = screen.getAllByRole("link", { name: "Mulai Merakit" });
+    // — both must point at the real /register route. Both are the shared
+    // `Button` component rendered as an anchor with `nativeButton={false}`,
+    // which sets an explicit role="button" (see components/ui/button.tsx) —
+    // so these are queried by "button", not "link", role.
+    const startBuildingLinks = screen.getAllByRole("button", { name: "Mulai Merakit" });
     expect(startBuildingLinks.length).toBeGreaterThanOrEqual(2);
     for (const link of startBuildingLinks) {
       expect(link).toHaveAttribute("href", "/register");
     }
-    expect(screen.getByRole("link", { name: "Lihat Course" })).toHaveAttribute("href", "/courses");
+    expect(screen.getByRole("button", { name: "Lihat Course" })).toHaveAttribute("href", "/courses");
   });
 
   it("shows guest nav actions when signed out", async () => {
     render(await Home());
-    expect(screen.getByRole("link", { name: "Masuk" })).toHaveAttribute("href", "/login");
-    expect(screen.getByRole("link", { name: "Daftar" })).toHaveAttribute("href", "/register");
+    expect(screen.getByRole("button", { name: "Masuk" })).toHaveAttribute("href", "/login");
+    expect(screen.getByRole("button", { name: "Daftar" })).toHaveAttribute("href", "/register");
   });
 
   it("shows a Dashboard link instead of guest actions when signed in", async () => {
     mockGetCurrentUser.mockResolvedValue({ id: "user-1" });
     render(await Home());
 
-    expect(screen.getByRole("link", { name: "Dashboard" })).toHaveAttribute("href", "/dashboard");
-    expect(screen.queryByRole("link", { name: "Masuk" })).not.toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "Dashboard" })).toHaveAttribute("href", "/dashboard");
+    expect(screen.queryByRole("button", { name: "Masuk" })).not.toBeInTheDocument();
   });
 
   it("renders real published courses in Build Discovery, never filler", async () => {

@@ -1,5 +1,5 @@
 import { Check, Globe2 } from "lucide-react";
-import { RevealOnScroll } from "@/components/home/reveal-on-scroll";
+import { CssReveal } from "@/components/home/css-reveal";
 
 // Matches the approved dirakitpro_differentiators_remediated reference
 // exactly — three concepts, no more, no generic "feature card" copy.
@@ -82,10 +82,10 @@ export function WhyDirakitProSection() {
     <section className="mx-auto w-full max-w-6xl px-4 py-16">
       <h2 className="text-h1 text-brand-ink">Bukan cuma selesai belajar.</h2>
 
-      <RevealOnScroll className="mt-10 grid grid-cols-1 gap-8 md:grid-cols-3">
+      <CssReveal className="mt-10 grid grid-cols-1 gap-8 md:grid-cols-3">
         {CONCEPTS.map((concept, index) => (
           <div key={concept.title} className="flex flex-col gap-3">
-            <div className="h-32 overflow-hidden rounded-card" aria-hidden="true">
+            <div className="relative h-32 overflow-hidden rounded-card border border-neutral-100" aria-hidden="true">
               {index === 0 ? (
                 <OutcomePreview />
               ) : index === 1 ? (
@@ -93,12 +93,19 @@ export function WhyDirakitProSection() {
               ) : (
                 <PortfolioPreview />
               )}
+              {/* Quiet echo of the Hero signature's part markers — these
+                  three concepts are themselves the "parts" of what you get
+                  from building, not just watching. */}
+              <span className="absolute top-2 left-2 size-1.5 rounded-full border-2 border-brand-amber bg-surface" />
             </div>
+            <span className="[font-family:var(--font-mono-home)] text-micro text-neutral-600">
+              C.{String(index + 1).padStart(2, "0")}
+            </span>
             <h3 className="text-h3 text-brand-ink">{concept.title}</h3>
             <p className="text-body text-neutral-600">{concept.body}</p>
           </div>
         ))}
-      </RevealOnScroll>
+      </CssReveal>
     </section>
   );
 }
