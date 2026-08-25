@@ -49,9 +49,6 @@ const config: Config = {
       },
       fontFamily: {
         sans: ["var(--font-plus-jakarta-sans)"],
-        // DESIGN.md 8.2 — homepage header/hero display + body faces.
-        "display-memphis": ["var(--font-bricolage)", "system-ui", "sans-serif"],
-        "body-memphis": ["var(--font-dm-sans)", "system-ui", "sans-serif"],
       },
       fontSize: {
         display: ["40px", { lineHeight: "1.2", fontWeight: "700" }],

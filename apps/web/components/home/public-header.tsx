@@ -17,12 +17,12 @@ const NAV_LINKS = [
 // Digital Workshop) — scoped to this component only, not the shared palette.
 export function PublicHeader({ user }: { user: User | null }) {
   return (
-    <header className="border-b-2 border-brand-ink bg-brand-cream font-body-memphis">
+    <header className="border-b-2 border-brand-ink bg-brand-cream font-sans">
       <div className="mx-auto w-full max-w-6xl px-4 md:px-6">
         <div className="flex items-center justify-between py-4">
           <Link href="/" className="flex items-center gap-2.5">
             <BrandMark />
-            <span className="font-display-memphis text-xl font-extrabold text-brand-ink">DirakitPro</span>
+            <span className="font-sans text-xl font-extrabold text-brand-ink">DirakitPro</span>
           </Link>
 
           <nav
