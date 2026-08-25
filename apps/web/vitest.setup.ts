@@ -15,14 +15,17 @@ afterEach(() => cleanup());
 vi.mock("server-only", () => ({}));
 
 // `next/font/google` is a compiler plugin (SWC/webpack) — the plain npm
-// package has no runtime implementation of `Plus_Jakarta_Sans` (app/layout.tsx)
-// or `IBM_Plex_Mono` (app/page.tsx), so importing either outside Next's own
-// build (as Vitest does) throws "is not a function". Stub both as
-// font-loader-shaped functions; no test asserts on actual font output. Named
-// (not dynamic/Proxy) because Vitest's ESM mock handling requires statically
-// known export names — add a new entry here if another route loads a font.
+// package has no runtime implementation of `Plus_Jakarta_Sans` (app/layout.tsx),
+// `IBM_Plex_Mono`, `Bricolage_Grotesque`, or `DM_Sans` (all app/page.tsx), so
+// importing any of them outside Next's own build (as Vitest does) throws "is
+// not a function". Stub them all as font-loader-shaped functions; no test
+// asserts on actual font output. Named (not dynamic/Proxy) because Vitest's
+// ESM mock handling requires statically known export names — add a new entry
+// here if another route loads a font.
 const mockFontLoader = () => ({ className: "mock-font", variable: "mock-font-variable", style: {} });
 vi.mock("next/font/google", () => ({
   Plus_Jakarta_Sans: mockFontLoader,
   IBM_Plex_Mono: mockFontLoader,
+  Bricolage_Grotesque: mockFontLoader,
+  DM_Sans: mockFontLoader,
 }));

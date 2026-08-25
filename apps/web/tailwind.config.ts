@@ -46,9 +46,22 @@ const config: Config = {
         "warning-fill": "#C68A2E",
         "info-bg": "#E3F2FD",
         "info-text": "#0D47A1",
+        // DESIGN.md 8 — Homepage header/hero only ("Memphis Digital
+        // Workshop"). Not part of the section-2 brand palette; don't reuse
+        // outside PublicHeader/HeroSection/HeroVisual.
+        "memphis-cream": "#F5EFE2",
+        "memphis-ink": "#17140D",
+        "memphis-coral": "#FF5B57",
+        "memphis-teal": "#12B3A4",
+        "memphis-mustard": "#FFC531",
+        "memphis-violet": "#6B5BE6",
+        "memphis-sky": "#3AA0FF",
       },
       fontFamily: {
         sans: ["var(--font-plus-jakarta-sans)"],
+        // DESIGN.md 8.2 — homepage header/hero display + body faces.
+        "display-memphis": ["var(--font-bricolage)", "system-ui", "sans-serif"],
+        "body-memphis": ["var(--font-dm-sans)", "system-ui", "sans-serif"],
       },
       fontSize: {
         display: ["40px", { lineHeight: "1.2", fontWeight: "700" }],
@@ -63,6 +76,12 @@ const config: Config = {
       borderRadius: {
         card: "12px",
         control: "10px",
+      },
+      boxShadow: {
+        // DESIGN.md 8.3 — flat "hard offset" shadow, no blur. Reserve
+        // hard-lg for the primary CTA and the hero project-preview mockup.
+        "hard-sm": "4px 4px 0 0 #17140D",
+        "hard-lg": "7px 7px 0 0 #17140D",
       },
     },
   },
