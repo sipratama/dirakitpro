@@ -1,5 +1,5 @@
 // @vitest-environment jsdom
-import { render, screen } from "@testing-library/react";
+import { render, screen, within } from "@testing-library/react";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 
 const mockGetCurrentUser = vi.hoisted(() => vi.fn());
@@ -65,8 +65,12 @@ describe("Home", () => {
 
   it("shows guest nav actions when signed out", async () => {
     render(await Home());
-    expect(screen.getByRole("button", { name: "Masuk" })).toHaveAttribute("href", "/login");
-    expect(screen.getByRole("button", { name: "Daftar" })).toHaveAttribute("href", "/register");
+    // Header nav CTA is "Mulai Merakit" (DESIGN.md 8), not a separate
+    // "Daftar" button — scoped to the header since the same label also
+    // appears as the hero's own primary CTA (see the routing test below).
+    const header = screen.getByRole("banner");
+    expect(within(header).getByRole("button", { name: "Masuk" })).toHaveAttribute("href", "/login");
+    expect(within(header).getByRole("button", { name: "Mulai Merakit" })).toHaveAttribute("href", "/register");
   });
 
   it("shows a Dashboard link instead of guest actions when signed in", async () => {

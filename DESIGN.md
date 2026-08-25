@@ -143,6 +143,43 @@ Lucide (already in stack, PRD 14.2). Outline style, 20px inline / 24px max decor
 - **Empty states, loading states** — copy and layout patterns not yet defined; belongs in `SCREEN_INVENTORY.md`.
 - **Dark mode** — see 2.5, explicitly deferred.
 
+## 8. Homepage header + hero — "Memphis Digital Workshop" (2026-08-25)
+
+**Scope.** This direction applies only to the public Homepage's `PublicHeader`, `HeroSection`, and `HeroVisual` components, as of 2026-08-25. It's a deliberate visual departure from sections 2–5 above — those still govern every other surface (dashboard, learning workspace, admin, checkout, and every Homepage section below the hero) until a full rebrand is separately scoped and approved. Don't extend these tokens to any other component without going through that decision first.
+
+### 8.1 Color
+
+| Token | Hex | Role |
+|---|---|---|
+| `memphis-cream` | `#F5EFE2` | Header/hero background |
+| `memphis-ink` | `#17140D` | Text, outlines, hard shadows |
+| `memphis-coral` | `#FF5B57` | Primary CTA — the strongest action color on this surface |
+| `memphis-teal` | `#12B3A4` | Completed/progress state |
+| `memphis-mustard` | `#FFC531` | Current-state emphasis, the headline's marker highlight |
+| `memphis-violet` | `#6B5BE6` | Supporting accent only |
+| `memphis-sky` | `#3AA0FF` | Supporting accent only |
+
+Flat fills only, no gradients. Target mix: ~70% cream/white/ink, 10% coral, 8% teal, 6% mustard, remainder violet/sky — coral should never compete with a second saturated CTA on the same view.
+
+### 8.2 Typography
+
+Two families, scoped to this surface only (loaded in `app/page.tsx`, not `app/layout.tsx`, so no other route is affected):
+
+- **Bricolage Grotesque** 700/800 (`font-display-memphis`) — wordmark, hero headline, display labels only.
+- **DM Sans** 400/500/700 (`font-body-memphis`) — nav, body, UI labels on this surface.
+
+Hero headline: ~68–76px desktop, tight line-height, one marker-highlight only (behind "dirakit."). Sentence case, matching the section-3 voice rule.
+
+### 8.3 Tactile shadow
+
+- `shadow-hard-sm`: `4px 4px 0 memphis-ink` — small controls (nav CTA, secondary button, progress card).
+- `shadow-hard-lg`: `7px 7px 0 memphis-ink` — reserve for the primary CTA and the hero project-preview mockup only.
+- No blur, no soft/glass shadow. Hover press effect: translate ~2px down/right, shadow removed — a physical press, not a lift.
+
+### 8.4 Motion
+
+CSS keyframes only, no JS. 5–6 decorative background shapes max, each a distinct gentle drift/rotate/bob/sway, 10–28s duration, never synchronized. Disabled entirely under `prefers-reduced-motion: reduce` (animation removed, not just slowed).
+
 ## Next steps
 
 This foundation is enough to start `HOMEPAGE.md` (layout/IA) and `SCREEN_INVENTORY.md` (full route-by-route screen list per PRD 12). Recommend homepage next, since it's the one screen every persona in 3.2 hits first and it's what actually exercises whether this token set holds up outside a color-swatch preview.
