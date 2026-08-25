@@ -27,6 +27,8 @@ describe("AdminDashboardPage", () => {
     );
     expect(screen.getByRole("link", { name: "Learner" })).toHaveAttribute("href", "/admin/users");
     expect(screen.getByRole("link", { name: "Orders" })).toHaveAttribute("href", "/admin/orders");
+    expect(screen.getByRole("link", { name: "Course" })).toHaveAttribute("href", "/admin/courses");
+    expect(screen.getByRole("link", { name: "Bundle" })).toHaveAttribute("href", "/admin/bundles");
   });
 
   it("shows 0 menunggu when nothing is pending", async () => {
