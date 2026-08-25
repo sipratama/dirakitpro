@@ -44,17 +44,36 @@ export function HowItWorksSection() {
         <style>{`
           @keyframes dp-flow-fill-h { from { transform: scaleX(0); } to { transform: scaleX(1); } }
           @keyframes dp-flow-fill-v { from { transform: scaleY(0); } to { transform: scaleY(1); } }
+          @keyframes dp-step-glow-pulse {
+            0%, 100% { opacity: 0.14; transform: scale(0.96); }
+            50% { opacity: 0.28; transform: scale(1.04); }
+          }
 
-          .dp-flow-connector-h { transform-origin: left center; animation: dp-flow-fill-h 320ms ease-out backwards; }
-          .dp-flow-connector-v { transform-origin: top center; animation: dp-flow-fill-v 320ms ease-out backwards; }
-          [data-connector="0"] { animation-delay: 100ms; }
-          [data-connector="1"] { animation-delay: 200ms; }
-          [data-connector="2"] { animation-delay: 300ms; }
+          .dp-step-active-glow {
+            background: radial-gradient(circle at center, currentColor 0%, transparent 70%);
+            animation: dp-step-glow-pulse 2.8s ease-in-out infinite;
+          }
+          .dp-flow-connector-h { transform-origin: left center; animation: dp-flow-fill-h 600ms ease-out backwards; }
+          .dp-flow-connector-v { transform-origin: top center; animation: dp-flow-fill-v 600ms ease-out backwards; }
+          [data-connector="0"] { animation-delay: 350ms; }
+          [data-connector="1"] { animation-delay: 1000ms; }
+          [data-connector="2"] { animation-delay: 1650ms; }
 
           @media (prefers-reduced-motion: reduce) {
             .dp-flow-connector-h,
             .dp-flow-connector-v {
               animation: none;
+            }
+            .dp-step-active-glow {
+              animation: none;
+              opacity: 0.2;
+              transform: none;
+            }
+            .dp-step-card {
+              transition: none;
+            }
+            .dp-step-card:hover {
+              transform: none;
             }
           }
         `}</style>
@@ -63,13 +82,21 @@ export function HowItWorksSection() {
           {STEPS.map((step, index) => {
             const Icon = step.icon;
             const isRakit = step.label === "Rakit";
+            const isCurrent = step.state === "current";
             const isLast = index === STEPS.length - 1;
 
             return (
               <li key={step.label} className="relative lg:mx-3">
+                {isCurrent && (
+                  <span
+                    aria-hidden="true"
+                    className="dp-step-active-glow absolute -inset-3 rounded-card text-brand-amber blur-xl"
+                  />
+                )}
+
                 <CssReveal
                   delayMs={index * 100}
-                  className={`flex h-full flex-col gap-3 rounded-card p-6 ${CARD_STYLES[step.state]}`}
+                  className={`dp-step-card relative flex h-full flex-col gap-3 rounded-card p-6 transition-[transform,box-shadow] duration-150 ease-out hover:-translate-y-1 hover:shadow-hard-sm ${CARD_STYLES[step.state]}`}
                 >
                   <div
                     className={`flex size-10 items-center justify-center rounded-full border ${ICON_STYLES[step.state]}`}
@@ -109,15 +136,15 @@ export function HowItWorksSection() {
                     <span
                       aria-hidden="true"
                       data-connector={index}
-                      className={`dp-flow-connector-h absolute top-11 -right-3 hidden h-1 w-6 rounded-full lg:block ${
-                        step.state === "completed" ? "bg-brand-teal" : "bg-neutral-200"
+                      className={`dp-flow-connector-h absolute top-11 -right-4 hidden h-1.5 w-8 rounded-full lg:block ${
+                        step.state === "completed" ? "bg-brand-teal" : "bg-neutral-300"
                       }`}
                     />
                     <span
                       aria-hidden="true"
                       data-connector={index}
-                      className={`dp-flow-connector-v absolute bottom-[-1.5rem] left-1/2 h-6 w-1 -translate-x-1/2 rounded-full lg:hidden ${
-                        step.state === "completed" ? "bg-brand-teal" : "bg-neutral-200"
+                      className={`dp-flow-connector-v absolute bottom-[-2rem] left-1/2 h-8 w-1.5 -translate-x-1/2 rounded-full lg:hidden ${
+                        step.state === "completed" ? "bg-brand-teal" : "bg-neutral-300"
                       }`}
                     />
                   </>
