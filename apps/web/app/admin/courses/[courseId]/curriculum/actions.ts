@@ -2,13 +2,17 @@
 
 import { requireAdmin } from "@dirakitpro/auth";
 import { revalidatePath } from "next/cache";
+import { createBuildMilestone } from "@/features/admin/create-build-milestone";
 import { createCourseStage } from "@/features/admin/create-course-stage";
 import { createLesson, type LessonInput } from "@/features/admin/create-lesson";
+import { deleteBuildMilestone } from "@/features/admin/delete-build-milestone";
 import { deleteCourseStage } from "@/features/admin/delete-course-stage";
 import { deleteLesson } from "@/features/admin/delete-lesson";
 import { getCurriculumForAdmin } from "@/features/admin/get-curriculum-for-admin";
+import { reorderBuildMilestones } from "@/features/admin/reorder-build-milestones";
 import { reorderCourseStages } from "@/features/admin/reorder-course-stages";
 import { reorderLessons } from "@/features/admin/reorder-lessons";
+import { updateBuildMilestone } from "@/features/admin/update-build-milestone";
 import { updateCourseStage } from "@/features/admin/update-course-stage";
 import { updateLesson } from "@/features/admin/update-lesson";
 
@@ -120,5 +124,38 @@ export async function moveLessonAction(
   if (index === -1) return;
 
   await reorderLessons(courseStageId, moveInArray(currentOrder, index, direction));
+  revalidateCurriculum(courseId);
+}
+
+export async function addBuildMilestoneAction(courseId: string, formData: FormData): Promise<void> {
+  await requireAdmin();
+
+  await createBuildMilestone(courseId, textField(formData.get("title")), formData.get("isRequired") === "on");
+  revalidateCurriculum(courseId);
+}
+
+export async function updateBuildMilestoneAction(courseId: string, milestoneId: string, formData: FormData): Promise<void> {
+  await requireAdmin();
+
+  await updateBuildMilestone(milestoneId, textField(formData.get("title")), formData.get("isRequired") === "on");
+  revalidateCurriculum(courseId);
+}
+
+export async function deleteBuildMilestoneAction(courseId: string, milestoneId: string): Promise<void> {
+  await requireAdmin();
+
+  await deleteBuildMilestone(milestoneId);
+  revalidateCurriculum(courseId);
+}
+
+export async function moveBuildMilestoneAction(courseId: string, milestoneId: string, direction: Direction): Promise<void> {
+  await requireAdmin();
+
+  const { milestones } = await getCurriculumForAdmin(courseId);
+  const currentOrder = milestones.map((milestone) => milestone.id);
+  const index = currentOrder.indexOf(milestoneId);
+  if (index === -1) return;
+
+  await reorderBuildMilestones(courseId, moveInArray(currentOrder, index, direction));
   revalidateCurriculum(courseId);
 }
