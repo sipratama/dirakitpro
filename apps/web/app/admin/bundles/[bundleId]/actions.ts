@@ -21,25 +21,25 @@ export async function updateBundleAction(bundleId: string, formData: FormData): 
 }
 
 export async function activateBundleAction(bundleId: string): Promise<void> {
-  await requireAdmin();
+  const admin = await requireAdmin();
 
-  await activateBundle(bundleId);
+  await activateBundle(bundleId, admin.id);
   revalidatePath(`/admin/bundles/${bundleId}`);
   revalidatePath("/admin/bundles");
 }
 
 export async function deactivateBundleAction(bundleId: string): Promise<void> {
-  await requireAdmin();
+  const admin = await requireAdmin();
 
-  await deactivateBundle(bundleId);
+  await deactivateBundle(bundleId, admin.id);
   revalidatePath(`/admin/bundles/${bundleId}`);
   revalidatePath("/admin/bundles");
 }
 
 export async function reactivateBundleAction(bundleId: string): Promise<void> {
-  await requireAdmin();
+  const admin = await requireAdmin();
 
-  await reactivateBundle(bundleId);
+  await reactivateBundle(bundleId, admin.id);
   revalidatePath(`/admin/bundles/${bundleId}`);
   revalidatePath("/admin/bundles");
 }

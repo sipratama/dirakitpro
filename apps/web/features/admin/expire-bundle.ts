@@ -1,5 +1,5 @@
 import "server-only";
-import { bundles, db, type Bundle } from "@dirakitpro/database";
+import { adminAuditLogs, bundles, db, type Bundle } from "@dirakitpro/database";
 import { eq } from "drizzle-orm";
 import { BundleNotActiveError, BundleNotFoundError } from "./errors";
 
@@ -16,17 +16,29 @@ const UUID_PATTERN = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{
  * "self-heal on read" shape the catalog module already uses to *compute*
  * (not persist) purchasability live.
  *
- * This is system-triggered, not an admin action — callers must pass
- * `adminUserId: null` to the Fase 3 audit write, never attribute it to
- * whichever admin happened to trigger the read.
+ * This is system-triggered, not an admin action — the AdminAuditLog row is
+ * written with `adminUserId: null` (ADM-008), never attributed to whichever
+ * admin happened to trigger the read that caused this to run.
  */
 export async function expireBundle(bundleId: string): Promise<Bundle> {
   if (!UUID_PATTERN.test(bundleId)) throw new BundleNotFoundError();
 
-  const [existing] = await db.select().from(bundles).where(eq(bundles.id, bundleId)).limit(1);
-  if (!existing) throw new BundleNotFoundError();
-  if (existing.status !== "ACTIVE") throw new BundleNotActiveError();
+  return db.transaction(async (tx) => {
+    const [existing] = await tx.select().from(bundles).where(eq(bundles.id, bundleId)).limit(1);
+    if (!existing) throw new BundleNotFoundError();
+    if (existing.status !== "ACTIVE") throw new BundleNotActiveError();
 
-  const [updated] = await db.update(bundles).set({ status: "EXPIRED" }).where(eq(bundles.id, bundleId)).returning();
-  return updated;
+    const [updated] = await tx.update(bundles).set({ status: "EXPIRED" }).where(eq(bundles.id, bundleId)).returning();
+
+    await tx.insert(adminAuditLogs).values({
+      adminUserId: null,
+      action: "BUNDLE_EXPIRED",
+      targetType: "bundle",
+      targetId: bundleId,
+      beforeData: { status: existing.status },
+      afterData: { status: "EXPIRED" },
+    });
+
+    return updated;
+  });
 }

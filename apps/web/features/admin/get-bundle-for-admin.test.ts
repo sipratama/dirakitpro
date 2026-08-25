@@ -1,5 +1,5 @@
-import { bundleCourses, bundles, courses, db, type NewBundle, type NewCourse } from "@dirakitpro/database";
-import { inArray } from "drizzle-orm";
+import { adminAuditLogs, bundleCourses, bundles, courses, db, type NewBundle, type NewCourse } from "@dirakitpro/database";
+import { and, eq, inArray } from "drizzle-orm";
 import { afterEach, describe, expect, it } from "vitest";
 import { getBundleForAdmin } from "./get-bundle-for-admin";
 
@@ -43,6 +43,7 @@ describe("getBundleForAdmin", () => {
   const courseIds: string[] = [];
 
   afterEach(async () => {
+    if (bundleIds.length) await db.delete(adminAuditLogs).where(and(eq(adminAuditLogs.targetType, "bundle"), inArray(adminAuditLogs.targetId, bundleIds)));
     if (bundleIds.length) await db.delete(bundleCourses).where(inArray(bundleCourses.bundleId, bundleIds));
     if (bundleIds.length) await db.delete(bundles).where(inArray(bundles.id, bundleIds));
     if (courseIds.length) await db.delete(courses).where(inArray(courses.id, courseIds));

@@ -1,5 +1,5 @@
-import { bundles, db, type NewBundle } from "@dirakitpro/database";
-import { inArray } from "drizzle-orm";
+import { adminAuditLogs, bundles, db, type NewBundle } from "@dirakitpro/database";
+import { and, eq, inArray } from "drizzle-orm";
 import { afterEach, describe, expect, it } from "vitest";
 import { getBundlesForAdmin } from "./get-bundles-for-admin";
 
@@ -26,6 +26,9 @@ describe("getBundlesForAdmin", () => {
   const bundleIds: string[] = [];
 
   afterEach(async () => {
+    // Self-heal (ACTIVE -> EXPIRED) writes an AdminAuditLog row too — clean it up
+    // so it doesn't linger in the shared dev DB.
+    if (bundleIds.length) await db.delete(adminAuditLogs).where(and(eq(adminAuditLogs.targetType, "bundle"), inArray(adminAuditLogs.targetId, bundleIds)));
     if (bundleIds.length) await db.delete(bundles).where(inArray(bundles.id, bundleIds));
     bundleIds.length = 0;
   });

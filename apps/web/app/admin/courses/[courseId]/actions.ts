@@ -18,17 +18,17 @@ export async function updateCourseAction(courseId: string, formData: FormData): 
 }
 
 export async function publishCourseAction(courseId: string): Promise<void> {
-  await requireAdmin();
+  const admin = await requireAdmin();
 
-  await publishCourse(courseId);
+  await publishCourse(courseId, admin.id);
   revalidatePath(`/admin/courses/${courseId}`);
   revalidatePath("/admin/courses");
 }
 
 export async function unpublishCourseAction(courseId: string): Promise<void> {
-  await requireAdmin();
+  const admin = await requireAdmin();
 
-  await unpublishCourse(courseId);
+  await unpublishCourse(courseId, admin.id);
   revalidatePath(`/admin/courses/${courseId}`);
   revalidatePath("/admin/courses");
 }
