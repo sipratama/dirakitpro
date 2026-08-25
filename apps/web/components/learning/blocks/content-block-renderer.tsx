@@ -1,24 +1,10 @@
-import type { ContentBlock } from "@/features/learning/content-block";
+import { isContentBlock } from "@/features/learning/content-block";
 import { CodeBlock } from "./code-block";
 import { ImageBlock } from "./image-block";
 import { MarkdownBlock } from "./markdown-block";
 import { ResourceLinkBlock } from "./resource-link-block";
 import { TaskBlock } from "./task-block";
 import { VideoBlock } from "./video-block";
-
-const BLOCK_TYPES = new Set<ContentBlock["type"]>([
-  "markdown",
-  "code",
-  "image",
-  "video",
-  "resource_link",
-  "task",
-]);
-
-function isContentBlock(value: unknown): value is ContentBlock {
-  if (typeof value !== "object" || value === null || !("type" in value)) return false;
-  return BLOCK_TYPES.has((value as { type: unknown }).type as ContentBlock["type"]);
-}
 
 function UnknownBlockFallback() {
   // `content`/`resources` are untyped jsonb at the DB level (LRN-004) — a

@@ -1,4 +1,5 @@
 import { notFound } from "next/navigation";
+import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { getCourseForAdmin } from "@/features/admin/get-course-for-admin";
 import { CourseFormFields } from "../course-form-fields";
@@ -26,6 +27,10 @@ export default async function AdminCourseDetailPage({ params }: PageProps<"/admi
         <h1 className="text-h1 text-brand-ink">{course.title}</h1>
         <span className="text-small text-neutral-600">{STATUS_LABEL[course.status]}</span>
       </div>
+
+      <Link href={`/admin/courses/${courseId}/curriculum`} className="mt-2 inline-block text-body text-brand-ink underline">
+        Kelola curriculum →
+      </Link>
 
       <form action={saveAction} className="mt-8 flex flex-col gap-5">
         <CourseFormFields
