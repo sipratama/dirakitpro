@@ -21,13 +21,13 @@ const STEPS = [
 
 const CARD_STYLES = {
   completed: "border border-neutral-100 bg-surface",
-  current: "border-2 border-memphis-ink bg-memphis-mustard/10 shadow-hard-sm",
+  current: "border-2 border-brand-ink bg-brand-amber-tint shadow-hard-sm",
   upcoming: "border border-neutral-100 bg-surface",
 } as const;
 
 const ICON_STYLES = {
   completed: "border-brand-teal bg-success-bg text-brand-teal-text",
-  current: "border-memphis-ink bg-memphis-mustard text-brand-ink",
+  current: "border-brand-ink bg-brand-amber text-brand-ink",
   upcoming: "border-neutral-100 bg-neutral-50 text-neutral-600",
 } as const;
 
@@ -142,13 +142,13 @@ export function HowItWorksSection() {
                     Tahap" already names the step. */}
                 {isRakit && (
                   <div aria-hidden="true" className="mt-1 flex items-center gap-1">
-                    <span className="size-1.5 rounded-full bg-memphis-teal" />
-                    <span className="h-px w-2 bg-memphis-ink/20" />
-                    <span className="size-1.5 rounded-full bg-memphis-teal" />
-                    <span className="h-px w-2 bg-memphis-ink/20" />
-                    <span className="size-1.5 rounded-full bg-memphis-teal" />
-                    <span className="h-px w-2 bg-memphis-ink/20" />
-                    <span className="size-2 rounded-full border-2 border-memphis-ink bg-memphis-mustard" />
+                    <span className="size-1.5 rounded-full bg-brand-teal" />
+                    <span className="h-px w-2 bg-brand-ink/20" />
+                    <span className="size-1.5 rounded-full bg-brand-teal" />
+                    <span className="h-px w-2 bg-brand-ink/20" />
+                    <span className="size-1.5 rounded-full bg-brand-teal" />
+                    <span className="h-px w-2 bg-brand-ink/20" />
+                    <span className="size-2 rounded-full border-2 border-brand-ink bg-brand-amber" />
                   </div>
                 )}
 
@@ -164,7 +164,7 @@ export function HowItWorksSection() {
                       aria-hidden="true"
                       data-connector={index}
                       className={`dp-flow-connector-h absolute top-11 -right-3 hidden h-1 w-6 rounded-full lg:block ${
-                        step.state === "completed" ? "bg-memphis-teal" : "bg-neutral-200"
+                        step.state === "completed" ? "bg-brand-teal" : "bg-neutral-200"
                       }`}
                     />
                     {/* Mobile/tablet: vertical rail down into the next stacked card */}
@@ -172,7 +172,7 @@ export function HowItWorksSection() {
                       aria-hidden="true"
                       data-connector={index}
                       className={`dp-flow-connector-v absolute bottom-[-1.5rem] left-1/2 h-6 w-1 -translate-x-1/2 rounded-full lg:hidden ${
-                        step.state === "completed" ? "bg-memphis-teal" : "bg-neutral-200"
+                        step.state === "completed" ? "bg-brand-teal" : "bg-neutral-200"
                       }`}
                     />
                   </>
