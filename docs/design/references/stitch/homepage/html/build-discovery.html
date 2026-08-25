@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+
+<html class="light" lang="id"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>DirakitPro - Featured Courses</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&amp;family=Be+Vietnam+Pro:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "on-background": "#1d1b17",
+            "on-error": "#ffffff",
+            "surface-bright": "#fff8f0",
+            "inverse-primary": "#cec5bc",
+            "on-surface": "#1d1b17",
+            "secondary": "#835500",
+            "secondary-container": "#feae2c",
+            "on-secondary-fixed-variant": "#633f00",
+            "on-tertiary-fixed": "#002112",
+            "error-container": "#ffdad6",
+            "on-secondary": "#ffffff",
+            "surface-variant": "#e7e2da",
+            "primary-container": "#2b2620",
+            "primary": "#16120c",
+            "surface-container": "#f3ede5",
+            "surface-container-low": "#f9f3eb",
+            "tertiary": "#00170b",
+            "background": "#FDF7EF",
+            "primary-fixed": "#ebe1d7",
+            "on-primary-fixed": "#1f1b15",
+            "on-primary-container": "#958d84",
+            "inverse-on-surface": "#f6f0e8",
+            "secondary-fixed-dim": "#ffb955",
+            "on-secondary-fixed": "#291800",
+            "on-secondary-container": "#6b4500",
+            "tertiary-fixed-dim": "#71dba5",
+            "on-surface-variant": "#4c463f",
+            "primary-fixed-dim": "#cec5bc",
+            "secondary-fixed": "#ffddb4",
+            "on-error-container": "#93000a",
+            "tertiary-fixed": "#8ef7c0",
+            "outline": "#7d766e",
+            "surface": "#FDF7EF",
+            "on-tertiary": "#ffffff",
+            "surface-tint": "#645d56",
+            "inverse-surface": "#32302b",
+            "outline-variant": "#cec5bc",
+            "surface-container-highest": "#e7e2da",
+            "surface-container-lowest": "#ffffff",
+            "on-tertiary-container": "#32a070",
+            "tertiary-container": "#002e1b",
+            "error": "#ba1a1a",
+            "surface-dim": "#dfd9d2",
+            "surface-container-high": "#ede7e0",
+            "on-tertiary-fixed-variant": "#005234",
+            "on-primary": "#ffffff",
+            "on-primary-fixed-variant": "#4c463f",
+            "brand-ink": "#2B2620",
+            "brand-amber": "#F5A623",
+            "brand-teal": "#2F9E6E"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "gutter": "24px",
+            "xl": "80px",
+            "base": "8px",
+            "xs": "4px",
+            "sm": "12px",
+            "lg": "48px",
+            "container-max": "1200px",
+            "md": "24px"
+          },
+          "fontFamily": {
+            "body-md": ["Be Vietnam Pro"],
+            "body-lg": ["Be Vietnam Pro"],
+            "headline-md": ["Manrope"],
+            "display-lg": ["Manrope"],
+            "caption": ["Be Vietnam Pro"],
+            "label-md": ["Manrope"],
+            "headline-sm": ["Manrope"],
+            "display-lg-mobile": ["Manrope"]
+          },
+          "fontSize": {
+            "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+            "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+            "headline-md": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+            "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "800" }],
+            "caption": ["12px", { "lineHeight": "16px", "fontWeight": "500" }],
+            "label-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0.02em", "fontWeight": "600" }],
+            "headline-sm": ["24px", { "lineHeight": "32px", "fontWeight": "700" }],
+            "display-lg-mobile": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "800" }]
+          },
+          "boxShadow": {
+            "tactile": "0 4px 12px 0 rgba(43, 38, 32, 0.08)",
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    body {
+      background-color: #FDF7EF;
+    }
+    .card-border {
+      border: 1px solid rgba(43, 38, 32, 0.1);
+    }
+    .btn-tactile:active {
+      transform: translateY(1px);
+    }
+    .progress-stripe {
+      width: 4px;
+      height: 100%;
+      background-color: #2F9E6E;
+      position: absolute;
+      left: 0;
+      top: 0;
+      border-top-left-radius: 0.5rem;
+      border-bottom-left-radius: 0.5rem;
+    }
+  </style>
+</head>
+<body class="font-body-md text-brand-ink antialiased">
+<section class="py-xl px-gutter max-w-container-max mx-auto">
+<div class="mb-lg max-w-[720px]">
+<p class="font-label-md text-label-md text-brand-ink/70 uppercase tracking-widest mb-sm">PILIH RAKITANMU</p>
+<h2 class="font-display-lg text-display-lg text-brand-ink mb-md">Mau merakit apa?</h2>
+<p class="font-body-lg text-body-lg text-brand-ink/80 leading-relaxed">
+        Mulai dari sesuatu yang ingin kamu buat. Setiap course membawamu dari langkah pertama sampai menjadi hasil yang utuh.
+      </p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
+<!-- Card 1: Rakit Personal Website -->
+<article class="relative bg-white rounded-lg card-border overflow-hidden flex flex-col group transition-shadow duration-300 hover:shadow-tactile hover:-translate-y-1">
+<div class="progress-stripe opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+<div class="p-md border-b card-border h-48 relative overflow-hidden bg-surface-container-low">
+<div class="bg-cover bg-center bg-no-repeat w-full h-full rounded shadow-sm border border-brand-ink/5" data-alt="A highly detailed and minimalist preview of a modern personal portfolio website. The interface features sophisticated typography, a clean layout with generous whitespace, and a monochromatic color palette with subtle warm accents. It embodies a professional, editorial design aesthetic perfect for a digital craftsman's portfolio. High resolution, flat digital mockup style." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAizmkDZQ7Afy8JlR9iNSb-bp4OK22QnZPrvYqJiwNjUYaMVR_hl7am6PrU-s3AO6RGkua7ZtNPttOmSGXJJNmz725CwRtlB0skN4qfgJCIu-Q9BkytAI0eqbhS255YbcXENpUOd1vt2DglJXgDASd_VdxCqICG4ojXqqFmDqjgRx-MdigHQ6hbcUxlN-beXopnICeVcvZfwgk_p-nKglYwxn_uNm4DTFVnYbtCr-ruPLcPEvGMboFw')"></div>
+</div>
+<div class="p-md flex flex-col flex-grow">
+<div class="flex items-center gap-xs text-brand-ink/70 mb-sm">
+<span class="font-label-md text-label-md">Pemula</span>
+<span class="font-label-md text-label-md">·</span>
+<span class="font-label-md text-label-md">6–8 jam</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-brand-ink mb-sm">Rakit Personal Website</h3>
+<p class="font-body-md text-body-md text-brand-ink/80 mb-md flex-grow">
+            Bangun personal website modern yang bisa kamu gunakan untuk memperkenalkan diri dan menunjukkan karya.
+          </p>
+<div class="flex items-center justify-between mt-auto pt-md border-t card-border border-dashed">
+<span class="font-headline-md text-headline-sm text-brand-ink">Rp299.000</span>
+<button class="btn-tactile bg-brand-amber text-brand-ink font-label-md text-label-md px-4 py-2 rounded-lg font-bold transition-transform">
+              Rakit Ini
+            </button>
+</div>
+</div>
+</article>
+<!-- Card 2: Rakit Personal Finance App -->
+<article class="relative bg-white rounded-lg card-border overflow-hidden flex flex-col group transition-shadow duration-300 hover:shadow-tactile hover:-translate-y-1">
+<div class="progress-stripe opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+<div class="p-md border-b card-border h-48 relative overflow-hidden bg-surface-container-low">
+<div class="bg-cover bg-top bg-no-repeat w-full h-full rounded shadow-sm border border-brand-ink/5" data-alt="A clean, modern digital preview of a personal finance dashboard interface. The UI shows elegant charts, balance numbers, and a list of transactions. The design uses warm cream backgrounds, deep ink text, and soft tactile shadows, looking like a professional and reliable financial tool built with care. High resolution digital dashboard mockup." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCesJuz5M_hh69_TkcPqpbe5U1Y9yhxdyIKAgot732_6-m7RYv1jiPTwhp3c4Eo2GNm1gCmm14gR8vHUnGOI5Rt1Gly47T0puSBkHtBX3N4suvU55dWYK5WVz6PnBfdw5TXywZvuFGmrOPQIONFnE4M3bzGn-47KF9TmGbxvzDMnSsVfn5iMQZV30lrpuKLjErepgaArrB2XU0CcdhEabWKPO7hU4RRK1JHjBiRcgjRs32dnlZB9NY6')"></div>
+</div>
+<div class="p-md flex flex-col flex-grow">
+<div class="flex items-center gap-xs text-brand-ink/70 mb-sm">
+<span class="font-label-md text-label-md">Pemula</span>
+<span class="font-label-md text-label-md">·</span>
+<span class="font-label-md text-label-md">8–10 jam</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-brand-ink mb-sm">Rakit Personal Finance App</h3>
+<p class="font-body-md text-body-md text-brand-ink/80 mb-md flex-grow">
+            Bangun aplikasi sederhana untuk mencatat pemasukan, pengeluaran, dan melihat kondisi keuangan pribadi.
+          </p>
+<div class="flex items-center justify-between mt-auto pt-md border-t card-border border-dashed">
+<span class="font-headline-md text-headline-sm text-brand-ink">Rp349.000</span>
+<button class="btn-tactile bg-brand-amber text-brand-ink font-label-md text-label-md px-4 py-2 rounded-lg font-bold transition-transform">
+              Rakit Ini
+            </button>
+</div>
+</div>
+</article>
+<!-- Card 3: Rakit Booking System -->
+<article class="relative bg-white rounded-lg card-border overflow-hidden flex flex-col group transition-shadow duration-300 hover:shadow-tactile hover:-translate-y-1">
+<div class="progress-stripe opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+<div class="p-md border-b card-border h-48 relative overflow-hidden bg-surface-container-low">
+<div class="bg-cover bg-top bg-no-repeat w-full h-full rounded shadow-sm border border-brand-ink/5" data-alt="A welcoming and structured digital interface for a booking system. The UI displays a calendar widget, time slot selection, and a clean confirmation form. The design features soft rounded corners, warm tones, and high legibility, capturing the essence of a tactile, user-friendly digital workshop project. Flat high quality digital UI mockup." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAOxV-AHbhYLQ9sMC1XJIdwkIRkJorykuF-8u6ZFcLkqoMPWlzLILS_kPkG6pPn6dfQFisNcCCMoqKSDyutcGxNked-nRCBlCZ79F4hFRdjZ-UznSLlsYJdNhf-WuqljvGuLoLU-81O64J1b3EvXIL60722Qrw7EqeTDsMlgYE2ubwomyehap_RhI_UlRMVOJJ4kdQZJUSMNjiEBPuieT3p9ely-sCIqYN-mJGPfE7SIh0-7s0qw0L5')"></div>
+</div>
+<div class="p-md flex flex-col flex-grow">
+<div class="flex items-center gap-xs text-brand-ink/70 mb-sm">
+<span class="font-label-md text-label-md">Pemula</span>
+<span class="font-label-md text-label-md">·</span>
+<span class="font-label-md text-label-md">10–12 jam</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-brand-ink mb-sm">Rakit Booking System</h3>
+<p class="font-body-md text-body-md text-brand-ink/80 mb-md flex-grow">
+            Bangun sistem booking sederhana untuk bisnis jasa dengan pilihan layanan, jadwal, dan konfirmasi pemesanan.
+          </p>
+<div class="flex items-center justify-between mt-auto pt-md border-t card-border border-dashed">
+<span class="font-headline-md text-headline-sm text-brand-ink">Rp399.000</span>
+<button class="btn-tactile bg-brand-amber text-brand-ink font-label-md text-label-md px-4 py-2 rounded-lg font-bold transition-transform">
+              Rakit Ini
+            </button>
+</div>
+</div>
+</article>
+</div>
+</section>
+</body></html>
