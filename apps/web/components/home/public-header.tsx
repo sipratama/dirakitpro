@@ -17,17 +17,17 @@ const NAV_LINKS = [
 // Digital Workshop) — scoped to this component only, not the shared palette.
 export function PublicHeader({ user }: { user: User | null }) {
   return (
-    <header className="border-b-2 border-memphis-ink bg-memphis-cream font-body-memphis">
+    <header className="border-b-2 border-brand-ink bg-brand-cream font-body-memphis">
       <div className="mx-auto w-full max-w-6xl px-4 md:px-6">
         <div className="flex items-center justify-between py-4">
           <Link href="/" className="flex items-center gap-2.5">
             <BrandMark />
-            <span className="font-display-memphis text-xl font-extrabold text-memphis-ink">DirakitPro</span>
+            <span className="font-display-memphis text-xl font-extrabold text-brand-ink">DirakitPro</span>
           </Link>
 
           <nav
             aria-label="Navigasi utama"
-            className="hidden items-center gap-8 text-[15px] font-medium text-memphis-ink md:flex"
+            className="hidden items-center gap-8 text-[15px] font-medium text-brand-ink md:flex"
           >
             {NAV_LINKS.map((link) => (
               <Link key={link.href} href={link.href} className="transition-opacity hover:opacity-70">
@@ -42,7 +42,7 @@ export function PublicHeader({ user }: { user: User | null }) {
                 size="sm"
                 nativeButton={false}
                 render={<Link href="/dashboard" />}
-                className="rounded-control border-2 border-memphis-ink bg-memphis-coral px-4 font-bold text-memphis-ink shadow-hard-sm transition-transform duration-150 ease-out hover:translate-x-0.5 hover:translate-y-0.5 active:translate-x-1 active:translate-y-1"
+                className="rounded-control border-2 border-brand-ink bg-brand-amber px-4 font-bold text-brand-ink shadow-hard-sm transition-transform duration-150 ease-out hover:translate-x-0.5 hover:translate-y-0.5 active:translate-x-1 active:translate-y-1"
               >
                 Dashboard
               </Button>
@@ -53,7 +53,7 @@ export function PublicHeader({ user }: { user: User | null }) {
                   size="sm"
                   nativeButton={false}
                   render={<Link href="/login" />}
-                  className="text-memphis-ink hover:bg-memphis-ink/5"
+                  className="text-brand-ink hover:bg-brand-ink/5"
                 >
                   Masuk
                 </Button>
@@ -61,7 +61,7 @@ export function PublicHeader({ user }: { user: User | null }) {
                   size="sm"
                   nativeButton={false}
                   render={<Link href="/register" />}
-                  className="rounded-control border-2 border-memphis-ink bg-memphis-coral px-4 font-bold text-memphis-ink shadow-hard-sm transition-transform duration-150 ease-out hover:translate-x-0.5 hover:translate-y-0.5 active:translate-x-1 active:translate-y-1"
+                  className="rounded-control border-2 border-brand-ink bg-brand-amber px-4 font-bold text-brand-ink shadow-hard-sm transition-transform duration-150 ease-out hover:translate-x-0.5 hover:translate-y-0.5 active:translate-x-1 active:translate-y-1"
                 >
                   Mulai Merakit
                 </Button>
@@ -72,7 +72,7 @@ export function PublicHeader({ user }: { user: User | null }) {
 
         <nav
           aria-label="Navigasi utama mobile"
-          className="flex items-center justify-center gap-6 border-t-2 border-memphis-ink py-3 text-sm font-medium text-memphis-ink md:hidden"
+          className="flex items-center justify-center gap-6 border-t-2 border-brand-ink py-3 text-sm font-medium text-brand-ink md:hidden"
         >
           {NAV_LINKS.map((link) => (
             <Link key={link.href} href={link.href} className="transition-opacity hover:opacity-70">
@@ -91,7 +91,7 @@ export function PublicHeader({ user }: { user: User | null }) {
 function BrandMark() {
   return (
     <svg aria-hidden="true" width="28" height="28" viewBox="0 0 28 28" fill="none">
-      <rect x="2" y="14" width="11" height="11" rx="2" strokeWidth="2" className="fill-memphis-teal stroke-memphis-ink" />
+      <rect x="2" y="14" width="11" height="11" rx="2" strokeWidth="2" className="fill-brand-teal stroke-brand-ink" />
       <rect
         x="15"
         y="2"
@@ -100,9 +100,9 @@ function BrandMark() {
         rx="2"
         strokeWidth="2"
         transform="rotate(8 20.5 7.5)"
-        className="fill-memphis-coral stroke-memphis-ink"
+        className="fill-brand-amber stroke-brand-ink"
       />
-      <circle cx="8" cy="8" r="5.5" strokeWidth="2" className="fill-memphis-mustard stroke-memphis-ink" />
+      <circle cx="8" cy="8" r="5.5" strokeWidth="2" className="fill-brand-amber stroke-brand-ink" />
     </svg>
   );
 }

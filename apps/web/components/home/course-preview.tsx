@@ -24,14 +24,14 @@ export function CoursePreview({ slug }: { slug: string }) {
 function PersonalWebsitePreview() {
   return (
     <div className="flex h-40 w-full flex-col justify-center gap-3 bg-neutral-50 p-4">
-      <div className="overflow-hidden rounded-control border-[1.5px] border-memphis-ink bg-white">
+      <div className="overflow-hidden rounded-control border-[1.5px] border-brand-ink bg-white">
         <div className="flex items-center gap-1 border-b border-neutral-100 px-2.5 py-1.5">
-          <span className="size-1.5 rounded-full bg-memphis-coral transition-transform duration-200 group-hover:scale-125" />
-          <span className="size-1.5 rounded-full bg-memphis-mustard" />
-          <span className="size-1.5 rounded-full bg-memphis-teal" />
+          <span className="size-1.5 rounded-full bg-brand-amber transition-transform duration-200 group-hover:scale-125" />
+          <span className="size-1.5 rounded-full bg-brand-amber" />
+          <span className="size-1.5 rounded-full bg-brand-teal" />
         </div>
         <div className="flex items-center gap-2 p-2.5">
-          <div className="size-6 shrink-0 rounded-full bg-memphis-teal/20" />
+          <div className="size-6 shrink-0 rounded-full bg-brand-teal/20" />
           <div className="flex-1">
             <p className="text-[11px] font-semibold text-brand-ink">Singgih Pratama</p>
             <p className="text-[9px] text-neutral-600">Backend & Integration Engineer</p>
@@ -39,8 +39,8 @@ function PersonalWebsitePreview() {
         </div>
       </div>
       <div className="grid grid-cols-2 gap-1.5" aria-hidden="true">
-        <span className="h-6 rounded-control bg-memphis-teal/15" />
-        <span className="h-6 rounded-control bg-memphis-sky/15" />
+        <span className="h-6 rounded-control bg-brand-teal/15" />
+        <span className="h-6 rounded-control bg-brand-ink/15" />
       </div>
     </div>
   );
@@ -55,11 +55,11 @@ function PersonalFinancePreview() {
       </div>
 
       <div className="grid grid-cols-2 gap-2">
-        <div className="rounded-control border-[1.5px] border-memphis-ink/15 bg-success-bg px-2 py-1.5">
+        <div className="rounded-control border-[1.5px] border-brand-ink/15 bg-success-bg px-2 py-1.5">
           <p className="text-[8px] font-medium text-brand-teal-text">Pemasukan</p>
           <p className="text-[11px] font-bold text-brand-teal-text">Rp 3.2jt</p>
         </div>
-        <div className="rounded-control border-[1.5px] border-memphis-ink/15 bg-danger-bg px-2 py-1.5">
+        <div className="rounded-control border-[1.5px] border-brand-ink/15 bg-danger-bg px-2 py-1.5">
           <p className="text-[8px] font-medium text-danger-text">Pengeluaran</p>
           <p className="text-[11px] font-bold text-danger-text">Rp 750rb</p>
         </div>
@@ -67,13 +67,13 @@ function PersonalFinancePreview() {
 
       <div className="flex flex-1 flex-col justify-center gap-1.5" aria-hidden="true">
         <div className="h-2 w-full overflow-hidden rounded-full bg-neutral-100">
-          <span className="block h-full w-3/4 origin-left scale-x-100 rounded-full bg-memphis-teal transition-transform duration-300 group-hover:scale-x-110" />
+          <span className="block h-full w-3/4 origin-left scale-x-100 rounded-full bg-brand-teal transition-transform duration-300 group-hover:scale-x-110" />
         </div>
         <div className="h-2 w-full overflow-hidden rounded-full bg-neutral-100">
-          <span className="block h-full w-1/3 rounded-full bg-memphis-coral" />
+          <span className="block h-full w-1/3 rounded-full bg-brand-amber" />
         </div>
         <div className="h-2 w-full overflow-hidden rounded-full bg-neutral-100">
-          <span className="block h-full w-1/5 rounded-full bg-memphis-mustard" />
+          <span className="block h-full w-1/5 rounded-full bg-brand-amber" />
         </div>
       </div>
     </div>
@@ -84,10 +84,10 @@ function BookingSystemPreview() {
   return (
     <div className="flex h-40 w-full flex-col gap-2.5 bg-neutral-50 p-4">
       <div className="flex gap-1.5" aria-hidden="true">
-        <span className="rounded-control border-[1.5px] border-memphis-ink bg-white px-2 py-1 text-[8px] font-semibold text-brand-ink">
+        <span className="rounded-control border-[1.5px] border-brand-ink bg-white px-2 py-1 text-[8px] font-semibold text-brand-ink">
           Potong rambut
         </span>
-        <span className="rounded-control border-[1.5px] border-memphis-ink/15 bg-white px-2 py-1 text-[8px] text-neutral-600">
+        <span className="rounded-control border-[1.5px] border-brand-ink/15 bg-white px-2 py-1 text-[8px] text-neutral-600">
           Facial
         </span>
       </div>
@@ -98,8 +98,8 @@ function BookingSystemPreview() {
             key={slot}
             className={
               index === 1
-                ? "rounded-control border-[1.5px] border-memphis-ink bg-memphis-mustard px-1 py-1 text-center text-[7px] font-bold text-brand-ink transition-transform duration-200 group-hover:scale-105"
-                : "rounded-control border-[1.5px] border-memphis-ink/15 bg-white px-1 py-1 text-center text-[7px] text-neutral-600"
+                ? "rounded-control border-[1.5px] border-brand-ink bg-brand-amber px-1 py-1 text-center text-[7px] font-bold text-brand-ink transition-transform duration-200 group-hover:scale-105"
+                : "rounded-control border-[1.5px] border-brand-ink/15 bg-white px-1 py-1 text-center text-[7px] text-neutral-600"
             }
           >
             {slot}
@@ -121,9 +121,9 @@ function BookingSystemPreview() {
 function GenericAssemblyPreview() {
   return (
     <div className="flex h-40 w-full items-center justify-center gap-3 bg-neutral-50" aria-hidden="true">
-      <span className="size-8 rounded-control border-[1.5px] border-memphis-ink bg-memphis-teal/20" />
-      <span className="size-8 rotate-6 rounded-control border-[1.5px] border-memphis-ink bg-memphis-coral/20" />
-      <span className="size-8 rounded-control border-[1.5px] border-memphis-ink bg-memphis-mustard/20" />
+      <span className="size-8 rounded-control border-[1.5px] border-brand-ink bg-brand-teal/20" />
+      <span className="size-8 rotate-6 rounded-control border-[1.5px] border-brand-ink bg-brand-amber/20" />
+      <span className="size-8 rounded-control border-[1.5px] border-brand-ink bg-brand-amber-tint" />
     </div>
   );
 }

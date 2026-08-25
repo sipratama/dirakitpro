@@ -12,17 +12,17 @@ const CONCEPTS = [
   {
     title: "Tahu apa yang akan kamu buat.",
     body: "Setiap course dimulai dari hasil akhirnya — kamu tahu persis rakitan apa yang akan berdiri di tanganmu.",
-    markerColor: "bg-memphis-mustard",
+    markerColor: "bg-brand-amber",
   },
   {
     title: "Lihat rakitanmu berkembang.",
     body: "Progress bukan sekadar persen selesai — setiap tahap menambahkan bagian nyata ke proyekmu.",
-    markerColor: "bg-memphis-teal",
+    markerColor: "bg-brand-teal",
   },
   {
     title: "Punya sesuatu untuk ditunjukkan.",
     body: "Kamu keluar dengan karya yang bisa kamu tunjukkan, bukan hanya sertifikat.",
-    markerColor: "bg-memphis-coral",
+    markerColor: "bg-brand-amber",
   },
 ];
 
@@ -95,7 +95,7 @@ export function WhyDirakitProSection() {
             one subtle Memphis reference, not a shape per row. */}
         <span
           aria-hidden="true"
-          className="absolute top-2 bottom-2 left-4 hidden w-px bg-memphis-ink/10 md:block"
+          className="absolute top-2 bottom-2 left-4 hidden w-px bg-brand-ink/10 md:block"
         />
 
         {CONCEPTS.map((concept, index) => {
