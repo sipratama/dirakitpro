@@ -32,6 +32,18 @@ export default async function AdminDashboardPage() {
         >
           Orders
         </Link>
+        <Link
+          href="/admin/courses"
+          className="rounded-card border border-neutral-100 bg-surface p-5 text-h3 text-brand-ink hover:border-brand-amber"
+        >
+          Course
+        </Link>
+        <Link
+          href="/admin/bundles"
+          className="rounded-card border border-neutral-100 bg-surface p-5 text-h3 text-brand-ink hover:border-brand-amber"
+        >
+          Bundle
+        </Link>
       </div>
     </div>
   );
