@@ -36,7 +36,7 @@ const ICON_STYLES = {
 // under prefers-reduced-motion.
 export function HowItWorksSection() {
   return (
-    <section className="bg-neutral-50 py-16">
+    <section className="bg-brand-cream py-16">
       <div className="mx-auto w-full max-w-6xl px-4">
         <h2 className="text-h1 text-brand-ink">Belajar sambil merakit.</h2>
         <p className="mt-2 text-body-lg text-neutral-600">

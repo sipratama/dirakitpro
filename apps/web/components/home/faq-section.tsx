@@ -33,35 +33,37 @@ const FAQ_ITEMS = [
 
 export function FaqSection() {
   return (
-    <section className="mx-auto w-full max-w-3xl px-4 py-16">
-      <h2 className="text-h1 text-brand-ink">Sebelum mulai merakit.</h2>
+    <section className="bg-brand-cream">
+      <div className="mx-auto w-full max-w-3xl px-4 py-16">
+        <h2 className="text-h1 text-brand-ink">Sebelum mulai merakit.</h2>
 
-      <style>{`
-        /* Fast, controlled reveal for the answer — a CSS animation (not a
-           height transition) because native <details> toggles its hidden
-           content synchronously; animating opacity/transform on top of
-           that is well-supported everywhere and stays snappy, not springy. */
-        @keyframes dp-faq-answer-in { from { opacity: 0; transform: translateY(-4px); } to { opacity: 1; transform: translateY(0); } }
-        details[open] > .dp-faq-answer { animation: dp-faq-answer-in 180ms ease-out; }
-        @media (prefers-reduced-motion: reduce) {
-          details[open] > .dp-faq-answer { animation: none; }
-        }
-      `}</style>
+        <style>{`
+          /* Fast, controlled reveal for the answer — a CSS animation (not a
+             height transition) because native <details> toggles its hidden
+             content synchronously; animating opacity/transform on top of
+             that is well-supported everywhere and stays snappy, not springy. */
+          @keyframes dp-faq-answer-in { from { opacity: 0; transform: translateY(-4px); } to { opacity: 1; transform: translateY(0); } }
+          details[open] > .dp-faq-answer { animation: dp-faq-answer-in 180ms ease-out; }
+          @media (prefers-reduced-motion: reduce) {
+            details[open] > .dp-faq-answer { animation: none; }
+          }
+        `}</style>
 
-      <div className="mt-8 flex flex-col divide-y divide-neutral-100 border-t border-b border-neutral-100">
-        {FAQ_ITEMS.map((item, index) => (
-          <CssReveal key={item.question} delayMs={index * 60}>
-            <details className="group py-4">
-              <summary className="flex cursor-pointer list-none items-center justify-between gap-4 text-body-lg font-medium text-brand-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-amber">
-                {item.question}
-                <span className="shrink-0 text-neutral-600 transition-transform duration-150 group-open:rotate-45 motion-reduce:transition-none">
-                  +
-                </span>
-              </summary>
-              <p className="dp-faq-answer mt-3 text-body text-neutral-600">{item.answer}</p>
-            </details>
-          </CssReveal>
-        ))}
+        <div className="mt-8 flex flex-col divide-y divide-neutral-100 border-t border-b border-neutral-100">
+          {FAQ_ITEMS.map((item, index) => (
+            <CssReveal key={item.question} delayMs={index * 60}>
+              <details className="group py-4">
+                <summary className="flex cursor-pointer list-none items-center justify-between gap-4 text-body-lg font-medium text-brand-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-amber">
+                  {item.question}
+                  <span className="shrink-0 text-neutral-600 transition-transform duration-150 group-open:rotate-45 motion-reduce:transition-none">
+                    +
+                  </span>
+                </summary>
+                <p className="dp-faq-answer mt-3 text-body text-neutral-600">{item.answer}</p>
+              </details>
+            </CssReveal>
+          ))}
+        </div>
       </div>
     </section>
   );
