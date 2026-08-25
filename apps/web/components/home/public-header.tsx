@@ -4,17 +4,16 @@ import { Button } from "@/components/ui/button";
 
 const NAV_LINKS = [
   { href: "/courses", label: "Courses" },
-  { href: "/bundles", label: "Bundles" },
   { href: "/projects", label: "Hasil Rakitan" },
+  { href: "/about", label: "Tentang" },
 ] as const;
 
 // No shared site-wide header exists yet (app/layout.tsx renders no chrome) —
-// this is Homepage-local and intentionally not wired into the root layout,
-// so it never affects any other route. `user` is fetched once by the page
-// (app/page.tsx) and passed down, matching this codebase's convention of
-// keeping data-fetching in the async page and children synchronous/testable
-// (see app/dashboard/page.tsx). Visual language is DESIGN.md 8 (Memphis
-// Digital Workshop) — scoped to this component only, not the shared palette.
+// this public-marketing header is composed explicitly by each route that uses
+// it. `user` is fetched once by the page and passed down, matching this
+// codebase's convention of keeping data-fetching in the async page and children
+// synchronous/testable (see app/dashboard/page.tsx). The outlined brand mark
+// and hard-shadow CTA give the public entry points a clear, tactile hierarchy.
 export function PublicHeader({ user }: { user: User | null }) {
   return (
     <header className="border-b-2 border-brand-ink bg-brand-cream font-sans">

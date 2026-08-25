@@ -4,8 +4,9 @@ import { CssReveal } from "@/components/home/css-reveal";
 import { HeroVisual } from "@/components/home/hero-visual";
 import { MemphisShapes } from "@/components/home/memphis-shapes";
 
-// Visual language is DESIGN.md 8 (Memphis Digital Workshop) — scoped to the
-// Homepage hero only, not the shared brand-* palette used everywhere else.
+// The Hero uses the Homepage's strongest tactile treatment: an ink outline,
+// amber marker highlight, and hard-shadow CTAs frame the brand promise without
+// changing the shared brand-* palette used by the rest of the product.
 export function HeroSection() {
   return (
     <section className="relative overflow-hidden bg-brand-cream font-sans">
