@@ -143,9 +143,11 @@ Lucide (already in stack, PRD 14.2). Outline style, 20px inline / 24px max decor
 - **Empty states, loading states** — copy and layout patterns not yet defined; belongs in `SCREEN_INVENTORY.md`.
 - **Dark mode** — see 2.5, explicitly deferred.
 
-## 8. Homepage header + hero — "Memphis Digital Workshop" (2026-08-25)
+## 8. Homepage — "Memphis Digital Workshop" (2026-08-25, extended V2.1)
 
-**Scope.** This direction applies only to the public Homepage's `PublicHeader`, `HeroSection`, and `HeroVisual` components, as of 2026-08-25. It's a deliberate visual departure from sections 2–5 above — those still govern every other surface (dashboard, learning workspace, admin, checkout, and every Homepage section below the hero) until a full rebrand is separately scoped and approved. Don't extend these tokens to any other component without going through that decision first.
+**Scope.** Introduced 2026-08-25 for the Homepage's `PublicHeader`/`HeroSection`/`HeroVisual` only. Extended in the V2.1 visual-polish pass to the *rest* of the Homepage (`BuildDiscoverySection`, `HowItWorksSection`, `WhyDirakitProSection`, `FaqSection`, `FinalCtaSection`) at deliberately **graduated intensity** — this is the "go through that decision first" this section used to require, now made explicitly. Every other surface (dashboard, learning workspace, admin, checkout, catalog pages) still runs on sections 2–5 above until a full rebrand is separately scoped.
+
+Conceptual intensity by section (not a CSS opacity value — a mix of border weight, shadow presence, and color frequency): Hero 100% → Build Discovery ~60% → How It Works ~70% → Why DirakitPro ~40% → FAQ ~25% → Final CTA ~50%. Below the Hero, violet/sky drop out almost entirely (Hero-only supporting accents); coral/teal/mustard carry the graduated Memphis presence at their documented semantic roles (8.1).
 
 ### 8.1 Color
 
@@ -174,7 +176,8 @@ Hero headline: ~68–76px desktop, tight line-height, one marker-highlight only 
 
 - `shadow-hard-sm`: `4px 4px 0 memphis-ink` — small controls (nav CTA, secondary button, progress card).
 - `shadow-hard-lg`: `7px 7px 0 memphis-ink` — reserve for the primary CTA and the hero project-preview mockup only.
-- No blur, no soft/glass shadow. Hover press effect: translate ~2px down/right, shadow removed — a physical press, not a lift.
+- `shadow-hard-invert-sm`: `4px 4px 0 memphis-cream` — cream-on-ink variant for dark surfaces (Final CTA), where an ink shadow would be invisible.
+- No blur, no soft/glass shadow. Physical press, not a lift: hover translates *part way* toward the shadow's offset (shadow stays put, doesn't toggle off); active/press translates the *full* offset distance so the element sits flush over its own shadow.
 
 ### 8.4 Motion
 
