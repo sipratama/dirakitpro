@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+
+<html lang="id"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>DirakitPro - Profesional itu dirakit.</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;700&amp;family=Manrope:wght@400;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "background": "#fff8f0",
+                        "on-background": "#1d1b17",
+                        "surface": "#fff8f0",
+                        "on-surface": "#1d1b17",
+                        "surface-variant": "#e7e2da",
+                        "on-surface-variant": "#4c463f",
+                        "primary": "#16120c",
+                        "on-primary": "#ffffff",
+                        "secondary": "#835500",
+                        "on-secondary": "#ffffff",
+                        "outline": "#7d766e",
+                        "outline-variant": "#cec5bc",
+                        "accent-amber": "#F5A623",
+                        "accent-teal": "rgba(50, 160, 112, 0.1)",
+                        "accent-teal-solid": "#32a070",
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "gutter": "24px",
+                        "base": "8px",
+                        "xl": "80px",
+                        "md": "24px",
+                        "sm": "12px",
+                        "lg": "48px",
+                        "xs": "4px",
+                        "container-max": "1200px"
+                    },
+                    "fontFamily": {
+                        "label-md": ["Manrope", "sans-serif"],
+                        "headline-md": ["Manrope", "sans-serif"],
+                        "caption": ["Be Vietnam Pro", "sans-serif"],
+                        "body-md": ["Be Vietnam Pro", "sans-serif"],
+                        "display-lg": ["Manrope", "sans-serif"],
+                        "headline-sm": ["Manrope", "sans-serif"],
+                        "display-lg-mobile": ["Manrope", "sans-serif"],
+                        "body-lg": ["Be Vietnam Pro", "sans-serif"]
+                    },
+                    "fontSize": {
+                        "label-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0.02em", "fontWeight": "600" }],
+                        "headline-md": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+                        "caption": ["12px", { "lineHeight": "16px", "fontWeight": "500" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "800" }],
+                        "headline-sm": ["24px", { "lineHeight": "32px", "fontWeight": "700" }],
+                        "display-lg-mobile": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "800" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .pattern-blueprint {
+            background-image: linear-gradient(to right, rgba(29, 27, 23, 0.05) 1px, transparent 1px),
+                              linear-gradient(to bottom, rgba(29, 27, 23, 0.05) 1px, transparent 1px);
+            background-size: 24px 24px;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background antialiased selection:bg-accent-amber selection:text-primary min-h-screen flex flex-col font-body-md overflow-x-hidden">
+<!-- Header (Shared Component: TopNavBar) -->
+<header class="bg-background border-b border-outline-variant/10 docked full-width top-0 sticky z-50 transition-colors duration-200">
+<div class="flex justify-between items-center w-full px-gutter max-w-container-max mx-auto h-20">
+<!-- Brand -->
+<a aria-label="DirakitPro Home" class="font-headline-sm text-headline-sm font-bold text-primary flex items-center gap-2" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">build</span>
+                DirakitPro
+            </a>
+<!-- Navigation Links (Desktop) -->
+<nav aria-label="Main Navigation" class="hidden md:flex items-center gap-md">
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-secondary transition-colors duration-200 py-2" href="#">Courses</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-secondary transition-colors duration-200 py-2" href="#">Bundles</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-secondary transition-colors duration-200 py-2" href="#">Hasil Rakitan</a>
+</nav>
+<!-- Actions -->
+<div class="flex items-center gap-sm">
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-secondary transition-colors duration-200 hidden md:block" href="#">Masuk</a>
+<a class="font-label-md text-label-md bg-accent-amber text-primary px-4 py-2 rounded font-bold hover:bg-opacity-90 active:translate-y-[1px] transition-all shadow-[0_1px_2px_rgba(0,0,0,0.05)]" href="#">Mulai Merakit</a>
+</div>
+</div>
+</header>
+<!-- Hero Section -->
+<main class="flex-grow relative w-full overflow-hidden">
+<!-- Subtle Blueprint Background -->
+<div class="absolute inset-0 pattern-blueprint opacity-50 z-0 pointer-events-none"></div>
+<div class="max-w-container-max mx-auto px-gutter py-xl relative z-10 grid grid-cols-1 md:grid-cols-12 gap-xl items-center min-h-[calc(100vh-80px)]">
+<!-- Left Content (45% -> approx 5 cols on lg) -->
+<div class="md:col-span-5 flex flex-col gap-md">
+<div class="flex flex-col gap-sm">
+<span class="font-label-md text-label-md text-primary tracking-widest uppercase opacity-80">Mulai dari rakitan pertama</span>
+<h1 class="font-display-lg text-display-lg text-primary text-balance md:text-display-lg sm:font-display-lg-mobile sm:text-display-lg-mobile">
+                        Profesional itu dirakit.
+                    </h1>
+</div>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-[480px]">
+                    Belajar dengan membangun sesuatu yang nyata. Ikuti tahapnya, lihat progress rakitanmu, lalu selesaikan karya yang bisa kamu tunjukkan.
+                </p>
+<div class="flex flex-wrap gap-sm pt-sm">
+<a class="font-label-md text-label-md bg-accent-amber text-primary px-6 py-3 rounded font-bold hover:bg-opacity-90 active:translate-y-[1px] transition-all shadow-[0_1px_2px_rgba(0,0,0,0.05)] text-center flex items-center justify-center gap-2" href="#">
+                        Mulai Merakit <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</a>
+<a class="font-label-md text-label-md bg-transparent border border-outline-variant/20 text-primary px-6 py-3 rounded font-bold hover:border-outline-variant/50 hover:bg-surface-variant/30 active:translate-y-[1px] transition-all text-center flex items-center justify-center" href="#">
+                        Lihat Course
+                    </a>
+</div>
+<!-- Trust/Social Proof Micro-component -->
+<div class="mt-lg pt-md border-t border-outline-variant/10 flex items-center gap-sm">
+<div class="flex -space-x-2">
+<div class="w-8 h-8 rounded-full bg-cover bg-center border-2 border-background" data-alt="A small circular profile picture of an Asian young professional smiling, clean corporate background, bright soft lighting, photography." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuB0SOifeHyAPMkGMdT1wfvb9XDK7EeTQmPx00I71KVRWjcrSp0FoHYLW-9-4uL3gStbJZPQ56XBLWi4cpPqqs-9eKzJQ7Ll6zLAVkKElWoh2RMv_4YsXJS0x07_dCTpJYntOe_8NfNl3n19Lopq21T8Mv6m1X7yy8Vu983SZuMSXa23MiVrY5kRefqI70ew7px9ZKBYk0FONr6Xv_4HZ-_ZK9-U0JDSrwaF7uKVM070oZ2OrzEWkfrq')"></div>
+<div class="w-8 h-8 rounded-full bg-cover bg-center border-2 border-background" data-alt="A small circular profile picture of a young Indonesian woman with glasses looking focused, bright modern lighting, high quality portrait." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuB-h2VTxRjmKwyct6ZZnKfp5uvtFK3-L5KTRJlnrE9lssRQgDHOCGaP7SwetnrRKcWIYxrCxDa4wpClouop31lg7t8bta-S3rLnA5kOeJMDRaokzIbRoaJbtjxInPU_X2-bS6tXZTinrTndGxy1zi5yeoGUncXk_fqppR_B3FSNfHcS__SoZJOrCBmDlR4dh6NHqZ5fHBY9aseOtImDSdwoDJCRuRK1cAUoZojaMUgVL9-s0iZ4Ngtl')"></div>
+<div class="w-8 h-8 rounded-full bg-cover bg-center border-2 border-background" data-alt="A small circular profile picture of a young man in a casual tech environment, warm lighting, natural smile, realistic portrait." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCSvT-ecyMNIAPLQ6SMApcBCxfihkr_zDB2JnLvb4XdFNW-2MpgWslrqDcgK0uCobxDnJOrOKabTq941Ac1L5NkLPXecKliOWhQnNReWvW6N1qnx51Z1R0Nn5MOAWIU-C7DBaFbQJ_iBT5Eurx4cGk7SBF0wU_i_PS1kTfKOz-4uC_axaTW6goggwrPfzVj8H2TSUUeQkeK5O4kMaHG4iUHCfS9_J7uiP25PYI-LL5IYHrUafRlGBLP')"></div>
+</div>
+<p class="font-caption text-caption text-on-surface-variant">Bergabung dengan 10.000+ perakit lainnya.</p>
+</div>
+</div>
+<!-- Right Visual (55% -> approx 7 cols on lg) -->
+<div class="md:col-span-7 relative flex justify-center lg:justify-end mt-lg md:mt-0">
+<!-- "Physical" Canvas Layer -->
+<div class="relative w-full max-w-[600px] aspect-[4/3] md:aspect-[16/11]">
+<!-- Assembly System Track (Background Line) -->
+<div class="absolute left-4 top-12 bottom-12 w-[2px] bg-outline-variant/20 z-10 md:hidden"></div>
+<!-- The Browser Frame (Project Preview) -->
+<div class="absolute inset-y-0 right-0 left-0 md:left-12 bg-on-primary rounded-lg border border-primary/10 shadow-[0_4px_12px_rgba(43,38,32,0.08)] flex flex-col overflow-hidden z-20">
+<!-- Browser Header -->
+<div class="h-10 border-b border-primary/10 bg-surface flex items-center px-4 gap-2">
+<div class="flex gap-1.5">
+<div class="w-2.5 h-2.5 rounded-full bg-outline-variant/50"></div>
+<div class="w-2.5 h-2.5 rounded-full bg-outline-variant/50"></div>
+<div class="w-2.5 h-2.5 rounded-full bg-outline-variant/50"></div>
+</div>
+<div class="mx-auto px-4 py-1 rounded bg-background border border-primary/5 font-caption text-caption text-on-surface-variant/70 flex items-center gap-1 min-w-[200px] justify-center">
+<span class="material-symbols-outlined text-[12px]">lock</span>
+                                dimaspratama.dev
+                            </div>
+</div>
+<!-- Browser Content (Portfolio Preview) -->
+<div class="flex-1 bg-on-primary p-6 md:p-8 flex flex-col justify-center gap-6 relative overflow-hidden">
+<!-- Decorative bg elements inside the browser -->
+<div class="absolute top-0 right-0 w-32 h-32 bg-accent-amber/5 rounded-full blur-3xl"></div>
+<div class="absolute bottom-0 left-0 w-40 h-40 bg-accent-teal rounded-full blur-3xl"></div>
+<div class="flex items-center gap-4">
+<div class="w-16 h-16 rounded-full bg-cover bg-center border border-primary/10 shadow-sm" data-alt="A professional headshot of a young Indonesian male web developer, wearing a dark casual shirt, smiling warmly, clean white background, studio lighting." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCbZ6XNAhwWwCSbMGQQIUowQVnW6w4rTdTl5-7ya1Nr3Xbz8hOY_mvJ7k_kvhaJo8ReYVwIRq8naUFohRoJZmZ7Im8tUJfH-ZATpEm7qpzYpKHyPThNAwUZL3EM_na1xuTtYIMTLt3WqUg5z2pEbhvXWSSVSmEd_03wqu8rx3vVZTqzHy0VSyj-1IIHIMYbMdCDZfUcoBogd8RMi9bnVWoOKOX_P28LtfFJJEfsNJg1ZrDsGywuzQB0')"></div>
+<div>
+<h3 class="font-headline-sm text-headline-sm text-primary">Dimas Pratama</h3>
+<p class="font-caption text-caption text-on-surface-variant uppercase tracking-wider">Aspiring Web Developer</p>
+</div>
+</div>
+<h2 class="font-headline-md text-headline-md text-primary max-w-[400px] leading-tight">
+                                Saya membangun pengalaman digital yang sederhana dan berguna.
+                            </h2>
+<div class="mt-4 flex gap-3">
+<div class="h-8 w-24 bg-surface-variant rounded border border-primary/5"></div>
+<div class="h-8 w-24 bg-surface-variant rounded border border-primary/5"></div>
+</div>
+</div>
+</div>
+<!-- The Assembly Nodes (Overlayed) -->
+<div class="absolute -left-4 md:left-4 top-1/2 -translate-y-1/2 z-30 flex flex-col gap-4 bg-surface/90 backdrop-blur-sm p-4 rounded-lg border border-primary/10 shadow-[0_4px_12px_rgba(43,38,32,0.05)]">
+<div class="font-label-md text-label-md text-primary mb-2 border-b border-primary/10 pb-2">Progress Rakitan</div>
+<!-- Node 1 -->
+<div class="flex items-center gap-3">
+<div class="w-6 h-6 rounded-full bg-accent-teal-solid text-on-primary flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'wght' 600;">check</span>
+</div>
+<span class="font-caption text-caption text-primary">Struktur</span>
+</div>
+<!-- Node 2 -->
+<div class="flex items-center gap-3">
+<div class="w-6 h-6 rounded-full bg-accent-teal-solid text-on-primary flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'wght' 600;">check</span>
+</div>
+<span class="font-caption text-caption text-primary">Hero</span>
+</div>
+<!-- Node 3 -->
+<div class="flex items-center gap-3">
+<div class="w-6 h-6 rounded-full bg-accent-teal-solid text-on-primary flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'wght' 600;">check</span>
+</div>
+<span class="font-caption text-caption text-primary">Tentang Saya</span>
+</div>
+<!-- Node 4 (Active) -->
+<div class="flex items-center gap-3 relative">
+<!-- Connecting line pulse effect -->
+<div class="absolute left-3 top-[-16px] bottom-[24px] w-[2px] bg-accent-amber/30 -z-10"></div>
+<div class="w-6 h-6 rounded-full bg-background border-2 border-accent-amber flex items-center justify-center shrink-0 relative">
+<div class="w-2 h-2 rounded-full bg-accent-amber"></div>
+</div>
+<span class="font-label-md text-label-md text-primary">Project Showcase</span>
+</div>
+<!-- Node 5 -->
+<div class="flex items-center gap-3 relative">
+<div class="absolute left-[11px] top-[-16px] bottom-[24px] w-[2px] bg-outline-variant/30 -z-10"></div>
+<div class="w-6 h-6 rounded-full bg-background border border-outline-variant flex items-center justify-center shrink-0"></div>
+<span class="font-caption text-caption text-on-surface-variant">Responsive</span>
+</div>
+<!-- Node 6 -->
+<div class="flex items-center gap-3 relative">
+<div class="absolute left-[11px] top-[-16px] bottom-[24px] w-[2px] bg-outline-variant/30 -z-10"></div>
+<div class="w-6 h-6 rounded-full bg-background border border-outline-variant flex items-center justify-center shrink-0"></div>
+<span class="font-caption text-caption text-on-surface-variant">Deploy</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</body></html>

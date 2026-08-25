@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+
+<html lang="id"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Bukan Cuma Selesai Belajar - DirakitPro</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&amp;family=Be+Vietnam+Pro:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary-fixed": "#8ef7c0",
+                        "secondary-container": "#feae2c",
+                        "tertiary-container": "#002e1b",
+                        "background": "#fff8f0",
+                        "error-container": "#ffdad6",
+                        "inverse-surface": "#32302b",
+                        "on-surface-variant": "#4c463f",
+                        "primary": "#16120c",
+                        "on-primary-fixed-variant": "#4c463f",
+                        "secondary-fixed": "#ffddb4",
+                        "surface-tint": "#645d56",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-container-highest": "#e7e2da",
+                        "surface-bright": "#fff8f0",
+                        "primary-container": "#2b2620",
+                        "on-primary-fixed": "#1f1b15",
+                        "on-tertiary": "#ffffff",
+                        "surface-container-low": "#f9f3eb",
+                        "tertiary": "#00170b",
+                        "outline-variant": "#cec5bc",
+                        "surface-container-high": "#ede7e0",
+                        "on-error": "#ffffff",
+                        "on-tertiary-container": "#32a070",
+                        "on-background": "#1d1b17",
+                        "inverse-on-surface": "#f6f0e8",
+                        "primary-fixed-dim": "#cec5bc",
+                        "surface-container": "#f3ede5",
+                        "secondary-fixed-dim": "#ffb955",
+                        "on-secondary-fixed": "#291800",
+                        "surface-variant": "#e7e2da",
+                        "surface": "#fff8f0",
+                        "secondary": "#835500",
+                        "tertiary-fixed-dim": "#71dba5",
+                        "error": "#ba1a1a",
+                        "on-tertiary-fixed": "#002112",
+                        "on-secondary-fixed-variant": "#633f00",
+                        "inverse-primary": "#cec5bc",
+                        "surface-dim": "#dfd9d2",
+                        "on-error-container": "#93000a",
+                        "on-tertiary-fixed-variant": "#005234",
+                        "outline": "#7d766e",
+                        "on-secondary-container": "#6b4500",
+                        "on-surface": "#1d1b17",
+                        "on-secondary": "#ffffff",
+                        "on-primary-container": "#958d84",
+                        "on-primary": "#ffffff",
+                        "primary-fixed": "#ebe1d7"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "base": "8px",
+                        "xs": "4px",
+                        "md": "24px",
+                        "xl": "80px",
+                        "gutter": "24px",
+                        "sm": "12px",
+                        "lg": "48px",
+                        "container-max": "1200px"
+                    },
+                    "fontFamily": {
+                        "headline-sm": ["Manrope"],
+                        "body-lg": ["Be Vietnam Pro"],
+                        "display-lg": ["Manrope"],
+                        "label-md": ["Manrope"],
+                        "display-lg-mobile": ["Manrope"],
+                        "body-md": ["Be Vietnam Pro"],
+                        "caption": ["Be Vietnam Pro"],
+                        "headline-md": ["Manrope"]
+                    },
+                    "fontSize": {
+                        "headline-sm": ["24px", { "lineHeight": "32px", "fontWeight": "700" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "800" }],
+                        "label-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0.02em", "fontWeight": "600" }],
+                        "display-lg-mobile": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "800" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "caption": ["12px", { "lineHeight": "16px", "fontWeight": "500" }],
+                        "headline-md": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .grid-texture {
+            background-image: 
+                linear-gradient(to right, rgba(22, 18, 12, 0.05) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(22, 18, 12, 0.05) 1px, transparent 1px);
+            background-size: 24px 24px;
+        }
+        .card-hover:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(43, 38, 32, 0.08);
+            border-color: rgba(245, 166, 35, 0.5); /* Warm Amber equivalent */
+        }
+        
+        .pulse-amber {
+            animation: pulse-ring 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+
+        @keyframes pulse-ring {
+            0% {
+                box-shadow: 0 0 0 0 rgba(254, 174, 44, 0.4);
+            }
+            70% {
+                box-shadow: 0 0 0 6px rgba(254, 174, 44, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(254, 174, 44, 0);
+            }
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body-md antialiased min-h-screen relative overflow-x-hidden">
+<!-- Subtle Grid Background -->
+<div class="absolute inset-0 grid-texture pointer-events-none opacity-50 z-0"></div>
+<main class="relative z-10 w-full px-gutter max-w-container-max mx-auto py-xl md:py-xl flex flex-col items-start">
+<!-- Header Section -->
+<div class="w-full flex flex-col mb-xl md:w-8/12 lg:w-6/12 mx-auto text-center items-center">
+<span class="font-label-md text-label-md uppercase text-secondary-container mb-sm tracking-[0.1em]">KENAPA DIRAKITPRO</span>
+<h2 class="font-display-lg-mobile text-display-lg-mobile md:font-display-lg md:text-display-lg text-primary mb-md leading-tight">
+                Bukan cuma selesai belajar.
+            </h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-lg">
+                Yang penting bukan berapa banyak materi yang kamu selesaikan, tetapi apa yang berhasil kamu rakit setelahnya.
+            </p>
+<!-- Subtle Decorative Element -->
+<div class="mt-lg w-24 h-1 bg-secondary-container rounded-full opacity-80 mx-auto"></div>
+</div>
+<!-- Story Flow Grid -->
+<div class="w-full grid grid-cols-1 md:grid-cols-12 gap-lg lg:gap-xl">
+<!-- 01 OUTCOME FIRST -->
+<div class="md:col-span-12 lg:col-span-5 flex flex-col gap-md self-start">
+<div class="flex items-center gap-sm">
+<span class="font-label-md text-secondary-container">01</span>
+<div class="h-[1px] bg-outline-variant flex-1 max-w-[2rem]"></div>
+<span class="font-label-md uppercase tracking-wider text-primary">OUTCOME FIRST</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-primary">Tahu apa yang akan kamu buat.</h3>
+<p class="font-body-md text-on-surface-variant mb-md">
+            Setiap course punya hasil akhir yang jelas sejak awal.
+        </p>
+<!-- Small Preview Window -->
+<div class="bg-surface-container-lowest border border-outline-variant/30 rounded-lg p-sm shadow-sm overflow-hidden flex flex-col">
+<!-- Browser Chrome -->
+<div class="flex items-center gap-1.5 border-b border-outline-variant/20 pb-sm mb-sm px-xs">
+<div class="w-2.5 h-2.5 rounded-full bg-outline-variant/50"></div>
+<div class="w-2.5 h-2.5 rounded-full bg-outline-variant/50"></div>
+<div class="w-2.5 h-2.5 rounded-full bg-outline-variant/50"></div>
+</div>
+<!-- Mock Content -->
+<div class="px-md py-lg flex flex-col items-center justify-center text-center opacity-80">
+<div class="w-12 h-12 bg-primary/10 rounded-full mb-sm"></div>
+<div class="h-3 w-24 bg-primary/20 rounded mb-xs"></div>
+<div class="h-2 w-32 bg-primary/10 rounded mb-4"></div>
+<div class="h-16 w-full max-w-[200px] bg-surface-container rounded border border-outline-variant/20"></div>
+</div>
+<div class="mt-auto pt-sm border-t border-outline-variant/20 text-center">
+<span class="text-caption font-caption text-on-surface-variant/70">Personal Website Template</span>
+</div>
+</div>
+</div>
+<!-- 02 VISIBLE BUILD PROGRESS -->
+<div class="md:col-span-12 lg:col-span-7 bg-surface-container-lowest border border-primary/10 rounded-xl p-lg shadow-sm card-hover transition-all duration-300">
+<div class="flex items-center gap-sm mb-md">
+<span class="font-label-md text-secondary-container">02</span>
+<div class="h-[1px] bg-outline-variant flex-1 max-w-[2rem]"></div>
+<span class="font-label-md uppercase tracking-wider text-primary">VISIBLE BUILD PROGRESS</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-primary mb-sm">Lihat rakitanmu berkembang.</h3>
+<p class="font-body-md text-on-surface-variant mb-lg max-w-lg">
+            Lihat bagian project yang sudah selesai, yang sedang kamu kerjakan, dan yang akan dirakit berikutnya.
+        </p>
+<!-- Progress List Visual -->
+<div class="bg-surface-container rounded-lg p-md md:p-lg border border-outline-variant/20 relative">
+<h4 class="font-label-md text-primary mb-md border-b border-outline-variant/20 pb-sm">Rakit Personal Website</h4>
+<div class="relative pl-6 space-y-md">
+<!-- Vertical Line -->
+<div class="absolute left-2.5 top-2 bottom-6 w-0.5 bg-outline-variant/30"></div>
+<!-- Completed Item 1 -->
+<div class="relative flex items-center gap-md">
+<div class="absolute -left-6 w-5 h-5 rounded-full bg-on-tertiary-container flex items-center justify-center z-10">
+<span class="material-symbols-outlined text-[14px] text-white">check</span>
+</div>
+<span class="font-body-md text-on-surface-variant/70 line-through">Struktur</span>
+</div>
+<!-- Completed Item 2 -->
+<div class="relative flex items-center gap-md">
+<div class="absolute -left-6 w-5 h-5 rounded-full bg-on-tertiary-container flex items-center justify-center z-10">
+<span class="material-symbols-outlined text-[14px] text-white">check</span>
+</div>
+<span class="font-body-md text-on-surface-variant/70 line-through">Hero</span>
+</div>
+<!-- Completed Item 3 -->
+<div class="relative flex items-center gap-md">
+<div class="absolute -left-6 w-5 h-5 rounded-full bg-on-tertiary-container flex items-center justify-center z-10">
+<span class="material-symbols-outlined text-[14px] text-white">check</span>
+</div>
+<span class="font-body-md text-on-surface-variant/70 line-through">Tentang Saya</span>
+</div>
+<!-- Current Item -->
+<div class="relative flex items-center gap-md">
+<div class="absolute -left-6 w-5 h-5 rounded-full bg-surface-container border-2 border-secondary-container z-10 flex items-center justify-center">
+<div class="w-2 h-2 rounded-full bg-secondary-container pulse-amber"></div>
+</div>
+<span class="font-body-md font-semibold text-primary">Project Showcase</span>
+</div>
+<!-- Upcoming Item 1 -->
+<div class="relative flex items-center gap-md">
+<div class="absolute -left-[23px] w-4 h-4 rounded-full bg-surface-container border-2 border-outline-variant/50 z-10"></div>
+<span class="font-body-md text-on-surface-variant/50">Responsive</span>
+</div>
+<!-- Upcoming Item 2 -->
+<div class="relative flex items-center gap-md">
+<div class="absolute -left-[23px] w-4 h-4 rounded-full bg-surface-container border-2 border-outline-variant/50 z-10"></div>
+<span class="font-body-md text-on-surface-variant/50">Deploy</span>
+</div>
+</div>
+</div>
+</div>
+<!-- 03 FINISHED WORK -->
+<div class="md:col-span-12 mt-lg lg:mt-xl flex flex-col md:flex-row gap-lg bg-surface-container-lowest border border-primary/10 rounded-xl overflow-hidden card-hover transition-all duration-300">
+<div class="p-lg md:w-5/12 flex flex-col justify-center">
+<div class="flex items-center gap-sm mb-md">
+<span class="font-label-md text-secondary-container">03</span>
+<div class="h-[1px] bg-outline-variant flex-1 max-w-[2rem]"></div>
+<span class="font-label-md uppercase tracking-wider text-primary">FINISHED WORK</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-primary mb-sm">Punya sesuatu untuk ditunjukkan.</h3>
+<p class="font-body-md text-on-surface-variant">
+                Selesaikan project utuh yang bisa kamu gunakan, kembangkan lagi, atau jadikan bagian dari portfolio.
+            </p>
+</div>
+<!-- Large Polish Preview -->
+<div class="md:w-7/12 bg-surface-container-high p-lg flex items-center justify-center">
+<div class="w-full max-w-md bg-white border border-outline-variant/20 rounded-lg shadow-md overflow-hidden flex flex-col aspect-[4/3]">
+<!-- Browser Chrome -->
+<div class="flex items-center gap-1.5 border-b border-outline-variant/20 py-2 px-3 bg-surface-container-lowest">
+<div class="w-2.5 h-2.5 rounded-full bg-outline-variant/50"></div>
+<div class="w-2.5 h-2.5 rounded-full bg-outline-variant/50"></div>
+<div class="w-2.5 h-2.5 rounded-full bg-outline-variant/50"></div>
+<div class="ml-4 h-4 w-32 bg-outline-variant/20 rounded text-[10px] text-on-surface-variant/50 flex items-center px-2">singgihpratama.com</div>
+</div>
+<!-- Site Content -->
+<div class="p-md flex flex-col h-full relative">
+<header class="flex justify-between items-center mb-md">
+<div class="font-bold text-sm">SP.</div>
+<div class="flex gap-2 text-[10px] text-on-surface-variant">
+<span>Work</span>
+<span>About</span>
+</div>
+</header>
+<main class="flex-1 flex flex-col justify-center">
+<h1 class="text-2xl font-bold mb-2">Singgih Pratama</h1>
+<p class="text-xs text-on-surface-variant max-w-[80%]">Building digital products and exploring web technologies.</p>
+<div class="mt-4 grid grid-cols-2 gap-2">
+<div class="h-16 bg-surface-container rounded border border-outline-variant/20"></div>
+<div class="h-16 bg-surface-container rounded border border-outline-variant/20"></div>
+</div>
+</main>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<script>
+        // Simple subtle entrance animation for cards
+        document.addEventListener('DOMContentLoaded', () => {
+            const cards = document.querySelectorAll('.card-hover');
+            cards.forEach((card, index) => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                card.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
+                
+                setTimeout(() => {
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                    
+                    // Restore hover transition after initial animation
+                    setTimeout(() => {
+                        card.style.transition = 'all 0.3s ease';
+                    }, 600);
+                }, 150 * (index + 1));
+            });
+        });
+    </script>
+</body></html>
