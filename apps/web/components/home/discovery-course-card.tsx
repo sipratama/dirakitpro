@@ -21,8 +21,14 @@ export function DiscoveryCourseCard({ course }: { course: CourseWithOwnership })
           className="h-40 w-full object-cover"
         />
       ) : (
-        <div className="flex h-40 w-full items-center justify-center bg-brand-amber-tint">
-          <span className="text-h2 text-brand-amber-text">{course.title.charAt(0)}</span>
+        // No thumbnail yet: an empty "part slot" from the assembly-diagram
+        // language (see hero-visual.tsx) rather than a giant initial letter —
+        // it reads as "not assembled yet," not as a broken image.
+        <div className="flex h-40 w-full flex-col items-center justify-center gap-2 border-b border-dashed border-neutral-300 bg-neutral-50">
+          <div className="size-8 rounded-control border-2 border-dashed border-neutral-300" aria-hidden="true" />
+          <span className="[font-family:var(--font-mono-home)] text-micro text-neutral-600">
+            preview belum tersedia
+          </span>
         </div>
       )}
 

@@ -1,5 +1,5 @@
-import { Check, Hammer, BookOpen, ListChecks } from "lucide-react";
-import { RevealOnScroll } from "@/components/home/reveal-on-scroll";
+import { Check, Hammer, BookOpen, ListChecks, ArrowRight } from "lucide-react";
+import { CssReveal } from "@/components/home/css-reveal";
 
 // State colors mirror the real learning-progress language (teal=completed,
 // amber=current, neutral=upcoming — see components/learning/build-progress-bar.tsx)
@@ -27,7 +27,7 @@ export function HowItWorksSection() {
           Bukan sekadar menonton — kamu membangun rakitanmu sendiri, satu tahap pada satu waktu.
         </p>
 
-        <RevealOnScroll className="mt-10">
+        <CssReveal className="mt-10">
           <ol className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {STEPS.map((step, index) => {
               const Icon = step.icon;
@@ -37,8 +37,8 @@ export function HowItWorksSection() {
                   key={step.label}
                   className={
                     isRakit
-                      ? "flex flex-col gap-3 rounded-card border-2 border-brand-amber bg-surface p-6 sm:col-span-2 lg:col-span-1 lg:scale-105"
-                      : "flex flex-col gap-3 rounded-card border border-neutral-100 bg-surface p-6"
+                      ? "relative flex flex-col gap-3 rounded-card border-2 border-brand-amber bg-surface p-6 sm:col-span-2 lg:col-span-1 lg:scale-105"
+                      : "relative flex flex-col gap-3 rounded-card border border-neutral-100 bg-surface p-6"
                   }
                 >
                   <div
@@ -46,17 +46,28 @@ export function HowItWorksSection() {
                   >
                     <Icon className="size-5" aria-hidden="true" />
                   </div>
-                  <span className="text-micro text-neutral-600">
-                    {String(index + 1).padStart(2, "0")} · {step.label}
+                  <span className="[font-family:var(--font-mono-home)] text-micro text-neutral-600">
+                    STEP.{String(index + 1).padStart(2, "0")} — {step.label}
                   </span>
                   <h3 className={isRakit ? "text-h3 text-brand-ink" : "text-body-lg font-medium text-brand-ink"}>
                     {step.title}
                   </h3>
+
+                  {/* Assembly-line connector to the next step — echoes the
+                      Hero signature's part-to-part joins at reduced
+                      intensity. Desktop only: the mobile stacked layout
+                      already reads top-to-bottom as a sequence. */}
+                  {index < STEPS.length - 1 && (
+                    <ArrowRight
+                      aria-hidden="true"
+                      className="absolute top-9 -right-5 hidden size-4 text-neutral-300 lg:block"
+                    />
+                  )}
                 </li>
               );
             })}
           </ol>
-        </RevealOnScroll>
+        </CssReveal>
       </div>
     </section>
   );
