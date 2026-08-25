@@ -1,15 +1,15 @@
-// Handcrafted per-course miniature product previews for Build Discovery
-// (VISUAL_POLISH V2.1, Phase 8) — replaces the old generic "preview belum
-// tersedia" placeholder block. Priority order lives in the caller
-// (discovery-course-card.tsx): real `thumbnailUrl` first, then this.
+// Handcrafted per-course miniature product previews for Build Discovery replace
+// the old generic "preview belum tersedia" placeholder block. Priority order
+// lives in the caller (discovery-course-card.tsx): real `thumbnailUrl` first,
+// then this.
 //
-// Each of the three seeded MVP courses (packages/database/src/seed.ts) gets
-// a DIFFERENT small product mockup so the grid reads as three distinct
-// things being built, not three identical dashboard cards. An unrecognized
-// future course slug still gets a branded (not text-placeholder) fallback.
-// Memphis intensity here is intentionally lower than the Hero: 1.5px ink
-// outlines instead of 2px, no resting shadow (only on card hover, applied
-// by the caller), muted tints instead of solid fills for most fields.
+// Each of the three seeded MVP courses (packages/database/src/seed.ts) gets a
+// different small product mockup so the grid reads as three distinct things
+// being built, not three identical dashboard cards. An unrecognized future
+// course slug still gets a branded (not text-placeholder) fallback. These
+// previews stay visually quieter than the Hero so they clarify each course
+// without competing with the page's primary message: 1.5px outlines instead
+// of 2px, no resting shadow, and muted tints for most fields.
 const PERSONAL_WEBSITE_SLUG = "rakitan-pertama-personal-website";
 const PERSONAL_FINANCE_SLUG = "rakit-aplikasi-keuangan-pribadi";
 const BOOKING_SYSTEM_SLUG = "rakit-sistem-booking-bisnis";

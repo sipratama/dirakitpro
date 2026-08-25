@@ -4,12 +4,10 @@ import { CssReveal } from "@/components/home/css-reveal";
 // State colors mirror the real learning-progress language (teal=completed,
 // current=strongest emphasis, neutral=upcoming — see
 // components/learning/build-progress-bar.tsx) but each state also carries a
-// distinct icon and label so meaning never depends on color alone. "Rakit"
-// is the DirakitPro method itself, so it gets the Memphis system's ink
-// outline + hard shadow instead of the softer brand-amber treatment used
-// for completed/upcoming — those two stay on the calmer brand-* palette
-// (VISUAL_POLISH V2.1 Phase 5: this section runs at ~65-75% Memphis
-// intensity, not full Hero intensity).
+// distinct icon and label so meaning never depends on color alone. "Rakit" is
+// both the active step and the DirakitPro method itself, so its ink outline,
+// amber tint, and hard shadow create the strongest emphasis while completed
+// and upcoming steps stay on quieter progress and neutral treatments.
 const STEPS = [
   { label: "Pilih", title: "Pilih Rakitan", state: "completed", icon: Check },
   { label: "Pelajari", title: "Pelajari Konsep", state: "completed", icon: BookOpen },
