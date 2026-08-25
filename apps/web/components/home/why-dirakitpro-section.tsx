@@ -1,13 +1,11 @@
 import { Check, Globe2 } from "lucide-react";
 import { CssReveal } from "@/components/home/css-reveal";
 
-// Matches the approved dirakitpro_differentiators_remediated reference's
-// copy exactly — three concepts, no more, no generic "feature card" copy.
-// VISUAL_POLISH V2.1 Phase 10/15: laid out as alternating editorial rows
-// rather than an equal 3-column card grid, specifically to avoid the
-// "every section is a centered heading + card grid" AI-slop tell — the
-// three mini-previews below are already distinct handcrafted mockups, not
-// interchangeable icon cards, so the layout shouldn't flatten them into one.
+// Matches the approved dirakitpro_differentiators_remediated reference's copy
+// exactly — three concepts, no more, no generic "feature card" copy. Alternating
+// editorial rows preserve the differences between the three handcrafted
+// previews and establish a clear reading rhythm; an equal card grid would make
+// these distinct outcomes look interchangeable.
 const CONCEPTS = [
   {
     title: "Tahu apa yang akan kamu buat.",

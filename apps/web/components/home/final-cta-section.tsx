@@ -2,11 +2,10 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { CssReveal } from "@/components/home/css-reveal";
 
-// The Homepage's second high-contrast brand moment (VISUAL_POLISH V2.1
-// Phase 12) — reuses the Hero's near-black + tactile hard-shadow language
-// rather than the softer brand-amber button used elsewhere, so it reads as
-// a deliberate bookend, not a second Hero. One small assembly glyph is the
-// section's only decorative detail — no shape field, no gradient.
+// The Homepage closes with the same ink structure and tactile hard-shadow
+// language introduced in the Hero, creating a deliberate visual bookend. The
+// compact layout and single assembly glyph keep it from reading as a second
+// Hero; no ambient shape field or gradient is needed here.
 export function FinalCtaSection() {
   return (
     <section className="bg-brand-ink py-16">
