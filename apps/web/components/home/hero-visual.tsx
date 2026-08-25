@@ -1,8 +1,7 @@
 // The Homepage's signature visual: a learner-built personal website, shown
 // mid-assembly with an overlapping build-progress card — not a generic SaaS
-// dashboard mockup. Same approved static content the Homepage content rules
-// require (real learner name/domain, no fabricated stats). Visual language
-// is DESIGN.md 8 (Memphis Digital Workshop) — scoped to this component only.
+// dashboard mockup. The concrete learner name and domain keep the outcome
+// believable without introducing fabricated performance or community stats.
 //
 // Pure CSS keyframes (scoped below, no JS) drive a one-time entrance settle;
 // content is already in its final, fully visible position in server-
