@@ -9,6 +9,7 @@ import {
   orderItems,
   orders,
   payments,
+  projects,
   type NewBundle,
   type NewCourse,
   type NewOrder,
@@ -170,6 +171,7 @@ describe("POST /api/payments/midtrans/webhook", () => {
         await db.delete(orderItems).where(inArray(orderItems.orderId, orderIds));
       }
       await db.delete(orders).where(inArray(orders.userId, userIds));
+      await db.delete(projects).where(inArray(projects.userId, userIds));
       await db.delete(enrollments).where(inArray(enrollments.userId, userIds));
     }
     if (bundleIds.length) await db.delete(bundleCourses).where(inArray(bundleCourses.bundleId, bundleIds));

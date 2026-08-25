@@ -622,6 +622,8 @@ Dengan demikian, beginner dan advanced learning bukan dua produk yang bertentang
 **PRJ-002 Project submission \[P0\]**
 
 > Learner dapat mengirim live URL, optional repository URL, screenshot, dan notes. Live URL divalidasi sebagai well-formed `http(s)` URL sebelum submission diterima. Final project submission merupakan salah satu syarat course completion.
+>
+> **Acceptance (screenshot mechanism):** Untuk MVP, screenshot adalah field URL (`http(s)`, sama seperti live URL) yang learner isi sendiri dari gambar yang sudah ter-hosting di mana pun (GitHub, dsb) — bukan file upload ke Cloudflare R2. Keputusan ini menghindari membangun infrastruktur upload (presigned URL, validasi file, error handling) sebelum ada bukti kebutuhannya, konsisten dengan prinsip MVP-simplicity (4.6) dan pola yang sama dengan keputusan video hosting (Appendix F). Reversibel — upgrade ke upload asli nanti adalah penambahan, bukan migrasi data (field tetap URL string).
 
 **PRJ-003 Project visibility \[P0\]**
 
