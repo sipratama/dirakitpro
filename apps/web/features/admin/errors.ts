@@ -147,3 +147,75 @@ export class BundleNotInactiveError extends Error {
     this.name = "BundleNotInactiveError";
   }
 }
+
+export class CourseStageNotFoundError extends Error {
+  constructor(message = "Stage not found.") {
+    super(message);
+    this.name = "CourseStageNotFoundError";
+  }
+}
+
+// Deliberate choice (CURRICULUM_MANAGEMENT.md doesn't specify): reject rather
+// than cascade, even though the DB FK on lessons.courseStageId is itself
+// ON DELETE CASCADE. A stage can hold many lessons, and each may already
+// have learner LessonProgress against it — a single "delete stage" click
+// silently discarding all of that is a much bigger, easier-to-fumble blast
+// radius than a single lesson delete. Same conservative spirit as
+// BuildMilestoneInUseError below, applied consistently even though the PRD
+// only mandated it for milestones.
+export class CourseStageNotEmptyError extends Error {
+  constructor(message = "This stage still has lessons — remove or move them first.") {
+    super(message);
+    this.name = "CourseStageNotEmptyError";
+  }
+}
+
+export class LessonNotFoundError extends Error {
+  constructor(message = "Lesson not found.") {
+    super(message);
+    this.name = "LessonNotFoundError";
+  }
+}
+
+// A lesson's buildMilestoneId must reference a real milestone belonging to
+// the same course — same shape as validating slug/thumbnailUrl at the
+// function level rather than only via a DB FK error.
+export class BuildMilestoneNotFoundError extends Error {
+  constructor(message = "Milestone not found for this course.") {
+    super(message);
+    this.name = "BuildMilestoneNotFoundError";
+  }
+}
+
+// ADM-003/CURRICULUM_MANAGEMENT.md §4: deleting a milestone that lessons
+// still reference must not silently cascade to `buildMilestoneId = null` —
+// that would quietly break BLD-002's CHECKPOINT-driven derivation for
+// learners already relying on it.
+export class BuildMilestoneInUseError extends Error {
+  constructor(message = "This milestone is still referenced by one or more lessons.") {
+    super(message);
+    this.name = "BuildMilestoneInUseError";
+  }
+}
+
+// Shared by reorder-course-stages/reorder-lessons/reorder-build-milestones —
+// the given id array must be exactly the current set for that scope (course
+// or stage), no more, no fewer, so a stale client can't silently drop or
+// smuggle in an id that doesn't belong.
+export class ReorderSetMismatchError extends Error {
+  constructor(message = "The given order doesn't match the current set of items.") {
+    super(message);
+    this.name = "ReorderSetMismatchError";
+  }
+}
+
+// Fase 2 (CURRICULUM_MANAGEMENT.md §3): lesson content is admin-authored JSON,
+// validated against the existing ContentBlock union (not a new schema) —
+// invalid JSON or an unrecognized block `type` is a hard reject, and (per
+// updateLessonContent's own contract) never a partial save.
+export class InvalidLessonContentError extends Error {
+  constructor(message = "Lesson content must be a JSON array of valid ContentBlock objects.") {
+    super(message);
+    this.name = "InvalidLessonContentError";
+  }
+}

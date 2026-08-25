@@ -51,3 +51,21 @@ export type ContentBlock =
   | VideoContentBlock
   | ResourceLinkContentBlock
   | TaskContentBlock;
+
+const CONTENT_BLOCK_TYPES = new Set<ContentBlock["type"]>([
+  "markdown",
+  "code",
+  "image",
+  "video",
+  "resource_link",
+  "task",
+]);
+
+// Shared by ContentBlockRenderer (Wave 5, rendering) and updateLessonContent
+// (Wave 7b-ii, admin authoring/validation, CURRICULUM_MANAGEMENT.md §3) — one
+// guard, reused rather than redefined, so what the admin editor accepts and
+// what the learner-facing renderer can render never drift apart.
+export function isContentBlock(value: unknown): value is ContentBlock {
+  if (typeof value !== "object" || value === null || !("type" in value)) return false;
+  return CONTENT_BLOCK_TYPES.has((value as { type: unknown }).type as ContentBlock["type"]);
+}
