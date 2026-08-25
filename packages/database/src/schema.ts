@@ -512,3 +512,6 @@ export const adminAuditLogs = pgTable("admin_audit_logs", {
   afterData: jsonb("after_data"),
   createdAt: timestamp("created_at", { withTimezone: true }).defaultNow().notNull(), // ADM-008: DB-level record, no dedicated admin UI required for MVP
 });
+
+export type AdminAuditLog = typeof adminAuditLogs.$inferSelect;
+export type NewAdminAuditLog = typeof adminAuditLogs.$inferInsert;
