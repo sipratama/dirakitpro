@@ -1,8 +1,8 @@
 import "server-only";
-import { db, projects, users, type Project } from "@dirakitpro/database";
+import { courses, db, projects, users, type Project } from "@dirakitpro/database";
 import { and, desc, eq } from "drizzle-orm";
 
-export type GalleryProject = Project & { authorUsername: string; authorDisplayName: string };
+export type GalleryProject = Project & { authorUsername: string; authorDisplayName: string; courseTitle: string };
 
 /**
  * Curated public gallery for `/projects` (PRJ-006) — PUBLIC + APPROVED +
@@ -12,11 +12,22 @@ export type GalleryProject = Project & { authorUsername: string; authorDisplayNa
  */
 export async function getCuratedGallery(): Promise<GalleryProject[]> {
   const rows = await db
-    .select({ project: projects, authorUsername: users.username, authorDisplayName: users.displayName })
+    .select({
+      project: projects,
+      authorUsername: users.username,
+      authorDisplayName: users.displayName,
+      courseTitle: courses.title,
+    })
     .from(projects)
     .innerJoin(users, eq(projects.userId, users.id))
+    .innerJoin(courses, eq(projects.courseId, courses.id))
     .where(and(eq(projects.visibility, "PUBLIC"), eq(projects.moderationStatus, "APPROVED"), eq(projects.isFeatured, true)))
     .orderBy(desc(projects.publishedAt));
 
-  return rows.map(({ project, authorUsername, authorDisplayName }) => ({ ...project, authorUsername, authorDisplayName }));
+  return rows.map(({ project, authorUsername, authorDisplayName, courseTitle }) => ({
+    ...project,
+    authorUsername,
+    authorDisplayName,
+    courseTitle,
+  }));
 }

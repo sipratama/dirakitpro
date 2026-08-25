@@ -1,10 +1,11 @@
 import "server-only";
-import { db, projects, users, type Project } from "@dirakitpro/database";
+import { courses, db, projects, users, type Project } from "@dirakitpro/database";
 import { and, eq } from "drizzle-orm";
 
 export type PublicProject = Project & {
   authorUsername: string;
   authorDisplayName: string;
+  courseTitle: string;
   indexable: boolean;
 };
 
@@ -26,12 +27,14 @@ export async function getPublicProject(username: string, slug: string): Promise<
     .limit(1);
   if (!owner) return null;
 
-  const [project] = await db
-    .select()
+  const [row] = await db
+    .select({ project: projects, courseTitle: courses.title })
     .from(projects)
+    .innerJoin(courses, eq(projects.courseId, courses.id))
     .where(and(eq(projects.userId, owner.id), eq(projects.slug, slug)))
     .limit(1);
-  if (!project) return null;
+  if (!row) return null;
+  const { project, courseTitle } = row;
 
   if (project.visibility !== "PUBLIC") return null;
   if (project.moderationStatus === "HIDDEN" || project.moderationStatus === "REJECTED") return null;
@@ -40,6 +43,7 @@ export async function getPublicProject(username: string, slug: string): Promise<
     ...project,
     authorUsername: owner.username,
     authorDisplayName: owner.displayName,
+    courseTitle,
     indexable: project.moderationStatus === "APPROVED",
   };
 }

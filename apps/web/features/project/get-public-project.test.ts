@@ -100,6 +100,7 @@ describe("getPublicProject", () => {
         expect(result?.id).toBe(project.id);
         expect(result?.indexable).toBe(expectIndexable);
         expect(result?.authorUsername).toBe(learner.username);
+        expect(result?.courseTitle).toBe("Test Course");
       }
     });
   }
