@@ -87,42 +87,44 @@ function PortfolioPreview() {
 
 export function WhyDirakitProSection() {
   return (
-    <section className="mx-auto w-full max-w-6xl px-4 py-16">
-      <h2 className="text-h1 text-brand-ink">Bukan cuma selesai belajar.</h2>
+    <section className="bg-surface">
+      <div className="mx-auto w-full max-w-6xl px-4 py-16">
+        <h2 className="text-h1 text-brand-ink">Bukan cuma selesai belajar.</h2>
 
-      <CssReveal className="relative mt-10 flex flex-col gap-12">
-        {/* Single quiet margin rail linking the three rows — the section's
-            one subtle Memphis reference, not a shape per row. */}
-        <span
-          aria-hidden="true"
-          className="absolute top-2 bottom-2 left-4 hidden w-px bg-brand-ink/10 md:block"
-        />
+        <CssReveal className="relative mt-10 flex flex-col gap-12">
+          {/* Single quiet margin rail linking the three rows — the section's
+              one subtle Memphis reference, not a shape per row. */}
+          <span
+            aria-hidden="true"
+            className="absolute top-2 bottom-2 left-4 hidden w-px bg-brand-ink/10 md:block"
+          />
 
-        {CONCEPTS.map((concept, index) => {
-          const reversed = index % 2 === 1;
-          return (
-            <div
-              key={concept.title}
-              className={`flex flex-col gap-6 md:flex-row md:items-center md:gap-10 md:pl-10 ${
-                reversed ? "md:flex-row-reverse" : ""
-              }`}
-            >
-              <div className="relative h-32 w-full overflow-hidden rounded-card border border-neutral-100 md:w-2/5" aria-hidden="true">
-                {index === 0 ? <OutcomePreview /> : index === 1 ? <ProgressPreview /> : <PortfolioPreview />}
+          {CONCEPTS.map((concept, index) => {
+            const reversed = index % 2 === 1;
+            return (
+              <div
+                key={concept.title}
+                className={`flex flex-col gap-6 md:flex-row md:items-center md:gap-10 md:pl-10 ${
+                  reversed ? "md:flex-row-reverse" : ""
+                }`}
+              >
+                <div className="relative h-32 w-full overflow-hidden rounded-card border border-neutral-100 md:w-2/5" aria-hidden="true">
+                  {index === 0 ? <OutcomePreview /> : index === 1 ? <ProgressPreview /> : <PortfolioPreview />}
+                </div>
+
+                <div className="flex flex-1 flex-col gap-2">
+                  <span className="flex items-center gap-2 [font-family:var(--font-mono-home)] text-micro text-neutral-600">
+                    <span aria-hidden="true" className={`size-1.5 rounded-full ${concept.markerColor}`} />
+                    C.{String(index + 1).padStart(2, "0")}
+                  </span>
+                  <h3 className="text-h3 text-brand-ink">{concept.title}</h3>
+                  <p className="max-w-md text-body text-neutral-600">{concept.body}</p>
+                </div>
               </div>
-
-              <div className="flex flex-1 flex-col gap-2">
-                <span className="flex items-center gap-2 [font-family:var(--font-mono-home)] text-micro text-neutral-600">
-                  <span aria-hidden="true" className={`size-1.5 rounded-full ${concept.markerColor}`} />
-                  C.{String(index + 1).padStart(2, "0")}
-                </span>
-                <h3 className="text-h3 text-brand-ink">{concept.title}</h3>
-                <p className="max-w-md text-body text-neutral-600">{concept.body}</p>
-              </div>
-            </div>
-          );
-        })}
-      </CssReveal>
+            );
+          })}
+        </CssReveal>
+      </div>
     </section>
   );
 }

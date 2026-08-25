@@ -43,6 +43,7 @@ describe("BuildDiscoverySection", () => {
     expect(screen.getByText("Course B")).toBeInTheDocument();
     expect(screen.getAllByRole("link")).toHaveLength(2);
 
+    expect(container.querySelector("section")).toHaveClass("bg-surface");
     const reveals = container.querySelectorAll<HTMLElement>(".dp-css-reveal");
     expect([...reveals].map((reveal) => reveal.style.animationDelay)).toEqual(["0ms", "80ms"]);
   });

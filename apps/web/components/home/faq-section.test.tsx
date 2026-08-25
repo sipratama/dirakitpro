@@ -7,6 +7,7 @@ describe("FaqSection", () => {
   it("keeps every question and answer in the DOM with a light stagger", () => {
     const { container } = render(<FaqSection />);
 
+    expect(container.querySelector("section")).toHaveClass("bg-brand-cream");
     const items = container.querySelectorAll("details");
     expect(items).toHaveLength(4);
     for (const details of items) {
