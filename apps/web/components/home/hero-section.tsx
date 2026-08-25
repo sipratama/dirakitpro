@@ -37,7 +37,7 @@ export function HeroSection() {
               size="lg"
               nativeButton={false}
               render={<Link href="/register" />}
-              className="h-auto rounded-control border-2 border-memphis-ink bg-memphis-coral px-6 py-3 text-base font-bold text-memphis-ink shadow-hard-lg transition-all hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-none"
+              className="h-auto rounded-control border-2 border-memphis-ink bg-memphis-coral px-6 py-3 text-base font-bold text-memphis-ink shadow-hard-lg transition-transform duration-150 ease-out hover:translate-x-1 hover:translate-y-1 active:translate-x-[7px] active:translate-y-[7px]"
             >
               Mulai Merakit
             </Button>
@@ -46,7 +46,7 @@ export function HeroSection() {
               variant="outline"
               nativeButton={false}
               render={<Link href="/courses" />}
-              className="h-auto rounded-control border-2 border-memphis-ink bg-white px-6 py-3 text-base font-bold text-memphis-ink shadow-hard-sm transition-all hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-none"
+              className="h-auto rounded-control border-2 border-memphis-ink bg-white px-6 py-3 text-base font-bold text-memphis-ink shadow-hard-sm transition-transform duration-150 ease-out hover:translate-x-0.5 hover:translate-y-0.5 active:translate-x-1 active:translate-y-1"
             >
               Lihat Course
             </Button>

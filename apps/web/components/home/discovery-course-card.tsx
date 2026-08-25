@@ -1,17 +1,19 @@
 import Link from "next/link";
 import { formatPrice } from "@/lib/format-price";
+import { CoursePreview } from "@/components/home/course-preview";
 import type { CourseWithOwnership } from "@/features/catalog/get-published-courses";
 
 // Homepage-specific presentation: unlike the compact catalog grid card
 // (components/catalog/course-card.tsx), this leads with the real
 // `thumbnailUrl` when present so "what you'll build" reads before price —
-// per the Build Discovery section's brief. Falls back to a plain token-based
-// block (never a stock photo) when a course has no thumbnail set.
+// per the Build Discovery section's brief. Falls back to a handcrafted,
+// per-course miniature product preview (course-preview.tsx) when a course
+// has no thumbnail set — never a stock photo, never bare placeholder text.
 export function DiscoveryCourseCard({ course }: { course: CourseWithOwnership }) {
   return (
     <Link
       href={`/courses/${course.slug}`}
-      className="group flex flex-col overflow-hidden rounded-card border border-neutral-100 bg-surface transition-colors hover:border-brand-amber focus-visible:border-brand-amber focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-amber"
+      className="group flex flex-col overflow-hidden rounded-card border border-neutral-100 bg-surface transition-[transform,box-shadow,border-color] duration-150 ease-out hover:-translate-y-1 hover:border-memphis-ink hover:shadow-hard-sm focus-visible:-translate-y-1 focus-visible:border-memphis-ink focus-visible:shadow-hard-sm focus-visible:outline-none"
     >
       {course.thumbnailUrl ? (
         // eslint-disable-next-line @next/next/no-img-element -- course thumbnails are user/admin-uploaded R2 URLs, not static app assets
@@ -21,15 +23,7 @@ export function DiscoveryCourseCard({ course }: { course: CourseWithOwnership })
           className="h-40 w-full object-cover"
         />
       ) : (
-        // No thumbnail yet: an empty "part slot" from the assembly-diagram
-        // language (see hero-visual.tsx) rather than a giant initial letter —
-        // it reads as "not assembled yet," not as a broken image.
-        <div className="flex h-40 w-full flex-col items-center justify-center gap-2 border-b border-dashed border-neutral-300 bg-neutral-50">
-          <div className="size-8 rounded-control border-2 border-dashed border-neutral-300" aria-hidden="true" />
-          <span className="[font-family:var(--font-mono-home)] text-micro text-neutral-600">
-            preview belum tersedia
-          </span>
-        </div>
+        <CoursePreview slug={course.slug} />
       )}
 
       <div className="flex flex-1 flex-col gap-2 p-5">

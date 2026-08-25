@@ -24,16 +24,40 @@ export function HeroVisual() {
   return (
     <div className="relative mx-auto w-full max-w-lg pb-10">
       <style>{`
-        @keyframes dp-hero-settle { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
-        .dp-hero-settle { animation: dp-hero-settle 600ms ease-out backwards; }
+        /* Entrance settle: translate up + rotate toward final angle, once.
+           Rotation is baked into the keyframe (not a separate static
+           utility class) so it doesn't collide with the animated
+           \`transform\`, and \`both\` fill-mode holds the "to" state after
+           the animation ends instead of snapping back to an un-rotated
+           base style. */
+        @keyframes dp-hero-settle-browser {
+          from { opacity: 0; transform: translateY(14px) rotate(0deg); }
+          to   { opacity: 1; transform: translateY(0)     rotate(-2deg); }
+        }
+        @keyframes dp-hero-settle-progress {
+          from { opacity: 0; transform: translateY(14px) rotate(0deg); }
+          to   { opacity: 1; transform: translateY(0)     rotate(1deg); }
+        }
+        .dp-hero-settle-browser { animation: dp-hero-settle-browser 650ms ease-out both; }
+        .dp-hero-settle-progress { animation: dp-hero-settle-progress 650ms ease-out both; }
+
+        /* Progress Rakitan: nodes resolve in sequence, current node gets one
+           restrained pulse — never opacity:0 (labels stay readable
+           throughout), just a scale pop-in. */
+        @keyframes dp-node-in { from { transform: scale(0.55); } to { transform: scale(1); } }
+        @keyframes dp-node-pulse-once { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.18); } }
+        .dp-node { animation: dp-node-in 320ms cubic-bezier(0.34, 1.56, 0.64, 1) both; }
+        .dp-node-current { animation: dp-node-in 320ms cubic-bezier(0.34, 1.56, 0.64, 1) both, dp-node-pulse-once 500ms ease-in-out 1; }
+
         @media (prefers-reduced-motion: reduce) {
-          .dp-hero-settle { animation: none; }
+          .dp-hero-settle-browser, .dp-hero-settle-progress { animation-duration: 0.01ms; }
+          .dp-node, .dp-node-current { animation: none; }
         }
       `}</style>
 
       {/* The project preview — a slightly tilted browser card */}
       <div
-        className="dp-hero-settle relative -rotate-2 rounded-card border-2 border-memphis-ink bg-white shadow-hard-lg"
+        className="dp-hero-settle-browser relative rounded-card border-2 border-memphis-ink bg-white shadow-hard-lg"
         style={{ animationDelay: "0ms" }}
       >
         <div className="flex items-center gap-2 border-b-2 border-memphis-ink px-4 py-3">
@@ -72,7 +96,7 @@ export function HeroVisual() {
 
       {/* Connected assembly-progress card, overlapping the preview */}
       <div
-        className="dp-hero-settle absolute -bottom-2 -left-6 w-64 rotate-1 rounded-card border-2 border-memphis-ink bg-white p-4 shadow-hard-sm"
+        className="dp-hero-settle-progress absolute -bottom-2 -left-6 w-64 rounded-card border-2 border-memphis-ink bg-white p-4 shadow-hard-sm"
         style={{ animationDelay: "180ms" }}
       >
         <p className="mb-3 text-xs font-bold tracking-wide text-memphis-ink uppercase">Progress Rakitan</p>
@@ -82,7 +106,10 @@ export function HeroVisual() {
               {index > 0 && (
                 <span aria-hidden="true" className="absolute -top-2.5 left-[9px] h-2.5 w-px bg-memphis-ink/25" />
               )}
-              <StageNode state={stage.state} />
+              {/* Nodes resolve left-to-right, matching Struktur → Hero →
+                  Tentang Saya → Project Showcase reading order; delay starts
+                  after the card itself has settled into place. */}
+              <StageNode state={stage.state} delayMs={620 + index * 160} />
               <span
                 className={
                   stage.state === "upcoming" ? "text-xs text-memphis-ink/50" : "text-xs font-semibold text-memphis-ink"
@@ -98,12 +125,15 @@ export function HeroVisual() {
   );
 }
 
-function StageNode({ state }: { state: "done" | "current" | "upcoming" }) {
+function StageNode({ state, delayMs }: { state: "done" | "current" | "upcoming"; delayMs: number }) {
+  const style = { animationDelay: `${delayMs}ms` };
+
   if (state === "done") {
     return (
       <span
         aria-hidden="true"
-        className="flex size-5 shrink-0 items-center justify-center rounded-full border-2 border-memphis-ink bg-memphis-teal text-[10px] font-bold text-white"
+        style={style}
+        className="dp-node flex size-5 shrink-0 items-center justify-center rounded-full border-2 border-memphis-ink bg-memphis-teal text-[10px] font-bold text-white"
       >
         ✓
       </span>
@@ -113,7 +143,8 @@ function StageNode({ state }: { state: "done" | "current" | "upcoming" }) {
     return (
       <span
         aria-hidden="true"
-        className="flex size-5 shrink-0 items-center justify-center rounded-full border-2 border-memphis-ink bg-memphis-mustard"
+        style={style}
+        className="dp-node-current flex size-5 shrink-0 items-center justify-center rounded-full border-2 border-memphis-ink bg-memphis-mustard"
       >
         <span className="size-1.5 rounded-full bg-memphis-ink" />
       </span>

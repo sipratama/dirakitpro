@@ -42,7 +42,7 @@ export function PublicHeader({ user }: { user: User | null }) {
                 size="sm"
                 nativeButton={false}
                 render={<Link href="/dashboard" />}
-                className="rounded-control border-2 border-memphis-ink bg-memphis-coral px-4 font-bold text-memphis-ink shadow-hard-sm transition-all hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-none"
+                className="rounded-control border-2 border-memphis-ink bg-memphis-coral px-4 font-bold text-memphis-ink shadow-hard-sm transition-transform duration-150 ease-out hover:translate-x-0.5 hover:translate-y-0.5 active:translate-x-1 active:translate-y-1"
               >
                 Dashboard
               </Button>
@@ -61,7 +61,7 @@ export function PublicHeader({ user }: { user: User | null }) {
                   size="sm"
                   nativeButton={false}
                   render={<Link href="/register" />}
-                  className="rounded-control border-2 border-memphis-ink bg-memphis-coral px-4 font-bold text-memphis-ink shadow-hard-sm transition-all hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-none"
+                  className="rounded-control border-2 border-memphis-ink bg-memphis-coral px-4 font-bold text-memphis-ink shadow-hard-sm transition-transform duration-150 ease-out hover:translate-x-0.5 hover:translate-y-0.5 active:translate-x-1 active:translate-y-1"
                 >
                   Mulai Merakit
                 </Button>
