@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+
+<html class="light" lang="id"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>DirakitPro - Mulai Merakit</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&amp;family=Be+Vietnam+Pro:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "tertiary-fixed": "#8ef7c0",
+                      "secondary-container": "#feae2c",
+                      "tertiary-container": "#002e1b",
+                      "background": "#fff8f0",
+                      "error-container": "#ffdad6",
+                      "inverse-surface": "#32302b",
+                      "on-surface-variant": "#4c463f",
+                      "primary": "#16120c",
+                      "on-primary-fixed-variant": "#4c463f",
+                      "secondary-fixed": "#ffddb4",
+                      "surface-tint": "#645d56",
+                      "surface-container-lowest": "#ffffff",
+                      "surface-container-highest": "#e7e2da",
+                      "surface-bright": "#fff8f0",
+                      "primary-container": "#2b2620",
+                      "on-primary-fixed": "#1f1b15",
+                      "on-tertiary": "#ffffff",
+                      "surface-container-low": "#f9f3eb",
+                      "tertiary": "#00170b",
+                      "outline-variant": "#cec5bc",
+                      "surface-container-high": "#ede7e0",
+                      "on-error": "#ffffff",
+                      "on-tertiary-container": "#32a070",
+                      "on-background": "#1d1b17",
+                      "inverse-on-surface": "#f6f0e8",
+                      "primary-fixed-dim": "#cec5bc",
+                      "surface-container": "#f3ede5",
+                      "secondary-fixed-dim": "#ffb955",
+                      "on-secondary-fixed": "#291800",
+                      "surface-variant": "#e7e2da",
+                      "surface": "#fff8f0",
+                      "secondary": "#835500",
+                      "tertiary-fixed-dim": "#71dba5",
+                      "error": "#ba1a1a",
+                      "on-tertiary-fixed": "#002112",
+                      "on-secondary-fixed-variant": "#633f00",
+                      "inverse-primary": "#cec5bc",
+                      "surface-dim": "#dfd9d2",
+                      "on-error-container": "#93000a",
+                      "on-tertiary-fixed-variant": "#005234",
+                      "outline": "#7d766e",
+                      "on-secondary-container": "#6b4500",
+                      "on-surface": "#1d1b17",
+                      "on-secondary": "#ffffff",
+                      "on-primary-container": "#958d84",
+                      "on-primary": "#ffffff",
+                      "primary-fixed": "#ebe1d7"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "base": "8px",
+                      "xs": "4px",
+                      "md": "24px",
+                      "xl": "80px",
+                      "gutter": "24px",
+                      "sm": "12px",
+                      "lg": "48px",
+                      "container-max": "1200px"
+              },
+              "fontFamily": {
+                      "headline-sm": [
+                              "Manrope"
+                      ],
+                      "body-lg": [
+                              "Be Vietnam Pro"
+                      ],
+                      "display-lg": [
+                              "Manrope"
+                      ],
+                      "label-md": [
+                              "Manrope"
+                      ],
+                      "display-lg-mobile": [
+                              "Manrope"
+                      ],
+                      "body-md": [
+                              "Be Vietnam Pro"
+                      ],
+                      "caption": [
+                              "Be Vietnam Pro"
+                      ],
+                      "headline-md": [
+                              "Manrope"
+                      ]
+              },
+              "fontSize": {
+                      "headline-sm": [
+                              "24px",
+                              {
+                                      "lineHeight": "32px",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "body-lg": [
+                              "18px",
+                              {
+                                      "lineHeight": "28px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "display-lg": [
+                              "48px",
+                              {
+                                      "lineHeight": "56px",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "800"
+                              }
+                      ],
+                      "label-md": [
+                              "14px",
+                              {
+                                      "lineHeight": "20px",
+                                      "letterSpacing": "0.02em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "display-lg-mobile": [
+                              "32px",
+                              {
+                                      "lineHeight": "40px",
+                                      "letterSpacing": "-0.01em",
+                                      "fontWeight": "800"
+                              }
+                      ],
+                      "body-md": [
+                              "16px",
+                              {
+                                      "lineHeight": "24px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "caption": [
+                              "12px",
+                              {
+                                      "lineHeight": "16px",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "headline-md": [
+                              "32px",
+                              {
+                                      "lineHeight": "40px",
+                                      "letterSpacing": "-0.01em",
+                                      "fontWeight": "700"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+      </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .btn-press {
+            transition: transform 0.1s ease-in-out;
+        }
+        .btn-press:active {
+            transform: translateY(1px);
+        }
+    </style>
+</head>
+<body class="bg-background text-primary min-h-screen flex flex-col font-body-md antialiased selection:bg-secondary-container selection:text-primary">
+<!-- Main Content Canvas -->
+<main class="flex-grow flex flex-col">
+<!-- Objection Handling Section -->
+<section class="w-full py-xl px-gutter max-w-container-max mx-auto border-t border-outline-variant/10">
+<div class="grid grid-cols-1 md:grid-cols-12 gap-lg md:gap-gutter">
+<!-- Heading Column -->
+<div class="md:col-span-5 flex flex-col justify-start">
+<div class="sticky top-xl">
+<span class="font-label-md text-label-md text-secondary uppercase tracking-widest mb-sm block">Keraguan?</span>
+<h2 class="font-headline-md text-headline-md text-primary font-bold">Sebelum mulai merakit.</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mt-sm max-w-sm">
+                            Memulai hal baru memang mendebarkan. Berikut beberapa hal yang sering ditanyakan oleh perakit pemula sebelum mereka menekan tombol mulai.
+                        </p>
+</div>
+</div>
+<!-- Objections List Column -->
+<div class="md:col-span-7 flex flex-col space-y-0">
+<!-- Objection Item 1 -->
+<div class="group py-md border-b border-outline-variant/20 hover:border-secondary-container/50 transition-colors duration-300">
+<div class="flex items-start gap-md">
+<div class="mt-1 flex-shrink-0 w-8 h-8 rounded-full bg-surface-container-high flex items-center justify-center text-on-surface-variant group-hover:bg-secondary-container group-hover:text-primary transition-colors duration-300">
+<span class="material-symbols-outlined text-[18px]">code_off</span>
+</div>
+<div>
+<h3 class="font-headline-sm text-headline-sm text-primary">Apakah saya harus punya dasar coding?</h3>
+<p class="font-body-lg text-body-lg text-on-surface-variant mt-xs">Tidak perlu, kita mulai dari nol. Modul kami dirancang khusus agar mudah dipahami oleh siapa saja, bahkan tanpa latar belakang teknis sekalipun.</p>
+</div>
+</div>
+</div>
+<!-- Objection Item 2 -->
+<div class="group py-md border-b border-outline-variant/20 hover:border-secondary-container/50 transition-colors duration-300">
+<div class="flex items-start gap-md">
+<div class="mt-1 flex-shrink-0 w-8 h-8 rounded-full bg-surface-container-high flex items-center justify-center text-on-surface-variant group-hover:bg-secondary-container group-hover:text-primary transition-colors duration-300">
+<span class="material-symbols-outlined text-[18px]">forum</span>
+</div>
+<div>
+<h3 class="font-headline-sm text-headline-sm text-primary">Apa yang terjadi kalau saya bingung?</h3>
+<p class="font-body-lg text-body-lg text-on-surface-variant mt-xs">Ada dokumentasi lengkap dan komunitas perakit yang siap membantu. Anda tidak akan pernah dibiarkan merakit sendirian dalam kegelapan.</p>
+</div>
+</div>
+</div>
+<!-- Objection Item 3 -->
+<div class="group py-md border-b border-outline-variant/20 hover:border-secondary-container/50 transition-colors duration-300">
+<div class="flex items-start gap-md">
+<div class="mt-1 flex-shrink-0 w-8 h-8 rounded-full bg-surface-container-high flex items-center justify-center text-on-surface-variant group-hover:bg-secondary-container group-hover:text-primary transition-colors duration-300">
+<span class="material-symbols-outlined text-[18px]">schedule</span>
+</div>
+<div>
+<h3 class="font-headline-sm text-headline-sm text-primary">Berapa lama waktu yang dibutuhkan?</h3>
+<p class="font-body-lg text-body-lg text-on-surface-variant mt-xs">Mulai dari 6 jam untuk rakitan pertama. Waktu belajar sangat fleksibel, Anda bisa mengatur ritme kerja layaknya di bengkel sendiri.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Final CTA Section -->
+<section class="w-full py-xl lg:py-[120px] px-gutter relative overflow-hidden bg-surface-container-low border-t border-outline-variant/10">
+<!-- Subtle background texture indication (pure CSS approach using radial gradient for tactile feel) -->
+<div class="absolute inset-0 opacity-[0.03] pointer-events-none" style="background-image: radial-gradient(var(--tw-colors-primary) 1px, transparent 1px); background-size: 24px 24px;"></div>
+<div class="max-w-[720px] mx-auto text-center relative z-10 flex flex-col items-center">
+<span class="font-label-md text-label-md text-secondary uppercase tracking-widest mb-md border border-secondary/20 px-sm py-xs rounded-full bg-surface/50 backdrop-blur-sm shadow-sm inline-flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px] animate-pulse">build</span>
+                    SIAP MEMULAI?
+                </span>
+<h2 class="font-display-lg text-display-lg hidden md:block text-primary mb-lg">
+                    Rakitan pertamamu dimulai di sini.
+                </h2>
+<h2 class="font-display-lg-mobile text-display-lg-mobile md:hidden text-primary mb-lg">
+                    Rakitan pertamamu dimulai di sini.
+                </h2>
+<div class="flex flex-col sm:flex-row items-center justify-center gap-md w-full sm:w-auto">
+<!-- Primary CTA -->
+<button class="btn-press w-full sm:w-auto bg-secondary-container text-primary font-label-md text-label-md font-bold py-sm px-lg rounded-lg shadow-[0_4px_12px_rgba(43,38,32,0.08)] hover:shadow-none hover:bg-[#ffb945] transition-all flex items-center justify-center gap-2 group border border-transparent">
+                        Mulai Merakit
+                        <span class="material-symbols-outlined text-[20px] group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</button>
+<!-- Secondary CTA -->
+<button class="btn-press w-full sm:w-auto bg-transparent border border-primary/20 text-primary font-label-md text-label-md font-bold py-sm px-lg rounded-lg hover:bg-primary/5 transition-colors flex items-center justify-center gap-2">
+                        Lihat Semua Course
+                    </button>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer Component (From JSON) -->
+<footer class="bg-surface-container-high dark:bg-surface-container-high full-width border-t border-outline-variant/10">
+<div class="w-full py-lg px-gutter max-w-container-max mx-auto flex flex-col md:flex-row justify-between items-center gap-base">
+<!-- Brand Logo & Copyright -->
+<div class="flex flex-col items-center md:items-start gap-xs">
+<div class="font-headline-sm text-headline-sm font-bold text-primary flex items-center gap-2">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">handyman</span>
+                    DirakitPro
+                </div>
+<p class="font-caption text-caption text-on-surface-variant">
+                    © 2024 DirakitPro. Profesional itu dirakit.
+                </p>
+</div>
+<!-- Navigation Links -->
+<nav class="flex flex-wrap justify-center gap-md">
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-secondary underline transition-all" href="#">
+                    Tentang Kami
+                </a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-secondary underline transition-all" href="#">
+                    Kebijakan Privasi
+                </a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-secondary underline transition-all" href="#">
+                    Syarat &amp; Ketentuan
+                </a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-secondary underline transition-all" href="#">
+                    Bantuan
+                </a>
+</nav>
+</div>
+</footer>
+</body></html>
