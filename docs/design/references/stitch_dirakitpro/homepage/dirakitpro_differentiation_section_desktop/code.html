@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+
+<html lang="id"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Bukan Cuma Selesai Belajar - DirakitPro</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&amp;family=Be+Vietnam+Pro:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary-fixed": "#8ef7c0",
+                        "secondary-container": "#feae2c",
+                        "tertiary-container": "#002e1b",
+                        "background": "#fff8f0",
+                        "error-container": "#ffdad6",
+                        "inverse-surface": "#32302b",
+                        "on-surface-variant": "#4c463f",
+                        "primary": "#16120c",
+                        "on-primary-fixed-variant": "#4c463f",
+                        "secondary-fixed": "#ffddb4",
+                        "surface-tint": "#645d56",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-container-highest": "#e7e2da",
+                        "surface-bright": "#fff8f0",
+                        "primary-container": "#2b2620",
+                        "on-primary-fixed": "#1f1b15",
+                        "on-tertiary": "#ffffff",
+                        "surface-container-low": "#f9f3eb",
+                        "tertiary": "#00170b",
+                        "outline-variant": "#cec5bc",
+                        "surface-container-high": "#ede7e0",
+                        "on-error": "#ffffff",
+                        "on-tertiary-container": "#32a070",
+                        "on-background": "#1d1b17",
+                        "inverse-on-surface": "#f6f0e8",
+                        "primary-fixed-dim": "#cec5bc",
+                        "surface-container": "#f3ede5",
+                        "secondary-fixed-dim": "#ffb955",
+                        "on-secondary-fixed": "#291800",
+                        "surface-variant": "#e7e2da",
+                        "surface": "#fff8f0",
+                        "secondary": "#835500",
+                        "tertiary-fixed-dim": "#71dba5",
+                        "error": "#ba1a1a",
+                        "on-tertiary-fixed": "#002112",
+                        "on-secondary-fixed-variant": "#633f00",
+                        "inverse-primary": "#cec5bc",
+                        "surface-dim": "#dfd9d2",
+                        "on-error-container": "#93000a",
+                        "on-tertiary-fixed-variant": "#005234",
+                        "outline": "#7d766e",
+                        "on-secondary-container": "#6b4500",
+                        "on-surface": "#1d1b17",
+                        "on-secondary": "#ffffff",
+                        "on-primary-container": "#958d84",
+                        "on-primary": "#ffffff",
+                        "primary-fixed": "#ebe1d7"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "base": "8px",
+                        "xs": "4px",
+                        "md": "24px",
+                        "xl": "80px",
+                        "gutter": "24px",
+                        "sm": "12px",
+                        "lg": "48px",
+                        "container-max": "1200px"
+                    },
+                    "fontFamily": {
+                        "headline-sm": ["Manrope"],
+                        "body-lg": ["Be Vietnam Pro"],
+                        "display-lg": ["Manrope"],
+                        "label-md": ["Manrope"],
+                        "display-lg-mobile": ["Manrope"],
+                        "body-md": ["Be Vietnam Pro"],
+                        "caption": ["Be Vietnam Pro"],
+                        "headline-md": ["Manrope"]
+                    },
+                    "fontSize": {
+                        "headline-sm": ["24px", { "lineHeight": "32px", "fontWeight": "700" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "800" }],
+                        "label-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0.02em", "fontWeight": "600" }],
+                        "display-lg-mobile": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "800" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "caption": ["12px", { "lineHeight": "16px", "fontWeight": "500" }],
+                        "headline-md": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .grid-texture {
+            background-image: 
+                linear-gradient(to right, rgba(22, 18, 12, 0.05) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(22, 18, 12, 0.05) 1px, transparent 1px);
+            background-size: 24px 24px;
+        }
+        .card-hover:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(43, 38, 32, 0.08);
+            border-color: rgba(245, 166, 35, 0.5); /* Warm Amber equivalent */
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body-md antialiased min-h-screen relative overflow-x-hidden">
+<!-- Subtle Grid Background -->
+<div class="absolute inset-0 grid-texture pointer-events-none opacity-50 z-0"></div>
+<main class="relative z-10 w-full px-gutter max-w-container-max mx-auto py-xl md:py-xl flex flex-col md:flex-row gap-lg items-start">
+<!-- Left Content: Editorial Header -->
+<div class="w-full md:w-5/12 flex flex-col sticky top-xl">
+<span class="font-label-md text-label-md uppercase text-secondary-container mb-sm tracking-wider">Differentiation</span>
+<h2 class="font-display-lg-mobile text-display-lg-mobile md:font-display-lg md:text-display-lg text-primary mb-md leading-tight">
+                Bukan cuma selesai belajar.
+            </h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-md">
+                Di tempat lain kamu hanya dapat sertifikat. Di DirakitPro, kamu pulang dengan produk nyata yang bisa kamu tunjukkan ke dunia.
+            </p>
+<!-- Subtle Decorative Element -->
+<div class="mt-lg w-24 h-1 bg-secondary-container rounded-full opacity-80"></div>
+<!-- Contextual Image representing 'Craftsmanship' -->
+<div class="mt-lg rounded-lg overflow-hidden border border-outline-variant/20 relative group shadow-sm bg-surface-container-lowest">
+<img alt="Workshop environment" class="w-full h-48 md:h-64 object-cover opacity-90 group-hover:opacity-100 transition-opacity duration-300" data-alt="A focused, modern workshop desk scene. Warm, natural lighting highlights a clean desk with a sleek laptop displaying lines of code alongside a tactile mechanical keyboard and a steaming mug of coffee in a ceramic cup. The overall aesthetic is warm cream and deep ink, embodying professional craftsmanship and focused building. Minimalist and editorial style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBQxU0nOrX1TbX53QcsNz17VUkFNtLe4YDONx6aOae1Zsayqh4DAWfAb4xTFBEdZvRk-zoNBY7--xBNwxBM_Rw1RTmtCa1CqU66tDLMARZu7NkjlJNfS2KpOHNXFbYh1pu6I4jhUwfBEhVnGg5TNnplEw0zyzaWWjNfNicG-w2WnGMwH55Mzy4wU7JwQccniyzsObl0C6GghEJAWpxWwzJz8dD03RtAsjw8nX1z_5WK2s_SChnS6ubx"/>
+<div class="absolute inset-0 bg-primary/5 group-hover:bg-transparent transition-colors duration-300"></div>
+</div>
+</div>
+<!-- Right Content: Value Cards (Bento/Asymmetric Layout) -->
+<div class="w-full md:w-7/12 grid grid-cols-1 md:grid-cols-2 gap-md pt-lg md:pt-0">
+<!-- Card 1 (Spans full width on mobile, 1 col on desktop) -->
+<div class="bg-surface-container-lowest border border-primary/10 rounded-lg p-md relative overflow-hidden card-hover transition-all duration-300 md:col-span-2 flex flex-col sm:flex-row items-start gap-md">
+<!-- Progress Stripe -->
+<div class="absolute left-0 top-0 bottom-0 w-[4px] bg-tertiary-container"></div>
+<div class="w-12 h-12 rounded-full bg-surface-container flex items-center justify-center shrink-0 border border-primary/5">
+<span class="material-symbols-outlined text-primary text-2xl" style="font-variation-settings: 'FILL' 1;">movie_off</span>
+</div>
+<div class="flex-1">
+<h3 class="font-headline-sm text-headline-sm text-primary mb-xs">Bukan Sekadar Video</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">
+                        Fokus pada praktik membangun, bukan hanya menonton pasif.
+                    </p>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="bg-surface-container-lowest border border-primary/10 rounded-lg p-md relative overflow-hidden card-hover transition-all duration-300 flex flex-col gap-sm">
+<div class="absolute left-0 top-0 bottom-0 w-[4px] bg-tertiary-container opacity-50"></div>
+<div class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center border border-primary/5 mb-xs">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 0;">view_carousel</span>
+</div>
+<h3 class="font-label-md text-label-md text-primary uppercase tracking-wide">Hasil yang Bisa Dipamerkan</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">
+                    Setiap rakitan adalah aset profesional untuk portofoliomu.
+                </p>
+</div>
+<!-- Card 3 -->
+<div class="bg-surface-container-lowest border border-primary/10 rounded-lg p-md relative overflow-hidden card-hover transition-all duration-300 flex flex-col gap-sm">
+<div class="absolute left-0 top-0 bottom-0 w-[4px] bg-tertiary-container opacity-50"></div>
+<div class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center border border-primary/5 mb-xs">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 0;">architecture</span>
+</div>
+<h3 class="font-label-md text-label-md text-primary uppercase tracking-wide">Kurikulum Berbasis Project</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">
+                    Pelajari teknologi terbaru dengan langsung menggunakannya.
+                </p>
+</div>
+</div>
+</main>
+<script>
+        // Simple subtle entrance animation for cards
+        document.addEventListener('DOMContentLoaded', () => {
+            const cards = document.querySelectorAll('.card-hover');
+            cards.forEach((card, index) => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                card.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
+                
+                setTimeout(() => {
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                    
+                    // Restore hover transition after initial animation
+                    setTimeout(() => {
+                        card.style.transition = 'all 0.3s ease';
+                    }, 600);
+                }, 150 * (index + 1));
+            });
+        });
+    </script>
+</body></html>
