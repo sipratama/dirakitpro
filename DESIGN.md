@@ -86,6 +86,8 @@ All text/background pairs above target WCAG AA. One pair needs a caution: white 
 
 **Single family, three weights** — Plus Jakarta Sans (400/500/700), used for everything: headings, body, and UI chrome. One font is a deliberate restraint call for a solo builder: no font-pairing decisions to maintain, no FOUT mismatch between a heading font and a body font loading at different times.
 
+**One narrow exception:** IBM Plex Mono may be used for `text-micro`-scale numeric/label accents only (e.g. step numbers like "STEP.01", "C.01") — never for headings or body copy. Documented here (25 Aug 2026) after the homepage font-consolidation pass removed a broader, undocumented multi-font system (Bricolage Grotesque + DM Sans) that had crept in beyond this scope — this line exists so the same kind of drift doesn't happen silently again.
+
 Implementation: `next/font/google` with `Plus_Jakarta_Sans`, matching the Next.js stack (PRD 14.2).
 
 | Token | Size | Weight | Line-height | Use |

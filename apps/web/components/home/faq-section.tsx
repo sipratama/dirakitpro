@@ -1,3 +1,5 @@
+import { CssReveal } from "@/components/home/css-reveal";
+
 // Native <details>/<summary> per the FAQ interaction spec — no accordion
 // component exists in the repo to reuse, and no new UI dependency is added
 // solely for this. <details> is natively keyboard-operable and exposes its
@@ -47,16 +49,18 @@ export function FaqSection() {
       `}</style>
 
       <div className="mt-8 flex flex-col divide-y divide-neutral-100 border-t border-b border-neutral-100">
-        {FAQ_ITEMS.map((item) => (
-          <details key={item.question} className="group py-4">
-            <summary className="flex cursor-pointer list-none items-center justify-between gap-4 text-body-lg font-medium text-brand-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-amber">
-              {item.question}
-              <span className="shrink-0 text-neutral-600 transition-transform duration-150 group-open:rotate-45 motion-reduce:transition-none">
-                +
-              </span>
-            </summary>
-            <p className="dp-faq-answer mt-3 text-body text-neutral-600">{item.answer}</p>
-          </details>
+        {FAQ_ITEMS.map((item, index) => (
+          <CssReveal key={item.question} delayMs={index * 60}>
+            <details className="group py-4">
+              <summary className="flex cursor-pointer list-none items-center justify-between gap-4 text-body-lg font-medium text-brand-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-amber">
+                {item.question}
+                <span className="shrink-0 text-neutral-600 transition-transform duration-150 group-open:rotate-45 motion-reduce:transition-none">
+                  +
+                </span>
+              </summary>
+              <p className="dp-faq-answer mt-3 text-body text-neutral-600">{item.answer}</p>
+            </details>
+          </CssReveal>
         ))}
       </div>
     </section>
