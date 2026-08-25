@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+
+<html lang="id"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Belajar Sambil Merakit - DirakitPro</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-primary-fixed-variant": "#4c463f",
+                        "tertiary-fixed": "#8ef7c0",
+                        "tertiary-fixed-dim": "#71dba5",
+                        "surface-bright": "#fff8f0",
+                        "surface-tint": "#645d56",
+                        "outline-variant": "#cec5bc",
+                        "surface-container-high": "#ede7e0",
+                        "on-error-container": "#93000a",
+                        "inverse-surface": "#32302b",
+                        "surface-container-highest": "#e7e2da",
+                        "inverse-on-surface": "#f6f0e8",
+                        "on-primary": "#ffffff",
+                        "outline": "#7d766e",
+                        "secondary-fixed": "#ffddb4",
+                        "secondary-container": "#feae2c",
+                        "on-secondary-fixed": "#291800",
+                        "tertiary-container": "#002e1b",
+                        "tertiary": "#00170b",
+                        "inverse-primary": "#cec5bc",
+                        "on-error": "#ffffff",
+                        "on-tertiary-fixed-variant": "#005234",
+                        "background": "#fff8f0",
+                        "error": "#ba1a1a",
+                        "surface-container-lowest": "#ffffff",
+                        "on-tertiary": "#ffffff",
+                        "primary-container": "#2b2620",
+                        "on-surface": "#1d1b17",
+                        "on-primary-container": "#958d84",
+                        "on-secondary-fixed-variant": "#633f00",
+                        "on-secondary": "#ffffff",
+                        "primary-fixed": "#ebe1d7",
+                        "on-surface-variant": "#4c463f",
+                        "on-primary-fixed": "#1f1b15",
+                        "on-secondary-container": "#6b4500",
+                        "on-tertiary-fixed": "#002112",
+                        "on-background": "#1d1b17",
+                        "secondary": "#835500",
+                        "on-tertiary-container": "#32a070",
+                        "primary-fixed-dim": "#cec5bc",
+                        "primary": "#16120c",
+                        "surface-container": "#f3ede5",
+                        "surface-container-low": "#f9f3eb",
+                        "error-container": "#ffdad6",
+                        "surface-variant": "#e7e2da",
+                        "surface": "#fff8f0",
+                        "secondary-fixed-dim": "#ffb955",
+                        "surface-dim": "#dfd9d2",
+                        // Custom palette aliases mapped from tokens based on prompt constraints
+                        "warm-cream": "#FDF7EF",
+                        "deep-ink": "#2B2620",
+                        "warm-amber": "#F5A623",
+                        "restrained-teal": "#2F9E6E"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "xl": "80px",
+                        "container-max": "1200px",
+                        "sm": "12px",
+                        "base": "8px",
+                        "gutter": "24px",
+                        "md": "24px",
+                        "xs": "4px",
+                        "lg": "48px"
+                    },
+                    "fontFamily": {
+                        "display-lg": ["Manrope"],
+                        "body-lg": ["Be Vietnam Pro"],
+                        "headline-sm": ["Manrope"],
+                        "label-md": ["Manrope"],
+                        "headline-md": ["Manrope"],
+                        "body-md": ["Be Vietnam Pro"],
+                        "display-lg-mobile": ["Manrope"],
+                        "caption": ["Be Vietnam Pro"]
+                    },
+                    "fontSize": {
+                        "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "800" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "headline-sm": ["24px", { "lineHeight": "32px", "fontWeight": "700" }],
+                        "label-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0.02em", "fontWeight": "600" }],
+                        "headline-md": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "display-lg-mobile": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "800" }],
+                        "caption": ["12px", { "lineHeight": "16px", "fontWeight": "500" }]
+                    }
+                }
+            }
+        }
+    </script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500&amp;family=Manrope:wght@600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+</head>
+<body class="bg-warm-cream text-deep-ink font-body-md antialiased min-h-screen flex items-center">
+<!-- Standalone Section: How it Works -->
+<section class="w-full max-w-container-max mx-auto px-gutter py-xl relative overflow-hidden">
+<!-- Subtle Background Grid/Construction Lines -->
+<div class="absolute inset-0 pointer-events-none opacity-[0.03] bg-[linear-gradient(to_right,#2B2620_1px,transparent_1px),linear-gradient(to_bottom,#2B2620_1px,transparent_1px)] bg-[size:48px_48px]"></div>
+<!-- Section Header -->
+<div class="max-w-2xl mx-auto text-center mb-lg relative z-10">
+<span class="block font-label-md text-label-md text-warm-amber uppercase tracking-widest mb-sm">CARA BELAJAR DIRAKITPRO</span>
+<h2 class="font-display-lg text-display-lg text-deep-ink mb-md">Belajar sambil merakit.</h2>
+<p class="font-body-lg text-body-lg text-deep-ink/80">Kami percaya cara terbaik untuk menguasai keterampilan baru adalah dengan langsung menerapkannya pada project nyata. Ini cara kami membantu Anda membangun portofolio sejak hari pertama.</p>
+</div>
+<!-- Four Stage Connected Flow -->
+<div class="relative max-w-5xl mx-auto mt-xl z-10">
+<!-- Structural Connecting Line (Desktop) -->
+<div class="hidden md:block absolute top-[120px] left-0 w-full h-[1px] bg-deep-ink/10"></div>
+<div class="grid grid-cols-1 md:grid-cols-4 gap-gutter relative">
+<!-- Stage 1: Pilih Rakitan -->
+<div class="relative group">
+<div class="h-[240px] bg-white rounded-lg border border-deep-ink/10 shadow-[0_4px_12px_rgba(43,38,32,0.05)] p-md flex flex-col items-center justify-center mb-md relative overflow-hidden transition-transform duration-300 group-hover:-translate-y-1">
+<!-- Project Card Mockup -->
+<div class="w-full h-full border border-deep-ink/10 rounded bg-warm-cream/50 p-sm flex flex-col justify-between relative shadow-sm">
+<div class="w-10 h-10 bg-warm-amber/20 rounded flex items-center justify-center text-warm-amber mb-sm">
+<span class="material-symbols-outlined text-[20px]">web</span>
+</div>
+<div>
+<div class="h-2 w-3/4 bg-deep-ink/10 rounded mb-2"></div>
+<div class="h-2 w-1/2 bg-deep-ink/5 rounded"></div>
+</div>
+<div class="absolute bottom-sm right-sm w-6 h-6 rounded-full border border-warm-amber flex items-center justify-center">
+<div class="w-3 h-3 bg-warm-amber rounded-full"></div>
+</div>
+</div>
+</div>
+<!-- Connection Node -->
+<div class="hidden md:flex absolute top-[240px] left-1/2 -translate-x-1/2 -translate-y-1/2 w-4 h-4 bg-warm-cream border border-deep-ink/20 rounded-full z-10 items-center justify-center">
+<div class="w-1.5 h-1.5 bg-deep-ink/40 rounded-full"></div>
+</div>
+<div class="text-center md:text-left mt-md md:mt-[40px]">
+<span class="inline-flex items-center justify-center w-6 h-6 rounded bg-deep-ink/5 font-label-md text-caption text-deep-ink/60 mb-sm">01</span>
+<h3 class="font-headline-sm text-headline-sm mb-xs">Pilih Rakitan</h3>
+<p class="font-body-md text-body-md text-deep-ink/70">Mulai dari sesuatu yang ingin kamu buat.</p>
+</div>
+</div>
+<!-- Stage 2: Pelajari yang Dibutuhkan -->
+<div class="relative group">
+<div class="h-[240px] bg-white rounded-lg border border-deep-ink/10 shadow-[0_4px_12px_rgba(43,38,32,0.05)] p-md flex flex-col items-center justify-center mb-md relative overflow-hidden transition-transform duration-300 group-hover:-translate-y-1">
+<!-- Lesson UI Mockup -->
+<div class="w-full flex flex-col gap-2">
+<div class="h-6 w-1/2 bg-deep-ink/10 rounded mb-1"></div>
+<div class="h-2 w-full bg-deep-ink/5 rounded"></div>
+<div class="h-2 w-5/6 bg-deep-ink/5 rounded mb-4"></div>
+<div class="flex items-center gap-sm p-sm border border-deep-ink/10 rounded bg-warm-cream/30">
+<span class="material-symbols-outlined text-[16px] text-deep-ink/40">play_circle</span>
+<div class="h-2 w-20 bg-deep-ink/10 rounded"></div>
+</div>
+</div>
+</div>
+<!-- Connection Node -->
+<div class="hidden md:flex absolute top-[240px] left-1/2 -translate-x-1/2 -translate-y-1/2 w-4 h-4 bg-warm-cream border border-deep-ink/20 rounded-full z-10 items-center justify-center">
+<div class="w-1.5 h-1.5 bg-deep-ink/40 rounded-full"></div>
+</div>
+<div class="text-center md:text-left mt-md md:mt-[40px]">
+<span class="inline-flex items-center justify-center w-6 h-6 rounded bg-deep-ink/5 font-label-md text-caption text-deep-ink/60 mb-sm">02</span>
+<h3 class="font-headline-sm text-headline-sm mb-xs">Pelajari Konsep</h3>
+<p class="font-body-md text-body-md text-deep-ink/70">Pelajari konsep saat kamu membutuhkannya untuk melanjutkan rakitan.</p>
+</div>
+</div>
+<!-- Stage 3: Rakit Bagian demi Bagian (Signature Progress) -->
+<div class="relative group">
+<div class="h-[240px] bg-white rounded-lg border border-deep-ink/10 shadow-[0_4px_12px_rgba(43,38,32,0.05)] p-md flex flex-col mb-md relative overflow-hidden transition-transform duration-300 group-hover:-translate-y-1">
+<div class="font-label-md text-caption text-deep-ink/60 uppercase mb-4 flex justify-between">
+<span>Rakit Personal Website</span>
+<span class="text-warm-amber">68%</span>
+</div>
+<!-- Progress Path -->
+<div class="flex-1 relative border-l-2 border-deep-ink/10 ml-2 pl-6 flex flex-col justify-between py-1">
+<!-- Completed Steps -->
+<div class="relative">
+<div class="absolute -left-[31px] top-0 w-4 h-4 bg-restrained-teal rounded-full flex items-center justify-center shadow-sm">
+<span class="material-symbols-outlined text-[10px] text-white">check</span>
+</div>
+<span class="font-body-md text-caption text-deep-ink/60 line-through">Struktur</span>
+</div>
+<div class="relative">
+<div class="absolute -left-[31px] top-0 w-4 h-4 bg-restrained-teal rounded-full flex items-center justify-center shadow-sm">
+<span class="material-symbols-outlined text-[10px] text-white">check</span>
+</div>
+<span class="font-body-md text-caption text-deep-ink/60 line-through">Hero</span>
+</div>
+<div class="relative">
+<div class="absolute -left-[31px] top-0 w-4 h-4 bg-restrained-teal rounded-full flex items-center justify-center shadow-sm">
+<span class="material-symbols-outlined text-[10px] text-white">check</span>
+</div>
+<span class="font-body-md text-caption text-deep-ink/60 line-through">Tentang Saya</span>
+</div>
+<!-- Current Step -->
+<div class="relative">
+<div class="absolute -left-[31px] top-0 w-4 h-4 bg-warm-cream border-2 border-warm-amber rounded-full z-10"></div>
+<!-- Active glow effect -->
+<div class="absolute -left-[35px] -top-1 w-6 h-6 bg-warm-amber/20 rounded-full animate-pulse"></div>
+<span class="font-label-md text-caption text-deep-ink">Project Showcase</span>
+</div>
+<!-- Upcoming Steps -->
+<div class="relative opacity-40">
+<div class="absolute -left-[29px] top-1 w-3 h-3 bg-warm-cream border border-deep-ink/30 rounded-full"></div>
+<span class="font-body-md text-caption text-deep-ink">Responsive</span>
+</div>
+<div class="relative opacity-40">
+<div class="absolute -left-[29px] top-1 w-3 h-3 bg-warm-cream border border-deep-ink/30 rounded-full"></div>
+<span class="font-body-md text-caption text-deep-ink">Deploy</span>
+</div>
+</div>
+</div>
+<!-- Connection Node (Active) -->
+<div class="hidden md:flex absolute top-[240px] left-1/2 -translate-x-1/2 -translate-y-1/2 w-4 h-4 bg-warm-cream border-2 border-warm-amber rounded-full z-10 items-center justify-center">
+<div class="w-1.5 h-1.5 bg-warm-amber rounded-full"></div>
+</div>
+<div class="text-center md:text-left mt-md md:mt-[40px]">
+<span class="inline-flex items-center justify-center w-6 h-6 rounded bg-warm-amber/10 font-label-md text-caption text-warm-amber mb-sm">03</span>
+<h3 class="font-headline-sm text-headline-sm mb-xs">Rakit Tahap demi Tahap</h3>
+<p class="font-body-md text-body-md text-deep-ink/70">Selesaikan checkpoint dan lihat projectmu berkembang tahap demi tahap.</p>
+</div>
+</div>
+<!-- Stage 4: Selesaikan Karyamu -->
+<div class="relative group">
+<div class="h-[240px] bg-white rounded-lg border border-deep-ink/10 shadow-[0_4px_12px_rgba(43,38,32,0.05)] overflow-hidden flex flex-col relative transition-transform duration-300 group-hover:-translate-y-1">
+<!-- Finished Preview Mockup -->
+<div class="h-6 border-b border-deep-ink/10 bg-warm-cream/50 flex items-center px-2 gap-1">
+<div class="w-2 h-2 rounded-full bg-deep-ink/10"></div>
+<div class="w-2 h-2 rounded-full bg-deep-ink/10"></div>
+<div class="w-2 h-2 rounded-full bg-deep-ink/10"></div>
+</div>
+<div class="p-sm flex-1 flex flex-col bg-deep-ink/5">
+<div class="w-full h-1/2 bg-white rounded border border-deep-ink/5 mb-2 flex items-center justify-center">
+<span class="material-symbols-outlined text-deep-ink/20 text-[32px]">image</span>
+</div>
+<div class="w-full flex gap-2">
+<div class="w-1/3 h-8 bg-white rounded border border-deep-ink/5"></div>
+<div class="w-1/3 h-8 bg-white rounded border border-deep-ink/5"></div>
+<div class="w-1/3 h-8 bg-white rounded border border-deep-ink/5"></div>
+</div>
+</div>
+</div>
+<!-- Connection Node (End) -->
+<div class="hidden md:flex absolute top-[240px] left-1/2 -translate-x-1/2 -translate-y-1/2 w-4 h-4 bg-warm-cream border border-deep-ink/20 rounded-full z-10 items-center justify-center">
+<div class="w-1.5 h-1.5 bg-restrained-teal rounded-full"></div>
+</div>
+<div class="text-center md:text-left mt-md md:mt-[40px]">
+<span class="inline-flex items-center justify-center w-6 h-6 rounded bg-deep-ink/5 font-label-md text-caption text-deep-ink/60 mb-sm">04</span>
+<h3 class="font-headline-sm text-headline-sm mb-xs">Selesaikan Karyamu</h3>
+<p class="font-body-md text-body-md text-deep-ink/70">Sampai di akhir dengan project utuh yang bisa kamu gunakan dan tunjukkan.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+</body></html>
