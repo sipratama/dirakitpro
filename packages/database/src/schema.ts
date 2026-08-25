@@ -501,9 +501,10 @@ export type NewProject = typeof projects.$inferInsert;
 
 export const adminAuditLogs = pgTable("admin_audit_logs", {
   id: uuid("id").defaultRandom().primaryKey(),
-  adminUserId: uuid("admin_user_id")
-    .notNull()
-    .references(() => users.id),
+  // Nullable: most rows are an admin action, but a system-triggered
+  // transition (e.g. BUNDLE_EXPIRED, 10.3's automatic ACTIVE -> EXPIRED) has
+  // no admin actor. Null means "system-triggered", not "unknown admin".
+  adminUserId: uuid("admin_user_id").references(() => users.id),
   action: varchar("action", { length: 100 }).notNull(), // e.g. "COURSE_PUBLISHED", "BUNDLE_ACTIVATED", "PROJECT_MODERATED"
   targetType: varchar("target_type", { length: 40 }).notNull(), // "course" | "bundle" | "order" | "payment" | "project"
   targetId: uuid("target_id").notNull(),
