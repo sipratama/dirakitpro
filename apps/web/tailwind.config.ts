@@ -64,6 +64,16 @@ const config: Config = {
         card: "12px",
         control: "10px",
       },
+      boxShadow: {
+        // DESIGN.md 8.3 — flat "hard offset" shadow, no blur. Reserve
+        // hard-lg for the primary CTA and the hero project-preview mockup.
+        "hard-sm": "4px 4px 0 0 #17140D",
+        "hard-lg": "7px 7px 0 0 #17140D",
+        // Cream-on-ink variant for the Final CTA's dark bookend surface,
+        // where an ink-colored shadow would be invisible against the
+        // near-black background.
+        "hard-invert-sm": "4px 4px 0 0 #F5EFE2",
+      },
     },
   },
 };

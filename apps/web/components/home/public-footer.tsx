@@ -1,13 +1,12 @@
 import Link from "next/link";
 
-// Only real, existing routes are linked. The Stitch reference footer showed
-// "Tentang Kami" / "Kebijakan Privasi" / "Syarat & Ketentuan" / "Bantuan" —
-// none of those correspond to any route in the app, so they're omitted
-// rather than linked as dead links.
+// Only real, existing routes are linked. Legal and support destinations remain
+// omitted until their routes exist; Bundle stays discoverable here at lower
+// visual priority because an active campaign is not guaranteed.
 const FOOTER_LINKS = [
-  { href: "/courses", label: "Course" },
-  { href: "/bundles", label: "Bundle" },
-  { href: "/projects", label: "Showcase" },
+  { href: "/courses", label: "Courses" },
+  { href: "/projects", label: "Hasil Rakitan" },
+  { href: "/about", label: "Tentang" },
 ] as const;
 
 export function PublicFooter() {

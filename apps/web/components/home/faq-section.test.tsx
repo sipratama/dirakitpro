@@ -4,14 +4,20 @@ import { describe, expect, it } from "vitest";
 import { FaqSection } from "./faq-section";
 
 describe("FaqSection", () => {
-  it("renders each question as a closed native details/summary control", () => {
+  it("keeps every question and answer in the DOM with a light stagger", () => {
     const { container } = render(<FaqSection />);
 
+    expect(container.querySelector("section")).toHaveClass("bg-brand-cream");
     const items = container.querySelectorAll("details");
-    expect(items.length).toBeGreaterThan(0);
+    expect(items).toHaveLength(4);
     for (const details of items) {
       expect((details as HTMLDetailsElement).open).toBe(false);
+      expect(details.querySelector("summary")).toBeInTheDocument();
+      expect(details.querySelector(".dp-faq-answer")).toBeInTheDocument();
     }
+
+    const reveals = container.querySelectorAll<HTMLElement>(".dp-css-reveal");
+    expect([...reveals].map((reveal) => reveal.style.animationDelay)).toEqual(["0ms", "60ms", "120ms", "180ms"]);
   });
 
   it("expands an item's answer on click and keeps it keyboard-operable", () => {

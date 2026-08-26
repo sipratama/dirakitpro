@@ -1,5 +1,5 @@
 // @vitest-environment jsdom
-import { render, screen } from "@testing-library/react";
+import { render, screen, within } from "@testing-library/react";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 
 const mockGetCurrentUser = vi.hoisted(() => vi.fn());
@@ -63,10 +63,17 @@ describe("Home", () => {
     expect(screen.getByRole("button", { name: "Lihat Course" })).toHaveAttribute("href", "/courses");
   });
 
-  it("shows guest nav actions when signed out", async () => {
+  it("shows stable public destinations and guest actions when signed out", async () => {
     render(await Home());
-    expect(screen.getByRole("button", { name: "Masuk" })).toHaveAttribute("href", "/login");
-    expect(screen.getByRole("button", { name: "Daftar" })).toHaveAttribute("href", "/register");
+    // The public header uses "Mulai Merakit" rather than a separate "Daftar"
+    // label, matching the same primary action used in the Hero.
+    const header = screen.getByRole("banner");
+    expect(within(header).getAllByRole("link", { name: "Courses" })[0]).toHaveAttribute("href", "/courses");
+    expect(within(header).getAllByRole("link", { name: "Hasil Rakitan" })[0]).toHaveAttribute("href", "/projects");
+    expect(within(header).getAllByRole("link", { name: "Tentang" })[0]).toHaveAttribute("href", "/about");
+    expect(header.querySelector('a[href="/bundles"]')).toBeNull();
+    expect(within(header).getByRole("button", { name: "Masuk" })).toHaveAttribute("href", "/login");
+    expect(within(header).getByRole("button", { name: "Mulai Merakit" })).toHaveAttribute("href", "/register");
   });
 
   it("shows a Dashboard link instead of guest actions when signed in", async () => {
@@ -114,12 +121,13 @@ describe("Home", () => {
     expect(item).not.toHaveAttribute("open");
   });
 
-  it("only links real, existing routes in the footer", async () => {
+  it("keeps occasional bundles in the footer after the stable public destinations", async () => {
     render(await Home());
     const footer = screen.getByRole("contentinfo");
-    expect(footer.querySelector('a[href="/courses"]')).not.toBeNull();
-    expect(footer.querySelector('a[href="/bundles"]')).not.toBeNull();
-    expect(footer.querySelector('a[href="/projects"]')).not.toBeNull();
+    const links = within(footer).getAllByRole("link");
+
+    expect(links.map((link) => link.textContent)).toEqual(["Courses", "Hasil Rakitan", "Tentang", "Bundle"]);
+    expect(links.map((link) => link.getAttribute("href"))).toEqual(["/courses", "/projects", "/about", "/bundles"]);
   });
 
   it("never renders fabricated stats, testimonials, or dead-route footer links", async () => {

@@ -86,6 +86,8 @@ All text/background pairs above target WCAG AA. One pair needs a caution: white 
 
 **Single family, three weights** — Plus Jakarta Sans (400/500/700), used for everything: headings, body, and UI chrome. One font is a deliberate restraint call for a solo builder: no font-pairing decisions to maintain, no FOUT mismatch between a heading font and a body font loading at different times.
 
+**One narrow exception:** IBM Plex Mono may be used for `text-micro`-scale numeric/label accents only (e.g. step numbers like "STEP.01", "C.01") — never for headings or body copy. Documented here (25 Aug 2026) after the homepage font-consolidation pass removed a broader, undocumented multi-font system (Bricolage Grotesque + DM Sans) that had crept in beyond this scope — this line exists so the same kind of drift doesn't happen silently again.
+
 Implementation: `next/font/google` with `Plus_Jakarta_Sans`, matching the Next.js stack (PRD 14.2).
 
 | Token | Size | Weight | Line-height | Use |
@@ -142,6 +144,46 @@ Lucide (already in stack, PRD 14.2). Outline style, 20px inline / 24px max decor
 - **Illustration/photography style** — no marketing imagery direction chosen yet. Needs its own pass once homepage IA exists.
 - **Empty states, loading states** — copy and layout patterns not yet defined; belongs in `SCREEN_INVENTORY.md`.
 - **Dark mode** — see 2.5, explicitly deferred.
+
+## 8. Homepage — "Memphis Digital Workshop" (2026-08-25, extended V2.1)
+
+**Scope.** Introduced 2026-08-25 for the Homepage's `PublicHeader`/`HeroSection`/`HeroVisual` only. Extended in the V2.1 visual-polish pass to the *rest* of the Homepage (`BuildDiscoverySection`, `HowItWorksSection`, `WhyDirakitProSection`, `FaqSection`, `FinalCtaSection`) at deliberately **graduated intensity** — this is the "go through that decision first" this section used to require, now made explicitly. Every other surface (dashboard, learning workspace, admin, checkout, catalog pages) still runs on sections 2–5 above until a full rebrand is separately scoped.
+
+Conceptual intensity by section (not a CSS opacity value — a mix of border weight, shadow presence, and color frequency): Hero 100% → Build Discovery ~60% → How It Works ~70% → Why DirakitPro ~40% → FAQ ~25% → Final CTA ~50%. Below the Hero, violet/sky drop out almost entirely (Hero-only supporting accents); coral/teal/mustard carry the graduated Memphis presence at their documented semantic roles (8.1).
+
+### 8.1 Color
+
+| Token | Hex | Role |
+|---|---|---|
+| `memphis-cream` | `#F5EFE2` | Header/hero background |
+| `memphis-ink` | `#17140D` | Text, outlines, hard shadows |
+| `memphis-coral` | `#FF5B57` | Primary CTA — the strongest action color on this surface |
+| `memphis-teal` | `#12B3A4` | Completed/progress state |
+| `memphis-mustard` | `#FFC531` | Current-state emphasis, the headline's marker highlight |
+| `memphis-violet` | `#6B5BE6` | Supporting accent only |
+| `memphis-sky` | `#3AA0FF` | Supporting accent only |
+
+Flat fills only, no gradients. Target mix: ~70% cream/white/ink, 10% coral, 8% teal, 6% mustard, remainder violet/sky — coral should never compete with a second saturated CTA on the same view.
+
+### 8.2 Typography
+
+Two families, scoped to this surface only (loaded in `app/page.tsx`, not `app/layout.tsx`, so no other route is affected):
+
+- **Bricolage Grotesque** 700/800 (`font-display-memphis`) — wordmark, hero headline, display labels only.
+- **DM Sans** 400/500/700 (`font-body-memphis`) — nav, body, UI labels on this surface.
+
+Hero headline: ~68–76px desktop, tight line-height, one marker-highlight only (behind "dirakit."). Sentence case, matching the section-3 voice rule.
+
+### 8.3 Tactile shadow
+
+- `shadow-hard-sm`: `4px 4px 0 memphis-ink` — small controls (nav CTA, secondary button, progress card).
+- `shadow-hard-lg`: `7px 7px 0 memphis-ink` — reserve for the primary CTA and the hero project-preview mockup only.
+- `shadow-hard-invert-sm`: `4px 4px 0 memphis-cream` — cream-on-ink variant for dark surfaces (Final CTA), where an ink shadow would be invisible.
+- No blur, no soft/glass shadow. Physical press, not a lift: hover translates *part way* toward the shadow's offset (shadow stays put, doesn't toggle off); active/press translates the *full* offset distance so the element sits flush over its own shadow.
+
+### 8.4 Motion
+
+CSS keyframes only, no JS. 5–6 decorative background shapes max, each a distinct gentle drift/rotate/bob/sway, 10–28s duration, never synchronized. Disabled entirely under `prefers-reduced-motion: reduce` (animation removed, not just slowed).
 
 ## Next steps
 

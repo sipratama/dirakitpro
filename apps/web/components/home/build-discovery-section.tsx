@@ -1,4 +1,5 @@
 import type { CourseWithOwnership } from "@/features/catalog/get-published-courses";
+import { CssReveal } from "@/components/home/css-reveal";
 import { DiscoveryCourseCard } from "@/components/home/discovery-course-card";
 
 const MAX_HOMEPAGE_COURSES = 3;
@@ -16,16 +17,20 @@ export function BuildDiscoverySection({ courses }: { courses: CourseWithOwnershi
   }
 
   return (
-    <section className="mx-auto w-full max-w-6xl px-4 py-16">
-      <h2 className="text-h1 text-brand-ink">Mau merakit apa?</h2>
-      <p className="mt-2 text-body-lg text-neutral-600">
-        Pilih rakitan pertamamu — setiap course berakhir dengan sesuatu yang nyata untuk ditunjukkan.
-      </p>
+    <section className="bg-surface">
+      <div className="mx-auto w-full max-w-6xl px-4 py-16">
+        <h2 className="text-h1 text-brand-ink">Mau merakit apa?</h2>
+        <p className="mt-2 text-body-lg text-neutral-600">
+          Pilih rakitan pertamamu — setiap course berakhir dengan sesuatu yang nyata untuk ditunjukkan.
+        </p>
 
-      <div className="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        {featured.map((course) => (
-          <DiscoveryCourseCard key={course.id} course={course} />
-        ))}
+        <div className="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {featured.map((course, index) => (
+            <CssReveal key={course.id} delayMs={index * 80} className="h-full">
+              <DiscoveryCourseCard course={course} />
+            </CssReveal>
+          ))}
+        </div>
       </div>
     </section>
   );
