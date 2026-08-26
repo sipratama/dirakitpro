@@ -4,10 +4,9 @@ import Link from "next/link";
 // omitted until their routes exist; Bundle stays discoverable here at lower
 // visual priority because an active campaign is not guaranteed.
 const FOOTER_LINKS = [
-  { href: "/courses", label: "Course" },
-  { href: "/projects", label: "Showcase" },
+  { href: "/courses", label: "Courses" },
+  { href: "/projects", label: "Hasil Rakitan" },
   { href: "/about", label: "Tentang" },
-  { href: "/bundles", label: "Bundle" },
 ] as const;
 
 export function PublicFooter() {

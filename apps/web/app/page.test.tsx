@@ -126,7 +126,7 @@ describe("Home", () => {
     const footer = screen.getByRole("contentinfo");
     const links = within(footer).getAllByRole("link");
 
-    expect(links.map((link) => link.textContent)).toEqual(["Course", "Showcase", "Tentang", "Bundle"]);
+    expect(links.map((link) => link.textContent)).toEqual(["Courses", "Hasil Rakitan", "Tentang", "Bundle"]);
     expect(links.map((link) => link.getAttribute("href"))).toEqual(["/courses", "/projects", "/about", "/bundles"]);
   });
 
