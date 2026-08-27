@@ -19,7 +19,9 @@ export default async function DashboardPage() {
       {dashboardCourses.length === 0 ? (
         <div className="mt-8 flex flex-col items-start gap-4 rounded-card border border-neutral-100 bg-surface p-6">
           <p className="text-body text-neutral-600">Kamu belum punya course aktif.</p>
-          <Button render={<Link href="/courses" />}>Lihat katalog course</Button>
+          <Button nativeButton={false} render={<Link href="/courses" />}>
+            Lihat katalog course
+          </Button>
         </div>
       ) : (
         <div className="mt-8 flex flex-col gap-4">
@@ -34,7 +36,10 @@ export default async function DashboardPage() {
                 <p className="text-small text-neutral-600">Stage saat ini: {course.currentStageName}</p>
               )}
               {course.resumeLessonSlug && (
-                <Button render={<Link href={`/learn/${course.courseSlug}/${course.resumeLessonSlug}`} />}>
+                <Button
+                  nativeButton={false}
+                  render={<Link href={`/learn/${course.courseSlug}/${course.resumeLessonSlug}`} />}
+                >
                   Lanjut Merakit
                 </Button>
               )}

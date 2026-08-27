@@ -3,6 +3,7 @@ import { render, screen } from "@testing-library/react";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 
 const mockGetCurrentUser = vi.hoisted(() => vi.fn());
+const mockGetActiveBundles = vi.hoisted(() => vi.fn());
 const mockRedirect = vi.hoisted(() =>
   vi.fn((url: string) => {
     throw new Error(`REDIRECT:${url}`);
@@ -14,6 +15,11 @@ vi.mock("next/navigation", () => ({ redirect: mockRedirect }));
 // PublicHeader's signed-in state renders AccountMenu, which calls useClerk() —
 // stub it the same way components/home/account-menu.test.tsx does.
 vi.mock("@clerk/nextjs", () => ({ useClerk: () => ({ signOut: vi.fn() }) }));
+// PublicHeader now also fetches active bundles for its promo badge — stub it
+// so this test doesn't hit the real DB-backed query.
+vi.mock("@/features/catalog/get-active-bundles", () => ({
+  getActiveBundles: mockGetActiveBundles,
+}));
 
 const { default: AccountPage } = await import("./page");
 
@@ -31,6 +37,7 @@ const USER = {
 describe("AccountPage", () => {
   beforeEach(() => {
     vi.clearAllMocks();
+    mockGetActiveBundles.mockResolvedValue([]);
   });
 
   it("redirects to /login when unauthenticated (IAM-002)", async () => {

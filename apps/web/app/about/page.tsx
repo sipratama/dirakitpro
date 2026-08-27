@@ -18,7 +18,7 @@ export default async function AboutPage() {
 
   return (
     <>
-      <PublicHeader user={user} />
+      {await PublicHeader({ user })}
       <main className="flex flex-1 flex-col bg-brand-cream text-brand-ink">
         <section className="px-4 py-16 md:px-6 md:py-24">
           <div className="mx-auto grid w-full max-w-6xl gap-10 md:grid-cols-[minmax(0,1.2fr)_minmax(18rem,0.8fr)] md:items-start">

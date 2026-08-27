@@ -16,7 +16,7 @@ export default async function AccountPage() {
 
   return (
     <>
-      <PublicHeader user={user} />
+      {await PublicHeader({ user })}
       <main className="mx-auto w-full max-w-3xl flex-1 px-4 py-12">
         <h1 className="text-h1 text-brand-ink">Akun saya</h1>
 

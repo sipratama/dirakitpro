@@ -3,10 +3,16 @@ import { render, screen, within } from "@testing-library/react";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 
 const mockGetCurrentUser = vi.hoisted(() => vi.fn());
+const mockGetActiveBundles = vi.hoisted(() => vi.fn());
 
 vi.mock("@dirakitpro/auth", () => ({ getCurrentUser: mockGetCurrentUser }));
 vi.mock("posthog-js", () => ({
   default: { capture: vi.fn() },
+}));
+// AboutPage renders PublicHeader, which now fetches active bundles for its
+// promo badge — stub it so this test doesn't hit the real DB-backed query.
+vi.mock("@/features/catalog/get-active-bundles", () => ({
+  getActiveBundles: mockGetActiveBundles,
 }));
 
 const { default: AboutPage } = await import("./page");
@@ -15,6 +21,7 @@ describe("AboutPage", () => {
   beforeEach(() => {
     vi.clearAllMocks();
     mockGetCurrentUser.mockResolvedValue(null);
+    mockGetActiveBundles.mockResolvedValue([]);
   });
 
   it("renders its two public sections for a guest without an auth guard", async () => {

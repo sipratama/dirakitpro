@@ -4,10 +4,18 @@ import { beforeEach, describe, expect, it, vi } from "vitest";
 
 const mockGetCurrentUser = vi.hoisted(() => vi.fn());
 const mockGetPublishedCourses = vi.hoisted(() => vi.fn());
+const mockGetActiveBundles = vi.hoisted(() => vi.fn());
 
 vi.mock("@dirakitpro/auth", () => ({ getCurrentUser: mockGetCurrentUser }));
 vi.mock("@/features/catalog/get-published-courses", () => ({
   getPublishedCourses: mockGetPublishedCourses,
+}));
+// PublicHeader (rendered by Home) now fetches active bundles for its promo
+// badge — stub it to "none" by default so these Home-level tests stay
+// focused on Home's own content, not the badge (see public-header.test.tsx
+// for badge-specific coverage).
+vi.mock("@/features/catalog/get-active-bundles", () => ({
+  getActiveBundles: mockGetActiveBundles,
 }));
 // The signed-in header renders AccountMenu, which calls Clerk's useClerk() —
 // stub it the same way components/home/account-menu.test.tsx does.
@@ -31,6 +39,7 @@ describe("Home", () => {
     vi.clearAllMocks();
     mockGetCurrentUser.mockResolvedValue(null);
     mockGetPublishedCourses.mockResolvedValue([]);
+    mockGetActiveBundles.mockResolvedValue([]);
   });
 
   it("renders the header, all 7 content sections, and the footer", async () => {
@@ -124,13 +133,13 @@ describe("Home", () => {
     expect(item).not.toHaveAttribute("open");
   });
 
-  it("keeps occasional bundles in the footer after the stable public destinations", async () => {
+  it("renders only the stable public destinations in the footer — no permanent Bundle link", async () => {
     render(await Home());
     const footer = screen.getByRole("contentinfo");
     const links = within(footer).getAllByRole("link");
 
-    expect(links.map((link) => link.textContent)).toEqual(["Courses", "Hasil Rakitan", "Tentang", "Bundle"]);
-    expect(links.map((link) => link.getAttribute("href"))).toEqual(["/courses", "/projects", "/about", "/bundles"]);
+    expect(links.map((link) => link.textContent)).toEqual(["Courses", "Hasil Rakitan", "Tentang"]);
+    expect(links.map((link) => link.getAttribute("href"))).toEqual(["/courses", "/projects", "/about"]);
   });
 
   it("never renders fabricated stats, testimonials, or dead-route footer links", async () => {

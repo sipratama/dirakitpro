@@ -29,13 +29,34 @@ export function AccountMenu() {
       <Menu.Portal>
         <Menu.Positioner align="end" sideOffset={8}>
           <Menu.Popup className="flex min-w-[200px] flex-col gap-1 rounded-card border-2 border-brand-ink bg-surface p-2 shadow-hard-sm">
-            <Menu.LinkItem render={<Link href="/dashboard" />} className={ITEM_CLASSNAME}>
+            {/* Base UI's Menu.LinkItem defaults closeOnClick to false (unlike
+                Menu.Item's true — see node_modules/@base-ui/react/menu/link-item
+                /MenuLinkItem.mjs). Left at the default, a plain click navigates
+                correctly but leaves the dropdown open. We want the common case
+                (plain click) to close the menu; Base UI's shared onClick handler
+                doesn't distinguish modifier-clicks (Ctrl/Cmd/middle-click for
+                "open in new tab") from plain ones before closing, so opening a
+                link in a new tab also closes the menu in the current tab —
+                accepted trade-off, plain click is far more common. */}
+            <Menu.LinkItem
+              render={<Link href="/dashboard" />}
+              className={ITEM_CLASSNAME}
+              closeOnClick
+            >
               Dashboard
             </Menu.LinkItem>
-            <Menu.LinkItem render={<Link href="/account" />} className={ITEM_CLASSNAME}>
+            <Menu.LinkItem render={<Link href="/account" />} className={ITEM_CLASSNAME} closeOnClick>
               Akun saya
             </Menu.LinkItem>
-            <Menu.Item className={ITEM_CLASSNAME} onClick={handleSignOut}>
+            <Menu.LinkItem render={<Link href="/account/orders" />} className={ITEM_CLASSNAME} closeOnClick>
+              Riwayat pembelian
+            </Menu.LinkItem>
+            <Menu.Item
+              nativeButton
+              render={<button type="button" />}
+              className={ITEM_CLASSNAME}
+              onClick={handleSignOut}
+            >
               Keluar
             </Menu.Item>
           </Menu.Popup>

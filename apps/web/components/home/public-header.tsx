@@ -1,7 +1,10 @@
 import Link from "next/link";
-import type { User } from "@dirakitpro/database";
+import { cache } from "react";
+import { Package } from "lucide-react";
+import type { Bundle, User } from "@dirakitpro/database";
 import { Button } from "@/components/ui/button";
 import { AccountMenu } from "@/components/home/account-menu";
+import { getActiveBundles } from "@/features/catalog/get-active-bundles";
 
 const NAV_LINKS = [
   { href: "/courses", label: "Courses" },
@@ -9,13 +12,29 @@ const NAV_LINKS = [
   { href: "/about", label: "Tentang" },
 ] as const;
 
+// PublicHeader is composed into public routes that are already request-dynamic
+// because they call getCurrentUser(), which reads cookies. React cache()
+// memoizes this zero-argument read for the duration of that server request.
+const getActiveBundlesCached = cache(getActiveBundles);
+
 // No shared site-wide header exists yet (app/layout.tsx renders no chrome) —
 // this public-marketing header is composed explicitly by each route that uses
-// it. `user` is fetched once by the page and passed down, matching this
-// codebase's convention of keeping data-fetching in the async page and children
-// synchronous/testable (see app/dashboard/page.tsx). The outlined brand mark
-// and hard-shadow CTA give the public entry points a clear, tactile hierarchy.
-export function PublicHeader({ user }: { user: User | null }) {
+// it. `user` is still fetched once by the page and passed down, same as
+// always. The outlined brand mark and hard-shadow CTA give the public entry
+// points a clear, tactile hierarchy.
+//
+// Async because it now also fetches active bundles (CAT-005) for the promo
+// badge below. Every call site splices it in as `{await PublicHeader({ user
+// })}`, not `<PublicHeader user={user} />` — Next's real RSC renderer would
+// resolve a nested async component either way, but plain React (as used by
+// this codebase's Vitest + Testing Library setup, see app/dashboard/page.tsx's
+// "async page, synchronous children" convention) can't render an async
+// function component reached via JSX, only one that's already been awaited
+// into a plain element tree. Explicit-await keeps both production behavior
+// and testability intact.
+export async function PublicHeader({ user }: { user: User | null }) {
+  const activeBundles = await getActiveBundlesCached();
+
   return (
     <header className="border-b-2 border-brand-ink bg-brand-cream font-sans">
       <div className="mx-auto w-full max-w-6xl px-4 md:px-6">
@@ -63,6 +82,12 @@ export function PublicHeader({ user }: { user: User | null }) {
           </div>
         </div>
 
+        {activeBundles.length > 0 && (
+          <div className="flex justify-center border-t-2 border-brand-ink py-2">
+            <BundlePromoBadge bundles={activeBundles} />
+          </div>
+        )}
+
         <nav
           aria-label="Navigasi utama mobile"
           className="flex items-center justify-center gap-6 border-t-2 border-brand-ink py-3 text-sm font-medium text-brand-ink md:hidden"
@@ -75,6 +100,32 @@ export function PublicHeader({ user }: { user: User | null }) {
         </nav>
       </div>
     </header>
+  );
+}
+
+// CAT-005: any number of bundles can be ACTIVE-and-in-window at once, and
+// getActiveBundles() returns them in whatever order the DB gives back (no
+// orderBy) — there's no "most recent" to reach for without inventing an
+// ordering the query doesn't promise. So: exactly one active bundle gets
+// named directly and links straight to it; two or more collapse into one
+// badge naming the campaign generically and linking to /bundles, where every
+// active bundle is actually listed. This is a promotional link rather than
+// a status/category tag, so it uses the requested solid brand-amber token;
+// keeping it compact and shadowless distinguishes it from the primary CTA.
+function BundlePromoBadge({ bundles }: { bundles: Bundle[] }) {
+  const single = bundles.length === 1 ? bundles[0] : null;
+  const href = single ? `/bundles/${single.slug}` : "/bundles";
+  const label = single ? single.title : "Bundle aktif";
+
+  return (
+    <Link
+      href={href}
+      className="inline-flex max-w-full items-center gap-1.5 rounded-full bg-brand-amber px-3 py-1.5 text-micro font-semibold text-brand-ink transition-opacity hover:opacity-80"
+      title={label}
+    >
+      <Package aria-hidden="true" className="h-3.5 w-3.5 shrink-0" />
+      <span className="truncate">{label}</span>
+    </Link>
   );
 }
 

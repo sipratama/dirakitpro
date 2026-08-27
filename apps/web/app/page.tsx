@@ -34,7 +34,7 @@ export default async function Home() {
     // still sees header/main/footer as direct children) while scoping the
     // Homepage-only mono utility face via normal CSS variable inheritance.
     <div className={`${ibmPlexMono.variable} contents`}>
-      <PublicHeader user={user} />
+      {await PublicHeader({ user })}
       <main className="flex flex-1 flex-col">
         <HeroSection />
         <BuildDiscoverySection courses={courses} />

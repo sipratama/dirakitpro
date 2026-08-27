@@ -1,8 +1,11 @@
 import Link from "next/link";
 
 // Only real, existing routes are linked. Legal and support destinations remain
-// omitted until their routes exist; Bundle stays discoverable here at lower
-// visual priority because an active campaign is not guaranteed.
+// omitted until their routes exist. Bundle is deliberately not a permanent
+// footer link — a bundle campaign isn't always running, so a footer entry
+// pointing at an empty /bundles most of the time would be a dead-feeling
+// link. When a campaign is active, PublicHeader surfaces it instead, via a
+// promo badge that only appears while there's something real to show.
 const FOOTER_LINKS = [
   { href: "/courses", label: "Courses" },
   { href: "/projects", label: "Hasil Rakitan" },

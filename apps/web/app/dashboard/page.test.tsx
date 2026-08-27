@@ -36,7 +36,7 @@ describe("DashboardPage", () => {
     render(await DashboardPage());
 
     expect(screen.getByText("Kamu belum punya course aktif.")).toBeInTheDocument();
-    expect(screen.getByRole("link", { name: "Lihat katalog course" })).toHaveAttribute("href", "/courses");
+    expect(screen.getByRole("button", { name: "Lihat katalog course" })).toHaveAttribute("href", "/courses");
   });
 
   it("renders Build Progress, current stage, and the Lanjut Merakit CTA for an enrolled course", async () => {
@@ -57,7 +57,7 @@ describe("DashboardPage", () => {
     expect(screen.getByText("Rakit Aplikasi Keuangan Pribadi")).toBeInTheDocument();
     expect(screen.getByText("50% Build Progress")).toBeInTheDocument();
     expect(screen.getByText("Stage saat ini: Make It Remember")).toBeInTheDocument();
-    expect(screen.getByRole("link", { name: "Lanjut Merakit" })).toHaveAttribute(
+    expect(screen.getByRole("button", { name: "Lanjut Merakit" })).toHaveAttribute(
       "href",
       "/learn/rakit-finance-app/simpan-data",
     );
@@ -78,6 +78,6 @@ describe("DashboardPage", () => {
 
     render(await DashboardPage());
 
-    expect(screen.queryByRole("link", { name: "Lanjut Merakit" })).not.toBeInTheDocument();
+    expect(screen.queryByRole("button", { name: "Lanjut Merakit" })).not.toBeInTheDocument();
   });
 });
