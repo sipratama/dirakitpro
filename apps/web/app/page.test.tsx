@@ -9,6 +9,9 @@ vi.mock("@dirakitpro/auth", () => ({ getCurrentUser: mockGetCurrentUser }));
 vi.mock("@/features/catalog/get-published-courses", () => ({
   getPublishedCourses: mockGetPublishedCourses,
 }));
+// The signed-in header renders AccountMenu, which calls Clerk's useClerk() —
+// stub it the same way components/home/account-menu.test.tsx does.
+vi.mock("@clerk/nextjs", () => ({ useClerk: () => ({ signOut: vi.fn() }) }));
 
 const { default: Home } = await import("./page");
 
@@ -76,11 +79,11 @@ describe("Home", () => {
     expect(within(header).getByRole("button", { name: "Mulai Merakit" })).toHaveAttribute("href", "/register");
   });
 
-  it("shows a Dashboard link instead of guest actions when signed in", async () => {
+  it("shows the account dropdown instead of guest actions when signed in", async () => {
     mockGetCurrentUser.mockResolvedValue({ id: "user-1" });
     render(await Home());
 
-    expect(screen.getByRole("button", { name: "Dashboard" })).toHaveAttribute("href", "/dashboard");
+    expect(screen.getByRole("button", { name: "Akun" })).toBeInTheDocument();
     expect(screen.queryByRole("button", { name: "Masuk" })).not.toBeInTheDocument();
   });
 

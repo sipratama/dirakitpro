@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { User } from "@dirakitpro/database";
 import { Button } from "@/components/ui/button";
+import { AccountMenu } from "@/components/home/account-menu";
 
 const NAV_LINKS = [
   { href: "/courses", label: "Courses" },
@@ -37,14 +38,7 @@ export function PublicHeader({ user }: { user: User | null }) {
 
           <div className="flex items-center gap-3">
             {user ? (
-              <Button
-                size="sm"
-                nativeButton={false}
-                render={<Link href="/dashboard" />}
-                className="rounded-control border-2 border-brand-ink bg-brand-amber px-4 font-bold text-brand-ink shadow-hard-sm transition-transform duration-150 ease-out hover:translate-x-0.5 hover:translate-y-0.5 active:translate-x-1 active:translate-y-1"
-              >
-                Dashboard
-              </Button>
+              <AccountMenu />
             ) : (
               <>
                 <Button

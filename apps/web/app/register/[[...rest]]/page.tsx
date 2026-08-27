@@ -12,7 +12,7 @@ export default async function RegisterPage() {
       <main className="flex flex-1 items-center justify-center bg-brand-cream px-4 py-12">
         <div className="flex w-full flex-col items-center gap-8">
           <h1 className="text-center text-h1 text-brand-ink">Gabung dan mulai merakit.</h1>
-          <SignUp path="/register" routing="path" signInUrl="/login" />
+          <SignUp path="/register" routing="path" signInUrl="/login" forceRedirectUrl="/dashboard" />
         </div>
       </main>
       <PublicFooter />
